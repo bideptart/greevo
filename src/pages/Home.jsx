@@ -38,22 +38,28 @@ const STEPS = [
   },
 ]
 
-const INTEGRATIONS = ['HubSpot', 'Salesforce', 'Zoho', 'Pipedrive', 'Slack', 'Zendesk', 'Shopify', 'Zapier', 'Microsoft Teams', 'Google Workspace']
+const INTEGRATIONS = [
+  { name: 'HubSpot', logo: '/integrations/hubspot.svg' },
+  { name: 'Salesforce', logo: '/integrations/salesforce.png' },
+  { name: 'Zoho', logo: '/integrations/zoho.svg' },
+  { name: 'Pipedrive', logo: '/integrations/pipedrive.png' },
+  { name: 'Zendesk', logo: '/integrations/zendesk.svg' },
+  { name: 'Freshdesk', logo: '/integrations/freshdesk.png' },
+  { name: 'WhatsApp', logo: '/integrations/whatsapp.svg' },
+  { name: 'Instagram', logo: '/integrations/instagram.svg' },
+  { name: 'Messenger', logo: '/integrations/messenger.svg' },
+  { name: 'X', logo: '/integrations/x.svg' },
+]
 
 const TESTIMONIALS = [
-  { quote: "We tried two other cloud phone tools before this one. The reason we stayed is boring — it just kept working across four time zones. Our sales team stopped thinking about the phone.", name: 'Meera Kapoor', role: 'Head of Growth · Pune' },
-  { quote: 'The mid-shift dashboard is where I actually spend my day. Queue depth, agent load, and sentiment on one screen — I can coach someone before it turns into a bad review.', name: 'Jonas Weber', role: 'CX Manager · Berlin' },
-  { quote: "The AI receptionist covers overflow calls in two languages, so we stopped losing weekend leads. It hands off to us on anything ambiguous, but for hours and bookings it beats voicemail every time.", name: 'Fatima Al-Sayed', role: 'Support Lead · Dubai' },
-  { quote: 'CRM sync is quiet infrastructure. Every call, note, and recording just shows up on the contact — nobody has to remember to log it. Our forecast is finally accurate.', name: 'Marcus Chen', role: 'Head of Sales · Toronto' },
-  { quote: 'I set the whole thing up on my phone during a layover. Five people, two countries, one number that rings all of us. My old provider needed a two-week onboarding for the same thing.', name: 'Isabela Rocha', role: 'Founder · São Paulo' },
-  { quote: 'Porting 30 numbers across two countries was the part I dreaded most. It was done in under a week, free, and I only had to sign one form. That set the tone for the rest of the rollout.', name: 'Oliver Bennett', role: 'COO · London' },
+  { quote: "We tried two other cloud phone tools before this one. The reason we stayed is boring — it just kept working across four time zones. Our sales team stopped thinking about the phone.", name: 'Meera Kapoor', role: 'Head of Growth · Pune', color: '#8b5cf6', color2: '#ec4899' },
+  { quote: 'The mid-shift dashboard is where I actually spend my day. Queue depth, agent load, and sentiment on one screen — I can coach someone before it turns into a bad review.', name: 'Jonas Weber', role: 'CX Manager · Berlin', color: '#6366f1', color2: '#ec4899' },
+  { quote: "The AI receptionist covers overflow calls in two languages, so we stopped losing weekend leads. It hands off to us on anything ambiguous, but for hours and bookings it beats voicemail every time.", name: 'Fatima Al-Sayed', role: 'Support Lead · Dubai', color: '#10b981', color2: '#3b82f6' },
+  { quote: 'CRM sync is quiet infrastructure. Every call, note, and recording just shows up on the contact — nobody has to remember to log it. Our forecast is finally accurate.', name: 'Marcus Chen', role: 'Head of Sales · Toronto', color: '#2563eb', color2: '#8b5cf6' },
+  { quote: 'I set the whole thing up on my phone during a layover. Five people, two countries, one number that rings all of us. My old provider needed a two-week onboarding for the same thing.', name: 'Isabela Rocha', role: 'Founder · São Paulo', color: '#f59e0b', color2: '#ec4899' },
+  { quote: 'Porting 30 numbers across two countries was the part I dreaded most. It was done in under a week, free, and I only had to sign one form. That set the tone for the rest of the rollout.', name: 'Oliver Bennett', role: 'COO · London', color: '#14b8a6', color2: '#6366f1' },
 ]
 
-const STATS = [
-  { value: '+21%', label: 'First Contact Resolution' },
-  { value: '9 hrs', label: 'Per week returned to sales' },
-  { value: '−34%', label: 'Average Handle Time' },
-]
 
 const FAQS = [
   { q: "What is Greevo's cloud contact center platform?", a: 'Cloud phone and AI contact center in one product. Calls, chat, SMS, video, analytics, and an AI receptionist — in one place, on one login.' },
@@ -205,17 +211,28 @@ export default function Home() {
       </section>
 
       {/* Integrations */}
-      <section className="section" style={{ background: 'var(--surface-alt)' }}>
+      <section className="section">
         <div className="container">
-          <div className="integrations-band">
-            <div>
-              <span className="eyebrow">⚡ Integrations</span>
-              <h2 className="section-title">Integrate with the tools you already use</h2>
-              <p className="section-subtitle">300+ native integrations — CRM, helpdesk, messaging, ticketing. No middleman required.</p>
+          <div className="stack-center">
+            <span className="eyebrow">⚡ Integrations</span>
+            <h2 className="section-title">
+              Integrate with the <span className="gradient-text">tools you already use</span>
+            </h2>
+            <p className="section-subtitle">300+ native integrations — CRM, helpdesk, messaging, ticketing. No middleman required.</p>
+          </div>
+          <div className="integrations-marquee">
+            <div className="integrations-track integrations-track-left">
+              {[...INTEGRATIONS, ...INTEGRATIONS, ...INTEGRATIONS].map((app, i) => (
+                <div key={`row1-${app.name}-${i}`} className="integration-tile" title={app.name}>
+                  <img src={app.logo} alt={app.name} />
+                </div>
+              ))}
             </div>
-            <div className="integrations-grid">
-              {INTEGRATIONS.map((name) => (
-                <span key={name} className="integration-chip">{name}</span>
+            <div className="integrations-track integrations-track-right">
+              {[...INTEGRATIONS, ...INTEGRATIONS, ...INTEGRATIONS].reverse().map((app, i) => (
+                <div key={`row2-${app.name}-${i}`} className="integration-tile" title={app.name}>
+                  <img src={app.logo} alt={app.name} />
+                </div>
               ))}
             </div>
           </div>
@@ -230,27 +247,23 @@ export default function Home() {
             <h2 className="section-title">What clients say after 90 days.</h2>
             <p className="section-subtitle">Real teams, real numbers — from sales floors, CX desks, and support queues.</p>
           </div>
-          <div className="testimonial-grid">
-            {TESTIMONIALS.map((t) => (
-              <div key={t.name} className="card testimonial-card">
-                <p className="testimonial-quote">&ldquo;{t.quote}&rdquo;</p>
-                <div className="testimonial-author">
-                  <span className="testimonial-avatar">{t.name.split(' ').map((n) => n[0]).join('')}</span>
-                  <div>
-                    <strong>{t.name}</strong>
-                    <span>{t.role}</span>
+          <div className="testimonial-marquee">
+            <div className="testimonial-track">
+              {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+                <div key={`${t.name}-${i}`} className="card testimonial-card">
+                  <span className="testimonial-quote-mark" style={{ color: t.color }} aria-hidden="true">&ldquo;</span>
+                  <p className="testimonial-quote">{t.quote}</p>
+                  <div className="testimonial-divider" />
+                  <div className="testimonial-author">
+                    <span className="testimonial-avatar" style={{ background: `linear-gradient(135deg, ${t.color}, ${t.color2})` }}>{t.name.split(' ').map((n) => n[0]).join('')}</span>
+                    <div>
+                      <strong>{t.name}</strong>
+                      <span className="testimonial-role">{t.role}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          <div className="stats-row" style={{ marginTop: 56 }}>
-            {STATS.map((s) => (
-              <div key={s.label}>
-                <div className="stat-number">{s.value}</div>
-                <div className="stat-label">{s.label}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>

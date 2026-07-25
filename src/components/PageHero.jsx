@@ -5,7 +5,12 @@ export default function PageHero({ eyebrow, title, subtitle, primaryCta = 'Start
   return (
     <section className="page-hero">
       <div className="container page-hero-inner">
-        {eyebrow && <span className="eyebrow">{eyebrow}</span>}
+        {eyebrow && (
+          <span className="hero-badge">
+            <span className="material-symbols-outlined" style={{ fontSize: 16 }}>auto_awesome</span>
+            {eyebrow}
+          </span>
+        )}
         <h1>{title}</h1>
         {subtitle && <p className="page-hero-subtitle">{subtitle}</p>}
         <div className="page-hero-ctas">

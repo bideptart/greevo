@@ -3,6 +3,19 @@
   border-bottom: 1px solid var(--border);
 }
 
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
 .page-hero-inner {
   max-width: 780px;
   text-align: center;
