@@ -5,9 +5,8 @@
   gap: 32px;
   padding: 40px 48px;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  background: var(--gradient-soft);
-  box-shadow: var(--shadow-soft);
+  background: var(--text);
+  box-shadow: var(--shadow-lift);
 }
 
 .demo-cta-text {
@@ -20,9 +19,9 @@
   gap: 6px;
   padding: 6px 14px;
   border-radius: var(--radius-pill);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--accent-violet-dark);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--accent-cyan);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -35,14 +34,18 @@
   font-weight: 700;
   line-height: 1.15;
   margin-bottom: 12px;
+  color: var(--bg);
 }
 
 .demo-cta-text h2 .accent {
-  color: var(--accent-violet-dark);
+  background: var(--gradient-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .demo-cta-text > p {
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.68);
   font-size: 15px;
   line-height: 1.6;
   margin-bottom: 20px;
@@ -59,14 +62,14 @@
   align-items: center;
   gap: 8px;
   font-size: 13.5px;
-  color: var(--text-soft);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .demo-cta-points .dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent-violet-dark);
+  background: var(--accent-cyan);
   flex-shrink: 0;
 }
 
@@ -79,6 +82,12 @@
 
 .demo-cta-actions .btn {
   white-space: nowrap;
+}
+
+.demo-cta-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 @media (max-width: 820px) {
