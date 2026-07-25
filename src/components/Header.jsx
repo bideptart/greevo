@@ -1,146 +1,17 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import './Header.css'
 
-const MENUS = {
-  products: {
-    columns: [
-      {
-        heading: 'Cloud Phone',
-        links: [
-          { label: 'Business Phone + AI', to: '/products/cloud-phone' },
-          { label: 'Customer Engagement', to: '/products/cloud-phone' },
-          { label: 'SMS & MMS', to: '/products/sms-mms' },
-          { label: 'Team Chat', to: '/products/cloud-phone' },
-          { label: 'Video Meetings', to: '/products/video-meetings' },
-          { label: 'Website Chatbot', to: '/products/cloud-phone' },
-        ],
-      },
-      {
-        heading: 'Contact Center',
-        links: [
-          { label: 'Omnichannel', to: '/products/cloud-phone' },
-          { label: 'Outbound Dialer', to: '/products/cloud-phone' },
-          { label: 'Agent Assist', to: '/products/ai-receptionist' },
-          { label: 'Supervisor Assist', to: '/products/cloud-phone' },
-          { label: 'Interaction Analytics', to: '/products/cloud-phone' },
-        ],
-      },
-      {
-        heading: 'AI',
-        links: [
-          { label: 'Greevo AI Receptionist', to: '/products/ai-receptionist' },
-          { label: 'AI Assistant', to: '/products/ai-receptionist' },
-          { label: 'Conversational AI', to: '/products/ai-receptionist' },
-          { label: 'AI Agent Assist', to: '/products/ai-receptionist' },
-          { label: 'AI Sentiment', to: '/products/ai-receptionist' },
-        ],
-      },
-    ],
-    footer: { title: 'Greevo AI is included on every plan.', subtitle: '14-day free trial, no card required.', cta: 'Compare plans', ctaTo: '/pricing' },
-  },
-  features: {
-    columns: [
-      {
-        heading: 'Voice',
-        links: [
-          { label: 'Call Recording', to: '/products/cloud-phone' },
-          { label: 'Auto-attendant / IVR', to: '/products/cloud-phone' },
-          { label: 'Number Porting', to: '/products/cloud-phone' },
-          { label: 'Toll-free Numbers', to: '/products/cloud-phone' },
-        ],
-      },
-      {
-        heading: 'Team',
-        links: [
-          { label: 'Supervisor Tools', to: '/products/cloud-phone' },
-          { label: 'Live Analytics', to: '/products/cloud-phone' },
-          { label: 'CRM Integrations', to: '/products/cloud-phone' },
-          { label: 'Mobile + Desktop Apps', to: '/products/cloud-phone' },
-        ],
-      },
-    ],
-  },
-  solutions: {
-    columns: [
-      {
-        heading: 'By Industry',
-        links: [
-          { label: 'Finance', to: '/solutions' },
-          { label: 'Retail & eCom', to: '/solutions' },
-          { label: 'SaaS & Tech', to: '/solutions' },
-          { label: 'Logistics', to: '/solutions' },
-        ],
-      },
-      {
-        heading: 'By Team',
-        links: [
-          { label: 'Sales Teams', to: '/solutions' },
-          { label: 'Support Teams', to: '/solutions' },
-          { label: 'Remote Teams', to: '/solutions' },
-          { label: 'Enterprise IT', to: '/solutions' },
-        ],
-      },
-    ],
-    footer: { title: 'Built for the regulations and rhythms of your industry.', subtitle: 'Compliance-ready for finance, omnichannel for retail, API-first for SaaS.', cta: 'See all solutions', ctaTo: '/solutions' },
-  },
-  tools: {
-    columns: [
-      {
-        heading: 'Voice & Numbers',
-        links: [
-          { label: 'Virtual Numbers by Country', to: '/products/cloud-phone' },
-          { label: 'US Virtual Number', to: '/products/cloud-phone' },
-          { label: 'UK Virtual Number', to: '/products/cloud-phone' },
-          { label: 'India Virtual Number', to: '/products/cloud-phone' },
-        ],
-      },
-      {
-        heading: 'Wholesale',
-        links: [
-          { label: 'Wholesale VoIP Rates', to: '/pricing' },
-          { label: 'Wholesale Voice', to: '/pricing' },
-          { label: 'Country Codes', to: '/products/cloud-phone' },
-        ],
-      },
-    ],
-  },
-  resources: {
-    columns: [
-      {
-        heading: 'Learn',
-        links: [
-          { label: 'Blog', to: '/blog' },
-          { label: 'Case Studies', to: '/blog' },
-          { label: 'Events', to: '/blog' },
-          { label: 'Help Center', to: '/blog' },
-        ],
-      },
-      {
-        heading: 'Company',
-        links: [
-          { label: 'About Greevo', to: '/about' },
-          { label: 'Pricing', to: '/pricing' },
-          { label: 'Compare Plans', to: '/pricing' },
-          { label: 'Contact Sales', to: '/contact' },
-        ],
-      },
-    ],
-  },
-}
-
-const NAV_ORDER = [
-  { key: 'products', label: 'Products' },
-  { key: 'features', label: 'Features' },
-  { key: 'solutions', label: 'Solutions' },
-  { key: 'tools', label: 'Tools' },
-  { key: 'resources', label: 'Resources' },
+const NAV_LINKS = [
+  { to: '/features', label: 'Features' },
+  { to: '/industries', label: 'Industries' },
+  { to: '/pricing', label: 'Pricing' },
+  { to: '/blog', label: 'Blog' },
+  { to: '/faq', label: 'FAQ' },
 ]
 
 export default function Header() {
-  const [openMenu, setOpenMenu] = useState(null)
-  const [mobileOpen, setMobileOpen] = useState(null)
-  const [langOpen, setLangOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
     <header className="site-header">
@@ -153,85 +24,25 @@ export default function Header() {
               <rect x="18" y="3" width="4" height="19" rx="1" fill="currentColor" />
             </svg>
           </span>
-          <span className="brand-text">
-            <span className="brand-name">Greevo</span>
-            <span className="brand-tagline">Cloud Phone &amp; AI</span>
-          </span>
+          <span className="brand-name">Greevo</span>
         </Link>
 
         <nav className="main-nav" aria-label="Primary">
-          {NAV_ORDER.map((item) => (
-            <div
-              key={item.key}
-              className="nav-item"
-              onMouseEnter={() => setOpenMenu(item.key)}
-              onMouseLeave={() => setOpenMenu((v) => (v === item.key ? null : v))}
-            >
-              <button
-                type="button"
-                className="nav-btn"
-                aria-expanded={openMenu === item.key}
-                onClick={() => setOpenMenu(item.key)}
-              >
-                {item.label}
-                <span className="material-symbols-outlined caret">expand_more</span>
-              </button>
-
-              {openMenu === item.key && (
-                <div className="mega-panel">
-                  <div className="mega-panel-columns">
-                    {MENUS[item.key].columns.map((col) => (
-                      <div className="mega-col" key={col.heading}>
-                        <span className="mega-col-heading">{col.heading}</span>
-                        {col.links.map((link) => (
-                          <Link key={link.label} to={link.to} className="mega-link" onClick={() => setOpenMenu(null)}>
-                            {link.label}
-                          </Link>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                  {MENUS[item.key].footer && (
-                    <div className="mega-footer">
-                      <div>
-                        <strong>{MENUS[item.key].footer.title}</strong>
-                        <span>{MENUS[item.key].footer.subtitle}</span>
-                      </div>
-                      <Link to={MENUS[item.key].footer.ctaTo} className="btn btn-outline" onClick={() => setOpenMenu(null)}>
-                        {MENUS[item.key].footer.cta}
-                      </Link>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+          {NAV_LINKS.map((item) => (
+            <NavLink key={item.to} to={item.to} className="nav-link">
+              {item.label}
+            </NavLink>
           ))}
-
-          <Link to="/pricing" className="nav-btn nav-link">Pricing</Link>
         </nav>
 
         <div className="header-actions">
-          <div
-            className="lang-item"
-            onMouseEnter={() => setLangOpen(true)}
-            onMouseLeave={() => setLangOpen(false)}
-          >
-            <button type="button" className="lang-btn" onClick={() => setLangOpen((v) => !v)}>
-              <span className="flag" aria-hidden="true">🇺🇸</span>
-              English
-              <span className="material-symbols-outlined caret">expand_more</span>
-            </button>
-            {langOpen && (
-              <div className="lang-panel">
-                <button type="button" className="lang-option active">🇺🇸 English</button>
-                <button type="button" className="lang-option">🇪🇸 Español</button>
-                <button type="button" className="lang-option">🇫🇷 Français</button>
-                <button type="button" className="lang-option">🇮🇳 हिन्दी</button>
-              </div>
-            )}
-          </div>
-          <Link to="/contact" className="header-login">Login</Link>
-          <Link to="/contact" className="btn btn-primary header-cta">Get Started Free Trial</Link>
+          <Link to="/contact" className="header-login">Sign in</Link>
+          <Link to="/contact" className="btn btn-primary header-cta">
+            Get Started
+            <span className="cta-arrow" aria-hidden="true">
+              <span className="material-symbols-outlined" style={{ fontSize: 15 }}>arrow_forward</span>
+            </span>
+          </Link>
         </div>
 
         <button
@@ -246,14 +57,11 @@ export default function Header() {
 
       {mobileOpen && (
         <div className="mobile-panel">
-          <Link to="/products" onClick={() => setMobileOpen(false)}>Products</Link>
-          <Link to="/products/cloud-phone" onClick={() => setMobileOpen(false)}>Features</Link>
-          <Link to="/solutions" onClick={() => setMobileOpen(false)}>Solutions</Link>
-          <Link to="/products/cloud-phone" onClick={() => setMobileOpen(false)}>Tools</Link>
-          <Link to="/blog" onClick={() => setMobileOpen(false)}>Resources</Link>
-          <Link to="/pricing" onClick={() => setMobileOpen(false)}>Pricing</Link>
-          <Link to="/contact" onClick={() => setMobileOpen(false)}>Login</Link>
-          <Link to="/contact" className="btn btn-primary" onClick={() => setMobileOpen(false)}>Get Started Free Trial</Link>
+          {NAV_LINKS.map((item) => (
+            <Link key={item.to} to={item.to} onClick={() => setMobileOpen(false)}>{item.label}</Link>
+          ))}
+          <Link to="/contact" onClick={() => setMobileOpen(false)}>Sign in</Link>
+          <Link to="/contact" className="btn btn-primary" onClick={() => setMobileOpen(false)}>Get Started</Link>
         </div>
       )}
     </header>

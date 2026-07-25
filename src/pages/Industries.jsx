@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero.jsx'
 
-const SOLUTIONS = [
+const INDUSTRIES = [
   {
     icon: 'account_balance',
     title: 'Finance',
@@ -28,17 +28,17 @@ const SOLUTIONS = [
   },
 ]
 
-export default function Solutions() {
+export default function Industries() {
   return (
     <>
       <PageHero
-        eyebrow="Solutions"
+        eyebrow="Industries"
         title="Built for how your industry actually works"
         subtitle="Greevo adapts to the workflows your team already runs — not the other way around."
       />
       <section className="section">
         <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: 64 }}>
-          {SOLUTIONS.map((s, i) => (
+          {INDUSTRIES.map((s, i) => (
             <div className={`two-col ${i % 2 === 1 ? 'reverse' : ''}`} key={s.title}>
               <div>
                 <span className="eyebrow">{s.title}</span>
@@ -65,7 +65,7 @@ export default function Solutions() {
             <h2>Not seeing your industry? We probably still fit.</h2>
             <p>Tell us how your team communicates today — we'll show you what changes.</p>
             <div className="cta-actions">
-              <Link to="/contact" className="btn btn-primary">Book a Demo</Link>
+              <Link to="/contact" className="btn btn-primary">Get Started</Link>
             </div>
           </div>
         </div>

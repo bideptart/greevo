@@ -9,21 +9,6 @@ const FEATURES = [
   { icon: 'hub', title: 'CRM Integrations', desc: 'HubSpot, Salesforce, Zoho, and Pipedrive sync automatically, both ways.' },
 ]
 
-const CAPABILITIES = [
-  { icon: 'call', title: 'Cloud phone system', desc: 'Unlimited inbound and outbound calling with intent-based routing.' },
-  { icon: 'device_hub', title: 'Cloud PBX', desc: 'Directory, dial plans, and hunt groups on a visual canvas.' },
-  { icon: 'dialpad', title: 'Extension calling', desc: '3-digit extensions, intercom, paging, and call park.' },
-  { icon: 'voicemail', title: 'Voicemail + AI transcription', desc: 'Searchable transcripts delivered to email and app.' },
-  { icon: 'mic', title: 'Call + screen recording', desc: 'Keyword search, PII redaction, custom retention windows.' },
-  { icon: 'account_tree', title: 'IVR + auto-attendant', desc: 'Drag-and-drop menus, holiday routing, multilingual prompts.' },
-  { icon: 'sms', title: 'Business SMS & MMS', desc: 'Two-way texting with media, from your existing business number.' },
-  { icon: 'videocam', title: 'HD video meetings', desc: '200-seat rooms with AI notes and live translation.' },
-  { icon: 'auto_awesome', title: 'AI receptionist', desc: 'Answers, qualifies, books, and summarizes every call.' },
-  { icon: 'support_agent', title: 'Contact center + WFM', desc: 'ACD, skills-based queues, predictive dialer, scheduling.' },
-  { icon: 'chat', title: 'Omnichannel chatbot', desc: 'Web, WhatsApp, Instagram, Facebook, X, SMS — one thread.' },
-  { icon: 'devices', title: 'Mobile + desktop apps', desc: 'iOS, Android, macOS, and Windows, fully in sync.' },
-]
-
 export default function Home() {
   return (
     <>
@@ -86,7 +71,7 @@ export default function Home() {
                 <li><span className="material-symbols-outlined">check_circle</span> Free number porting, local and toll-free</li>
                 <li><span className="material-symbols-outlined">check_circle</span> Business SMS and MMS from day one</li>
               </ul>
-              <Link to="/products/cloud-phone" className="btn btn-dark">Explore Cloud Phone</Link>
+              <Link to="/features" className="btn btn-dark">Explore Cloud Phone</Link>
             </div>
             <div className="two-col-media" aria-hidden="true">
               <span className="material-symbols-outlined" style={{ fontSize: 72, color: 'var(--accent-violet-dark)' }}>call</span>
@@ -110,7 +95,7 @@ export default function Home() {
                 <li><span className="material-symbols-outlined">check_circle</span> Whisper coaching for new agents</li>
                 <li><span className="material-symbols-outlined">check_circle</span> ACD and workforce scheduling built in</li>
               </ul>
-              <Link to="/products/ai-receptionist" className="btn btn-dark">Explore AI Receptionist</Link>
+              <Link to="/features" className="btn btn-dark">Explore AI Receptionist</Link>
             </div>
           </div>
         </div>
@@ -138,18 +123,10 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <div className="stack-center">
-            <span className="eyebrow">Capability Library</span>
-            <h2 className="section-title">Every capability. One platform.</h2>
-            <p className="section-subtitle">No add-on invoices. Availability by plan on the pricing page.</p>
-          </div>
-          <div className="capability-grid">
-            {CAPABILITIES.map((c) => (
-              <div key={c.title} className="card capability-card">
-                <span className="material-symbols-outlined">{c.icon}</span>
-                <h4>{c.title}</h4>
-                <p>{c.desc}</p>
-              </div>
-            ))}
+            <span className="eyebrow">Full Feature Set</span>
+            <h2 className="section-title">See everything Greevo replaces.</h2>
+            <p className="section-subtitle">Cloud PBX, IVR, video, AI receptionist, and more — one bill, no add-ons.</p>
+            <Link to="/features" className="btn btn-dark">Explore all features</Link>
           </div>
         </div>
       </section>

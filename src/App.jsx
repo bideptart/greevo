@@ -2,16 +2,12 @@ import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
-import Products from './pages/Products.jsx'
-import CloudPhone from './pages/products/CloudPhone.jsx'
-import AiReceptionist from './pages/products/AiReceptionist.jsx'
-import SmsMms from './pages/products/SmsMms.jsx'
-import VideoMeetings from './pages/products/VideoMeetings.jsx'
-import Solutions from './pages/Solutions.jsx'
+import Features from './pages/Features.jsx'
+import Industries from './pages/Industries.jsx'
 import Pricing from './pages/Pricing.jsx'
-import About from './pages/About.jsx'
-import Contact from './pages/Contact.jsx'
 import Blog from './pages/Blog.jsx'
+import Faq from './pages/Faq.jsx'
+import Contact from './pages/Contact.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 function App() {
@@ -21,16 +17,12 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/cloud-phone" element={<CloudPhone />} />
-          <Route path="/products/ai-receptionist" element={<AiReceptionist />} />
-          <Route path="/products/sms-mms" element={<SmsMms />} />
-          <Route path="/products/video-meetings" element={<VideoMeetings />} />
-          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/industries" element={<Industries />} />
           <Route path="/pricing" element={<Pricing />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
