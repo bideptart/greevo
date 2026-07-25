@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
+import DemoCta from './components/DemoCta.jsx'
 import Home from './pages/Home.jsx'
 import Features from './pages/Features.jsx'
 import Industries from './pages/Industries.jsx'
@@ -26,6 +27,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+      <DemoCta />
       <Footer />
     </div>
   )
