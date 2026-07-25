@@ -28,9 +28,10 @@
 
 .page-hero h1 {
   font-size: 48px;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  color: var(--text);
 }
 
 .page-hero-subtitle {

@@ -114,6 +114,14 @@ h1, h2, h3, h4, p {
   color: var(--accent-violet-dark);
 }
 
+.title-accent {
+  color: #0ea5e9;
+}
+
+.title-accent-light {
+  color: #1d4ed8;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;

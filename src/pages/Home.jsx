@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import AccentTitle from '../components/AccentTitle.jsx'
 import './Home.css'
 
 const CARRIERS = [
@@ -79,7 +80,7 @@ export default function Home() {
             <span className="material-symbols-outlined" style={{ fontSize: 16 }}>auto_awesome</span>
             AI receptionist is now multilingual
           </span>
-          <h1>The cloud phone and AI contact center platform you can activate in minutes.</h1>
+          <h1><AccentTitle title="The cloud phone and AI contact center platform you can activate in minutes." /></h1>
           <p className="hero-subtitle">
             Calls, chat, SMS, video, and an AI receptionist — on one login. Greevo replaces the phone system,
             the contact center, and the AI vendor you were about to stitch together.

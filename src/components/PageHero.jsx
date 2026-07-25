@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import AccentTitle from './AccentTitle.jsx'
 import './PageHero.css'
 
 export default function PageHero({ eyebrow, title, subtitle, primaryCta = 'Start Free Trial', primaryTo = '/contact', secondaryCta = 'Book a Demo', secondaryTo = '/contact' }) {
@@ -11,7 +12,7 @@ export default function PageHero({ eyebrow, title, subtitle, primaryCta = 'Start
             {eyebrow}
           </span>
         )}
-        <h1>{title}</h1>
+        <h1><AccentTitle title={title} /></h1>
         {subtitle && <p className="page-hero-subtitle">{subtitle}</p>}
         <div className="page-hero-ctas">
           <Link to={primaryTo} className="btn btn-primary">{primaryCta}</Link>
