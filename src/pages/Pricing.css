@@ -31,7 +31,7 @@
 
 .save-badge {
   background: var(--gradient-primary);
-  color: #1c1035;
+  color: #ffffff;
   font-size: 11px;
   padding: 2px 8px;
   border-radius: var(--radius-pill);
@@ -60,7 +60,7 @@
   left: 50%;
   transform: translateX(-50%);
   background: var(--gradient-primary);
-  color: #1c1035;
+  color: #ffffff;
   font-size: 12px;
   font-weight: 700;
   padding: 4px 14px;
