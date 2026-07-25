@@ -114,20 +114,6 @@ h1, h2, h3, h4, p {
   color: var(--accent-violet-dark);
 }
 
-.eyebrow::before {
-  content: '';
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  background-color: currentColor;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='14' width='4' height='8' rx='1'/%3E%3Crect x='10' y='9' width='4' height='13' rx='1'/%3E%3Crect x='18' y='3' width='4' height='19' rx='1'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='14' width='4' height='8' rx='1'/%3E%3Crect x='10' y='9' width='4' height='13' rx='1'/%3E%3Crect x='18' y='3' width='4' height='19' rx='1'/%3E%3C/svg%3E");
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-}
-
 .btn {
   display: inline-flex;
   align-items: center;
