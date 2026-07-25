@@ -1,30 +1,106 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero.jsx'
+import FaqAccordion from '../components/FaqAccordion.jsx'
 import './Pricing.css'
+
+function AnimatedPrice({ value }) {
+  const [display, setDisplay] = useState(value)
+  const fromRef = useRef(value)
+  const intervalRef = useRef()
+
+  useEffect(() => {
+    const from = fromRef.current
+    const to = value
+    if (from === to) return undefined
+
+    const duration = 300
+    const stepMs = 16
+    const steps = Math.max(Math.round(duration / stepMs), 1)
+    let step = 0
+
+    clearInterval(intervalRef.current)
+    intervalRef.current = setInterval(() => {
+      step += 1
+      const t = Math.min(step / steps, 1)
+      const eased = 1 - Math.pow(1 - t, 3)
+      setDisplay(Math.round(from + (to - from) * eased))
+      if (t >= 1) {
+        clearInterval(intervalRef.current)
+        fromRef.current = to
+      }
+    }, stepMs)
+
+    return () => clearInterval(intervalRef.current)
+  }, [value])
+
+  return <span className="price-amount">${display}</span>
+}
+
+const PRICING_FAQ = [
+  { q: 'Is there a free trial?', a: 'Yes, every plan starts with a 14-day free trial — no credit card required.' },
+  { q: 'Can I change plans later?', a: 'Yes, upgrade or downgrade anytime; billing prorates automatically.' },
+  { q: 'What happens if I go over my AI receptionist minutes?', a: 'Extra minutes bill at a transparent per-minute rate, no surprise fees.' },
+  { q: 'Is pricing per user or per team?', a: 'Per user, per month — add or remove seats anytime from settings.' },
+  { q: 'Do you offer discounts for annual billing?', a: 'Yes, yearly billing saves 20% compared to paying monthly.' },
+  { q: 'What happens after my free trial ends?', a: 'You choose a plan to continue — nothing is charged automatically.' },
+]
 
 const PLANS = [
   {
     name: 'Starter',
     monthly: 15,
     yearly: 12,
-    desc: 'For small teams getting off consumer apps.',
-    features: ['Up to 5 users', 'Cloud phone + business SMS', '1 local number included', 'Email support'],
+    desc: 'Pilot a single number and a small team.',
+    summary: 'Up to 5 users · 1 number · Email support',
+    features: [
+      'Up to 5 users',
+      '1 local number included',
+      'Inbound & outbound calling',
+      'Per-second call billing',
+      'Business SMS & MMS',
+      'Standard voicemail + transcription',
+      'Call recording',
+      'Real-time transcription',
+      'Email support',
+    ],
   },
   {
     name: 'Growth',
     monthly: 35,
     yearly: 28,
-    desc: 'For teams that live on calls and chat.',
-    features: ['Up to 25 users', 'Everything in Starter', 'AI receptionist (500 min/mo)', 'CRM integrations', 'Live analytics'],
+    desc: 'Most teams start here.',
+    summary: 'Up to 25 users · AI receptionist · Priority support',
+    features: [
+      'Up to 25 users',
+      'Everything in Starter',
+      'AI receptionist, 500 min/mo',
+      'Standard + premium AI voices',
+      'CRM integrations',
+      'Live analytics & call scoring',
+      'Call recording',
+      'Real-time transcription',
+      'Priority support',
+    ],
     featured: true,
   },
   {
     name: 'Scale',
     monthly: 59,
     yearly: 47,
-    desc: 'For contact centers with volume.',
-    features: ['Unlimited users', 'Everything in Growth', 'Predictive dialer + WFM', 'Unlimited AI receptionist minutes', 'Dedicated onboarding'],
+    desc: 'High-volume contact centers.',
+    summary: 'Unlimited users · Unlimited AI minutes · Dedicated support',
+    features: [
+      'Unlimited users',
+      'Everything in Growth',
+      'Unlimited AI receptionist minutes',
+      'Realtime + premium AI voices',
+      'Predictive dialer + WFM',
+      'Call recording',
+      'Real-time transcription',
+      'Custom retention & compliance',
+      'Dedicated success manager + SLA',
+    ],
   },
 ]
 
@@ -55,17 +131,18 @@ export default function Pricing() {
                 <h3>{plan.name}</h3>
                 <p className="pricing-desc">{plan.desc}</p>
                 <div className="price">
-                  <span className="price-amount">${yearly ? plan.yearly : plan.monthly}</span>
+                  <AnimatedPrice value={yearly ? plan.yearly : plan.monthly} />
                   <span className="price-period">/ user / mo</span>
                 </div>
-                <Link to="/contact" className={`btn ${plan.featured ? 'btn-primary' : 'btn-dark'}`} style={{ width: '100%' }}>
-                  Start Free Trial
-                </Link>
-                <ul className="check-list" style={{ marginTop: 24 }}>
+                <p className="pricing-summary">{plan.summary}</p>
+                <ul className="check-list pricing-features">
                   {plan.features.map((f) => (
                     <li key={f}><span className="material-symbols-outlined">check_circle</span> {f}</li>
                   ))}
                 </ul>
+                <Link to="/contact" className="btn btn-card-cta" style={{ width: '100%' }}>
+                  Get Started
+                </Link>
               </div>
             ))}
           </div>
@@ -86,18 +163,7 @@ export default function Pricing() {
             <span className="eyebrow">FAQ</span>
             <h2 className="section-title">Pricing questions</h2>
           </div>
-          <div style={{ maxWidth: 720, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {[
-              { q: 'Is there a free trial?', a: 'Yes, every plan starts with a 14-day free trial — no credit card required.' },
-              { q: 'Can I change plans later?', a: 'Yes, upgrade or downgrade anytime from your account settings; billing prorates automatically.' },
-              { q: 'What happens if I go over my AI receptionist minutes?', a: 'Additional minutes are billed at a transparent per-minute rate shown in your dashboard, with no surprise overage penalties.' },
-            ].map((f) => (
-              <div key={f.q} className="card" style={{ padding: 24 }}>
-                <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 8 }}>{f.q}</h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: 14.5, lineHeight: 1.6 }}>{f.a}</p>
-              </div>
-            ))}
-          </div>
+          <FaqAccordion items={PRICING_FAQ} />
         </div>
       </section>
     </>
