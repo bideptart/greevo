@@ -8,6 +8,7 @@ import Features from './pages/Features.jsx'
 import Industries from './pages/Industries.jsx'
 import Pricing from './pages/Pricing.jsx'
 import Blog from './pages/Blog.jsx'
+import BlogPost from './pages/BlogPost.jsx'
 import Faq from './pages/Faq.jsx'
 import Contact from './pages/Contact.jsx'
 import NotFound from './pages/NotFound.jsx'
@@ -24,6 +25,7 @@ function App() {
           <Route path="/industries" element={<Industries />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />

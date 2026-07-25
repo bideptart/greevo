@@ -47,11 +47,32 @@
 .pricing-card {
   padding: 32px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pricing-card:hover {
+  border-color: var(--accent-violet);
+  box-shadow: var(--shadow-lift);
 }
 
 .pricing-card.featured {
   border: 2px solid var(--accent-violet);
   box-shadow: var(--shadow-lift);
+}
+
+.btn-card-cta {
+  background: #ffffff;
+  color: var(--text);
+  border: 1px solid var(--border);
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-card-cta:hover {
+  background: var(--gradient-primary);
+  color: #ffffff;
+  border-color: transparent;
 }
 
 .popular-tag {
@@ -93,6 +114,22 @@
 .price-period {
   color: var(--text-soft);
   font-size: 14px;
+}
+
+.pricing-summary {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent-violet-dark);
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  margin-bottom: 20px;
+}
+
+.pricing-features {
+  flex: 1;
+  margin-bottom: 24px;
 }
 
 .enterprise-band {
