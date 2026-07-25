@@ -288,20 +288,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Final CTA */}
-      <section className="section">
-        <div className="container">
-          <div className="cta-band">
-            <h2>Try the platform. Be on a call by lunch.</h2>
-            <p>Same product, same support, same security — no matter which plan you pick.</p>
-            <div className="cta-actions">
-              <Link to="/contact" className="btn btn-primary">Start Free Trial</Link>
-              <Link to="/contact" className="btn btn-ghost" style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', borderColor: 'rgba(255,255,255,0.2)' }}>Book a Demo</Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   )
 }

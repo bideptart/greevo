@@ -58,18 +58,6 @@ export default function Industries() {
           ))}
         </div>
       </section>
-
-      <section className="section">
-        <div className="container">
-          <div className="cta-band">
-            <h2>Not seeing your industry? We probably still fit.</h2>
-            <p>Tell us how your team communicates today — we'll show you what changes.</p>
-            <div className="cta-actions">
-              <Link to="/contact" className="btn btn-primary">Get Started</Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   )
 }

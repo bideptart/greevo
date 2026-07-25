@@ -110,19 +110,6 @@ export default function Features() {
           </div>
         </div>
       </section>
-
-      <section className="section">
-        <div className="container">
-          <div className="cta-band">
-            <h2>See every feature on a live call</h2>
-            <p>Book a 20-minute walkthrough — no pressure, no pitch deck.</p>
-            <div className="cta-actions">
-              <Link to="/contact" className="btn btn-primary">Get Started</Link>
-              <Link to="/pricing" className="btn btn-ghost" style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', borderColor: 'rgba(255,255,255,0.2)' }}>View Pricing</Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   )
 }
