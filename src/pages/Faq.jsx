@@ -7,33 +7,33 @@ const FAQ_GROUPS = [
   {
     title: 'Getting started',
     items: [
-      { q: "What is Greevo's cloud contact center platform?", a: 'Cloud phone and AI contact center in one product, on one login.' },
-      { q: 'Do you offer a free trial?', a: '14-day free trial on every plan — no credit card required.' },
-      { q: 'How fast can we go live?', a: 'Median setup time is under 4 minutes, start to first call.' },
+      { q: "What is Greevo's cloud contact center platform?", a: 'Greevo combines a cloud phone system and an AI contact center in one product. Calls, chat, SMS, video, analytics, and an AI receptionist all live in one place, on a single login.' },
+      { q: 'Do you offer a free trial?', a: 'Yes, every plan starts with a 14-day free trial and every feature is unlocked from day one — no credit card required to get started.' },
+      { q: 'How fast can we go live?', a: "Median setup time is under 4 minutes: sign up, invite your team, pick a number, and you're ready to take your first call." },
     ],
   },
   {
     title: 'Numbers & calling',
     items: [
-      { q: 'Can I keep my existing business number?', a: 'Yes — free porting, usually done within a few business days.' },
-      { q: 'How many countries can I call?', a: 'HD voice reaches 190+ countries, with local numbers in 100+.' },
-      { q: 'Do I need any hardware?', a: 'No. Greevo runs from the browser, desktop, or mobile app.' },
+      { q: 'Can I keep my existing business number?', a: 'Yes — porting your number is free and usually completes within a few business days, with no downtime for inbound calls in the meantime.' },
+      { q: 'How many countries can I call?', a: 'HD voice calling reaches 190+ countries worldwide, with local virtual numbers available in more than 100 of them.' },
+      { q: 'Do I need any hardware?', a: 'No. Greevo runs entirely from the browser, desktop app, or mobile app — desk phones are optional, not required to get started.' },
     ],
   },
   {
     title: 'AI receptionist',
     items: [
-      { q: 'Does the AI cost extra?', a: 'No — included on every plan, with a minute allotment by tier.' },
-      { q: 'What languages does it support?', a: 'Auto-detects the caller\'s language across 30+ supported.' },
-      { q: 'Can it hand off to a human?', a: 'Yes, anytime, with full conversation context carried over.' },
+      { q: 'Does the AI cost extra?', a: 'No — the AI receptionist is included on every plan, with a monthly minute allotment that scales up as you move to a higher tier.' },
+      { q: 'What languages does it support?', a: "The receptionist automatically detects the caller's language and responds natively, with real-time translation available for your team." },
+      { q: 'Can it hand off to a human?', a: 'Yes, at any point either the caller or the AI can escalate to a live agent, with the full context of the call carried over automatically.' },
     ],
   },
   {
     title: 'Billing & security',
     items: [
-      { q: 'Can I change plans later?', a: 'Yes, upgrade or downgrade anytime; billing prorates automatically.' },
-      { q: 'Is it secure enough for regulated industries?', a: 'Yes — encryption, PII redaction, and audit logs on every plan.' },
-      { q: 'Is there a contract?', a: 'No long-term contract on any plan. Cancel anytime.' },
+      { q: 'Can I change plans later?', a: "Yes, you can upgrade or downgrade anytime from your account settings, and billing prorates automatically so you're never overcharged." },
+      { q: 'Is it secure enough for regulated industries?', a: 'Yes — encryption in transit and at rest, PII redaction, and audit logs are included on every plan by default, not sold as a separate add-on.' },
+      { q: 'Is there a contract?', a: 'No long-term contract is required on any plan. Cancel anytime directly from your account settings with no cancellation fee.' },
     ],
   },
 ]

@@ -60,7 +60,7 @@ export default function Header() {
           {NAV_LINKS.map((item) => (
             <Link key={item.to} to={item.to} onClick={() => setMobileOpen(false)}>{item.label}</Link>
           ))}
-          <Link to="/contact" onClick={() => setMobileOpen(false)}>Sign in</Link>
+          <Link to="/contact" className="mobile-signin" onClick={() => setMobileOpen(false)}>Sign in</Link>
           <Link to="/contact" className="btn btn-primary" onClick={() => setMobileOpen(false)}>Get Started</Link>
         </div>
       )}

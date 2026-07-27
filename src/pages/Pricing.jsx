@@ -38,12 +38,21 @@ function AnimatedPrice({ value }) {
 }
 
 const PRICING_FAQ = [
-  { q: 'Is there a free trial?', a: 'Yes, every plan starts with a 14-day free trial — no credit card required.' },
-  { q: 'Can I change plans later?', a: 'Yes, upgrade or downgrade anytime; billing prorates automatically.' },
-  { q: 'What happens if I go over my AI receptionist minutes?', a: 'Extra minutes bill at a transparent per-minute rate, no surprise fees.' },
-  { q: 'Is pricing per user or per team?', a: 'Per user, per month — add or remove seats anytime from settings.' },
-  { q: 'Do you offer discounts for annual billing?', a: 'Yes, yearly billing saves 20% compared to paying monthly.' },
-  { q: 'What happens after my free trial ends?', a: 'You choose a plan to continue — nothing is charged automatically.' },
+  { q: 'Is there a free trial?', a: 'Yes, every plan starts with a 14-day free trial that unlocks every feature from day one — no credit card required, and no feature gating during the trial.' },
+  { q: 'Can I change plans later?', a: "Yes, you can upgrade or downgrade anytime from your account settings. Billing prorates automatically, so you're only ever charged for what you actually used." },
+  { q: 'What happens if I go over my AI receptionist minutes?', a: 'Extra minutes bill at a transparent per-minute rate shown directly in your dashboard — there are no surprise fees or automatic plan upgrades.' },
+  { q: 'Is pricing per user or per team?', a: 'Pricing is per user, per month, so you only pay for the seats your team actually needs. Add or remove users anytime and billing adjusts automatically.' },
+  { q: 'Do you offer discounts for annual billing?', a: 'Yes, switching to yearly billing saves 20% compared to paying month-to-month, and the discount applies the moment you toggle to yearly above.' },
+  { q: 'What happens after my free trial ends?', a: "You choose a plan to continue on — nothing is ever charged automatically. If you don't pick one, your account simply pauses until you're ready." },
+]
+
+const COMPARISON_ROWS = [
+  { label: 'Users', values: ['Up to 5', 'Up to 25', 'Unlimited'] },
+  { label: 'AI receptionist minutes', values: ['—', '500 min/mo', 'Unlimited'] },
+  { label: 'Voice stack', values: ['Standard voice stack', 'Standard + premium voices', 'Realtime + premium voices'] },
+  { label: 'CRM integrations', values: [false, true, true] },
+  { label: 'Support', values: ['Email support', 'Priority support', 'Dedicated success manager'] },
+  { label: 'SLA', values: [false, false, true] },
 ]
 
 const PLANS = [
@@ -140,13 +149,51 @@ export default function Pricing() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="card enterprise-band">
-            <div>
-              <h3>Enterprise</h3>
-              <p>Custom SLAs, dedicated infrastructure, and a named success manager for teams above 100 seats.</p>
-            </div>
-            <Link to="/contact" className="btn btn-outline">Contact Sales</Link>
+      <section className="section">
+        <div className="container">
+          <div className="stack-center">
+            <span className="eyebrow">Comparison</span>
+            <h2 className="section-title">Compare plans side by side.</h2>
+            <p className="section-subtitle">See exactly what you get at every tier — users, minutes, and support level, all in one view.</p>
+          </div>
+
+          <div className="comparison-table-wrap">
+            <table className="comparison-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  {PLANS.map((plan) => (
+                    <th key={plan.name} className={plan.featured ? 'featured-col' : ''}>
+                      {plan.featured && <span className="popular-tag">Most popular</span>}
+                      {plan.name}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARISON_ROWS.map((row) => (
+                  <tr key={row.label}>
+                    <td className="comparison-row-label">{row.label}</td>
+                    {row.values.map((value, i) => (
+                      <td key={PLANS[i].name} className={PLANS[i].featured ? 'featured-col' : ''}>
+                        {typeof value === 'boolean' ? (
+                          value ? (
+                            <span className="material-symbols-outlined comparison-check">check_circle</span>
+                          ) : (
+                            <span className="comparison-dash">—</span>
+                          )
+                        ) : (
+                          value
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>

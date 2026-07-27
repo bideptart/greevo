@@ -79,10 +79,6 @@ export default function Footer() {
       <div className="container footer-bottom">
         <span>© {new Date().getFullYear()} Greevo.io · All rights reserved.</span>
       </div>
-
-      <Link to="/contact" className="footer-chat-fab" aria-label="Chat with us">
-        <span className="material-symbols-outlined">chat_bubble</span>
-      </Link>
     </footer>
   )
 }

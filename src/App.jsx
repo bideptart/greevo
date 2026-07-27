@@ -3,6 +3,7 @@ import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import DemoCta from './components/DemoCta.jsx'
 import ScrollToTop from './components/ScrollToTop.jsx'
+import ChatWidget from './components/ChatWidget.jsx'
 import Home from './pages/Home.jsx'
 import Features from './pages/Features.jsx'
 import Industries from './pages/Industries.jsx'
@@ -33,6 +34,7 @@ function App() {
       </main>
       <DemoCta />
       <Footer />
+      <ChatWidget />
     </div>
   )
 }

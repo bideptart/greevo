@@ -101,22 +101,6 @@
   color: #64748b;
 }
 
-.footer-chat-fab {
-  position: fixed;
-  right: 28px;
-  bottom: 28px;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--gradient-primary);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.15), 0 8px 24px rgba(37, 99, 235, 0.4);
-  z-index: 40;
-}
-
 @media (max-width: 900px) {
   .footer-top {
     grid-template-columns: 1fr 1fr;
