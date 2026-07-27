@@ -1,6 +1,6 @@
 .hero-mockup {
   width: 100%;
-  max-width: 540px;
+  max-width: 520px;
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--surface);
@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 16px;
+  padding: 9px 14px;
   background: #ffffff;
   color: var(--text);
   border-bottom: 1px solid var(--border);
@@ -47,7 +47,7 @@
 
 .mockup-video-box {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 5 / 4;
   background: linear-gradient(135deg, #1e293b, #0f172a);
   display: flex;
   align-items: flex-end;
@@ -169,7 +169,7 @@
   display: flex;
   justify-content: center;
   gap: 4px;
-  padding: 10px 8px;
+  padding: 7px 8px;
   background: #ffffff;
   border-top: 1px solid var(--border);
   overflow-x: auto;

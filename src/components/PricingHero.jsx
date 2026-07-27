@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import AccentTitle from './AccentTitle.jsx'
 import './PricingHero.css'
 
 const TRUST_CHIPS = ['No credit card required', 'Setup in minutes', 'Cancel anytime']
@@ -15,7 +16,7 @@ export default function PricingHero() {
           <span className="material-symbols-outlined" style={{ fontSize: 16 }}>auto_awesome</span>
           Pricing
         </span>
-        <h1>Simple pricing that scales with your team</h1>
+        <h1><AccentTitle title="Simple pricing that scales with your team" /></h1>
         <p className="pricing-hero-subtitle">No hardware fees, no setup costs. Cancel anytime.</p>
 
         <div className="pricing-hero-ctas">

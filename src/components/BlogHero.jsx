@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { TAG_STYLES, AUTHOR } from '../data/blogPosts.js'
+import AccentTitle from './AccentTitle.jsx'
 import './BlogHero.css'
 
 export default function BlogHero({ featuredPost }) {
@@ -11,7 +12,7 @@ export default function BlogHero({ featuredPost }) {
       <div className="container blog-hero-inner">
         <div className="blog-hero-text">
           <span className="eyebrow">Resources</span>
-          <h1>Notes on building a better phone system</h1>
+          <h1><AccentTitle title="Notes on building a better phone system" /></h1>
           <p className="blog-hero-subtitle">
             Product updates, guides, and the occasional behind-the-scenes look at how Greevo is built.
           </p>

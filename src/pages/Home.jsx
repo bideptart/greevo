@@ -13,24 +13,30 @@ const CARRIERS = [
 const STEPS = [
   {
     number: '1',
+    icon: 'person_add',
     title: 'Sign up',
     tagline: 'Five-minute signup. Every plan unlocked.',
     desc: 'Create your account and get immediate access to every feature — no tier-gating during the trial.',
     points: ['Account ready in 5 minutes', 'All features unlocked'],
+    cta: 'Create account',
   },
   {
     number: '2',
+    icon: 'dialpad',
     title: 'Invite your team & pick a number',
     tagline: 'Bulk invite. Numbers live instantly.',
     desc: 'Add teammates in bulk, provision local or toll-free numbers in 100+ countries, and build your IVR with drag-and-drop.',
     points: ['Numbers in 100+ countries', 'Drag-and-drop IVR builder'],
+    cta: 'Invite & pick',
   },
   {
     number: '3',
+    icon: 'call',
     title: 'Take your first call',
     tagline: 'Desktop, mobile, web. AI covers overflow.',
     desc: 'Log in on any device, start taking calls, and let the AI receptionist answer anything your team can\'t.',
     points: ['iOS · Android · macOS · Windows', 'Live analytics from the first ring'],
+    cta: 'Go live',
   },
 ]
 
@@ -67,7 +73,7 @@ const FAQS = [
 
 export default function Home() {
   return (
-    <>
+    <div className="home-page">
       {/* Hero */}
       <section className="hero">
         <div className="container hero-inner">
@@ -158,11 +164,11 @@ export default function Home() {
       </section>
 
       {/* Core Five */}
-      <section className="section core-five-section" style={{ background: 'var(--surface-alt)' }}>
+      <section className="section core-five-section">
         <div className="container">
-          <div className="stack-center">
+          <div className="stack-center core-five-intro">
             <span className="eyebrow">Core Five</span>
-            <h2 className="section-title">Five tools your agents open every morning.</h2>
+            <h2 className="section-title core-five-title">Five tools your agents open every morning.</h2>
             <p className="section-subtitle">The day-to-day, built to feel effortless.</p>
           </div>
           <CoreFiveDashboard />
@@ -170,7 +176,7 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="section">
+      <section className="section how-it-works-section">
         <div className="container">
           <div className="stack-center">
             <span className="eyebrow">How It Works</span>
@@ -179,16 +185,44 @@ export default function Home() {
           </div>
           <div className="steps-grid">
             {STEPS.map((step) => (
-              <div key={step.number} className="card step-card">
+              <div key={step.number} className="step-flip">
                 <span className="step-number">{step.number}</span>
-                <h3>{step.title}</h3>
-                <p className="step-tagline">{step.tagline}</p>
-                <p className="step-desc">{step.desc}</p>
-                <ul className="step-points">
-                  {step.points.map((pt) => (
-                    <li key={pt}><span className="material-symbols-outlined">check_circle</span>{pt}</li>
-                  ))}
-                </ul>
+                <div className="step-flip-inner">
+                  <div className="card step-face step-face-front">
+                    <div className="step-front-visual">
+                      <span className="step-front-icon"><span className="material-symbols-outlined">{step.icon}</span></span>
+                      <span className="step-bar" style={{ width: '70%', top: '18%' }} />
+                      <span className="step-bar" style={{ width: '45%', top: '30%' }} />
+                      <span className="step-bar" style={{ width: '60%', bottom: '30%' }} />
+                      <span className="step-bar" style={{ width: '38%', bottom: '18%' }} />
+                    </div>
+                    <div className="step-front-text">
+                      <h3>{step.title}</h3>
+                      <p className="step-tagline">{step.tagline}</p>
+                    </div>
+                    <span className="material-symbols-outlined step-front-corner">bolt</span>
+                  </div>
+
+                  <div className="card step-face step-face-back">
+                    <div className="step-back-head">
+                      <span className="step-back-icon"><span className="material-symbols-outlined">{step.icon}</span></span>
+                      <h3>{step.title}</h3>
+                    </div>
+                    <p className="step-desc">{step.desc}</p>
+                    <ul className="step-points">
+                      {step.points.map((pt) => (
+                        <li key={pt}>
+                          <span className="step-point-icon"><span className="material-symbols-outlined">check_circle</span></span>
+                          {pt}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to="/contact" className="step-back-footer">
+                      <span>{step.cta}</span>
+                      <span className="material-symbols-outlined" style={{ fontSize: 16 }}>arrow_forward</span>
+                    </Link>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -196,7 +230,7 @@ export default function Home() {
       </section>
 
       {/* Integrations */}
-      <section className="section">
+      <section className="section integrations-section">
         <div className="container">
           <div className="stack-center">
             <span className="eyebrow">⚡ Integrations</span>
@@ -225,7 +259,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="section">
+      <section className="section testimonials-section">
         <div className="container">
           <div className="stack-center">
             <span className="eyebrow">Testimonials</span>
@@ -254,7 +288,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="section" style={{ background: 'var(--surface-alt)' }}>
+      <section className="section faq-section">
         <div className="container">
           <div className="stack-center">
             <span className="eyebrow">FAQ</span>
@@ -273,6 +307,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
