@@ -29,7 +29,7 @@ export default function Features() {
         subtitle="Cloud phone, AI receptionist, business SMS, and video meetings — on one login, with no add-on invoices."
       />
 
-      <section className="section">
+      <section className="section" style={{ background: '#f5f8ff' }}>
         <div className="container">
           <div className="two-col">
             <div>
@@ -50,7 +50,7 @@ export default function Features() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" style={{ background: '#eff6ff' }}>
         <div className="container">
           <div className="two-col reverse">
             <div className="two-col-media" aria-hidden="true">
@@ -71,7 +71,7 @@ export default function Features() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" style={{ background: '#fdf4ff' }}>
         <div className="container">
           <div className="two-col">
             <div>
@@ -92,7 +92,7 @@ export default function Features() {
         </div>
       </section>
 
-      <section className="section" style={{ background: 'var(--surface-alt)' }}>
+      <section className="section" style={{ background: '#ecfeff' }}>
         <div className="container">
           <div className="stack-center">
             <span className="eyebrow">Capability Library</span>

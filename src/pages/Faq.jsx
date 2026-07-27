@@ -62,7 +62,7 @@ export default function Faq() {
         secondaryCta="Contact Us"
       />
 
-      <section className="section">
+      <section className="section" style={{ background: '#f5f8ff' }}>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
           <form className="faq-search" onSubmit={(e) => e.preventDefault()}>
             <span className="material-symbols-outlined">search</span>

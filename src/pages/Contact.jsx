@@ -23,7 +23,7 @@ export default function Contact() {
         secondaryCta="Book a Demo"
       />
 
-      <section className="section">
+      <section className="section" style={{ background: '#f5f8ff' }}>
         <div className="container contact-grid">
           <div className="card contact-form-card">
             {submitted ? (

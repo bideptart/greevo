@@ -1,9 +1,11 @@
 .blog-categories-section {
   padding-bottom: 24px;
+  background: #f5f8ff;
 }
 
 .blog-posts-section {
   padding-top: 24px;
+  background: #eff6ff;
 }
 
 .blog-categories-header {
