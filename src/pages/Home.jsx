@@ -15,6 +15,7 @@ const STEPS = [
   {
     number: '1',
     icon: 'person_add',
+    image: '/steps/signup.png',
     title: 'Sign up',
     tagline: 'Five-minute signup. Every plan unlocked.',
     desc: 'Create your account and get immediate access to every feature — no tier-gating during the trial.',
@@ -24,6 +25,7 @@ const STEPS = [
   {
     number: '2',
     icon: 'dialpad',
+    image: '/steps/invite.png',
     title: 'Invite your team & pick a number',
     tagline: 'Bulk invite. Numbers live instantly.',
     desc: 'Add teammates in bulk, provision local or toll-free numbers in 100+ countries, and build your IVR with drag-and-drop.',
@@ -33,6 +35,7 @@ const STEPS = [
   {
     number: '3',
     icon: 'call',
+    image: '/steps/call.png',
     title: 'Take your first call',
     tagline: 'Desktop, mobile, web. AI covers overflow.',
     desc: 'Log in on any device, start taking calls, and let the AI receptionist answer anything your team can\'t.',
@@ -189,14 +192,8 @@ export default function Home() {
               <div key={step.number} className="step-flip">
                 <span className="step-number">{step.number}</span>
                 <div className="step-flip-inner">
-                  <div className="card step-face step-face-front">
-                    <div className="step-front-visual">
-                      <span className="step-front-icon"><span className="material-symbols-outlined">{step.icon}</span></span>
-                      <span className="step-bar" style={{ width: '70%', top: '18%' }} />
-                      <span className="step-bar" style={{ width: '45%', top: '30%' }} />
-                      <span className="step-bar" style={{ width: '60%', bottom: '30%' }} />
-                      <span className="step-bar" style={{ width: '38%', bottom: '18%' }} />
-                    </div>
+                  <div className="card step-face step-face-front" style={{ backgroundImage: `url(${step.image})` }}>
+                    <div className="step-front-scrim" />
                     <div className="step-front-text">
                       <h3>{step.title}</h3>
                       <p className="step-tagline">{step.tagline}</p>

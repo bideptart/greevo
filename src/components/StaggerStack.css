@@ -1,0 +1,329 @@
+.stagger-deck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 34px;
+}
+
+.stagger-deck-stage {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  /* Card size + how far apart the fan spreads. Scaled up per breakpoint
+     below so the deck fills the container on wide screens instead of
+     leaving big empty gutters. */
+  --card-w: 300px;
+  --spread: 320px;
+  --card-h: 286px;
+  --card-pad: 28px 30px 30px;
+}
+
+/* Each card sits centred, then slides out horizontally by its offset
+   from the active card and tilts slightly — producing the fanned-out
+   row rather than a single pile. */
+.stagger-card {
+  --lift: 0px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--card-w);
+  min-height: var(--card-h);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: var(--card-pad);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  /* Folded / cut top-right corner */
+  clip-path: polygon(0 0, calc(100% - 36px) 0, 100% 36px, 100% 100%, 0 100%);
+  transform:
+    translate(-50%, calc(-50% + var(--lift)))
+    translateX(calc(var(--offset) * var(--spread)))
+    rotate(calc(var(--offset) * 3deg))
+    scale(0.9);
+  opacity: 0.5;
+  cursor: pointer;
+  box-shadow:
+    0 2px 6px rgba(15, 23, 42, 0.05),
+    0 14px 34px rgba(15, 23, 42, 0.08);
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s ease calc(var(--card-i) * 0.09s),
+    background-color 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+/* Entrance: before the deck scrolls into view every card is collapsed
+   into the centre, so revealing it fans them out into place. */
+.stagger-deck:not(.is-visible) .stagger-card {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.82);
+}
+
+.stagger-card:hover:not(.is-active) {
+  --lift: -10px;
+  opacity: 0.8;
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.07),
+    0 22px 48px rgba(37, 99, 235, 0.16);
+}
+
+.stagger-card.is-active {
+  opacity: 1;
+  cursor: default;
+  transform: translate(-50%, calc(-50% + var(--lift))) translateX(0) rotate(0deg) scale(1);
+  background: linear-gradient(150deg, #3b82f6 0%, #2563eb 45%, #1d4ed8 100%);
+  border-color: transparent;
+  color: #fff;
+  box-shadow:
+    0 6px 16px rgba(29, 78, 216, 0.28),
+    0 28px 64px rgba(37, 99, 235, 0.38),
+    0 48px 100px rgba(37, 99, 235, 0.22);
+  animation: staggerGlow 3.6s ease-in-out infinite;
+}
+
+/* The folded corner needs a matching wedge so it reads as paper */
+.stagger-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(225deg, color-mix(in srgb, var(--text) 12%, transparent) 0 50%, transparent 50%);
+}
+
+.stagger-card.is-active::after {
+  background: linear-gradient(225deg, rgba(255, 255, 255, 0.38) 0 50%, transparent 50%);
+}
+
+.stagger-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: var(--gradient-soft);
+  color: var(--accent-violet-dark);
+  margin-bottom: 4px;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.4s ease;
+}
+
+.stagger-card.is-active .stagger-card-icon {
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--accent-cyan-solid);
+  transform: scale(1.06);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.2);
+}
+
+.stagger-card-icon .material-symbols-outlined {
+  font-size: 23px;
+}
+
+.stagger-card h3 {
+  font-size: 18.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.stagger-card p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.stagger-card.is-active p {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.stagger-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--accent-violet-dark);
+}
+
+.stagger-card.is-active .stagger-card-cta {
+  color: #fff;
+}
+
+.stagger-card-cta .material-symbols-outlined {
+  font-size: 16px;
+  transition: transform 0.25s ease;
+}
+
+.stagger-card-cta:hover .material-symbols-outlined {
+  transform: translateX(4px);
+}
+
+/* ---- Controls ---- */
+.stagger-deck-controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.stagger-arrow-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.stagger-arrow-btn:hover {
+  transform: translateY(-2px);
+  background: var(--gradient-primary);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.stagger-arrow-btn .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.stagger-deck-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stagger-deck-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: 0;
+  padding: 0;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.stagger-deck-dot.active {
+  width: 24px;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-primary);
+}
+
+@keyframes staggerGlow {
+  0%, 100% {
+    box-shadow:
+      0 6px 16px rgba(29, 78, 216, 0.28),
+      0 28px 64px rgba(37, 99, 235, 0.38),
+      0 48px 100px rgba(37, 99, 235, 0.22);
+  }
+  50% {
+    box-shadow:
+      0 6px 16px rgba(29, 78, 216, 0.32),
+      0 32px 72px rgba(37, 99, 235, 0.48),
+      0 56px 116px rgba(37, 99, 235, 0.3);
+  }
+}
+
+/* ---- Breakpoints: grow the cards and widen the fan on desktop.
+   --spread stays a little under --card-w at the top sizes so the cards
+   overlap slightly rather than pushing past the container edge. ---- */
+@media (min-width: 900px) {
+  .stagger-deck-stage {
+    height: 430px;
+    --card-w: 372px;
+    --spread: 344px;
+    --card-h: 330px;
+    --card-pad: 32px 34px 34px;
+  }
+}
+
+@media (min-width: 1120px) {
+  .stagger-deck-stage {
+    height: 470px;
+    --card-w: 416px;
+    --spread: 368px;
+    --card-h: 366px;
+    --card-pad: 38px 40px 38px;
+  }
+}
+
+@media (min-width: 1360px) {
+  .stagger-deck-stage {
+    height: 490px;
+    --card-w: 440px;
+    --spread: 386px;
+    --card-h: 384px;
+  }
+}
+
+@media (max-width: 720px) {
+  .stagger-deck-stage {
+    height: 380px;
+    --card-w: 270px;
+    --spread: 288px;
+    --card-h: 300px;
+    --card-pad: 26px 26px 28px;
+  }
+}
+
+/* Slightly larger type to match the bigger desktop cards */
+@media (min-width: 1120px) {
+  .stagger-card h3 {
+    font-size: 21px;
+  }
+
+  .stagger-card p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .stagger-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 15px;
+  }
+
+  .stagger-card-icon .material-symbols-outlined {
+    font-size: 26px;
+  }
+
+  .stagger-card-cta {
+    font-size: 14.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-card,
+  .stagger-card-icon,
+  .stagger-card-cta .material-symbols-outlined {
+    transition: none;
+  }
+
+  .stagger-card.is-active {
+    animation: none;
+  }
+
+  .stagger-deck:not(.is-visible) .stagger-card {
+    opacity: 0.5;
+    transform:
+      translate(-50%, -50%)
+      translateX(calc(var(--offset) * var(--spread)))
+      rotate(calc(var(--offset) * 3deg))
+      scale(0.9);
+  }
+
+  .stagger-deck:not(.is-visible) .stagger-card.is-active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

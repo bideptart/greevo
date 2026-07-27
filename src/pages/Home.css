@@ -620,8 +620,10 @@
 }
 
 .step-face-front {
+  justify-content: flex-end;
   padding: 20px;
-  gap: 14px;
+  background-size: cover;
+  background-position: center;
 }
 
 .step-face-back {
@@ -629,45 +631,23 @@
   transform: rotateY(180deg);
 }
 
-.step-front-visual {
+.step-front-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(4, 10, 26, 0.82), rgba(4, 10, 26, 0.05) 55%);
+  z-index: 1;
+}
+
+.step-front-text {
   position: relative;
-  flex: 1;
-  border-radius: var(--radius-md);
-  background-color: var(--surface-alt);
-  background-image: radial-gradient(var(--border) 1px, transparent 1px);
-  background-size: 16px 16px;
-  overflow: hidden;
-}
-
-.step-front-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-sm);
-  background: var(--gradient-primary);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-lift);
   z-index: 2;
-}
-
-.step-bar {
-  position: absolute;
-  left: 55%;
-  height: 8px;
-  border-radius: 4px;
-  background: color-mix(in srgb, var(--accent-violet) 16%, var(--surface));
 }
 
 .step-front-text h3 {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 4px;
+  color: #fff;
 }
 
 .step-front-corner {
@@ -675,7 +655,8 @@
   bottom: 16px;
   right: 16px;
   font-size: 18px;
-  color: var(--accent-cyan-solid);
+  color: #fff;
+  z-index: 2;
 }
 
 .step-back-head {
@@ -705,7 +686,7 @@
 .step-tagline {
   font-size: 13px;
   font-weight: 600;
-  color: var(--accent-violet-dark);
+  color: #bfdbfe;
 }
 
 .step-desc {

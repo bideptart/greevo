@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero.jsx'
-import FaqAccordion from '../components/FaqAccordion.jsx'
+import IndustryFaqAccordion from '../components/IndustryFaqAccordion.jsx'
 import AnimatedIndustries from '../components/AnimatedIndustries.jsx'
+import InfiniteSlider from '../components/InfiniteSlider.jsx'
+import StaggerStack from '../components/StaggerStack.jsx'
 import './Industries.css'
 
 const INDUSTRIES = [
@@ -196,16 +198,14 @@ export default function Industries() {
 
       {/* Stats band */}
       <section className="section">
-        <div className="container">
-          <div className="stats-row">
-            {STATS.map((s) => (
-              <div key={s.label}>
-                <div className="stat-number">{s.value}</div>
-                <div className="stat-label">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <InfiniteSlider gap={0} speed={34}>
+          {STATS.map((s) => (
+            <div className="infinite-slider-item" key={s.label}>
+              <div className="stat-number">{s.value}</div>
+              <div className="stat-label">{s.label}</div>
+            </div>
+          ))}
+        </InfiniteSlider>
       </section>
 
       {/* Explore more resources */}
@@ -215,18 +215,7 @@ export default function Industries() {
             <span className="eyebrow">Explore more</span>
             <h2 className="section-title">Go deeper on the platform</h2>
           </div>
-          <div className="resource-grid">
-            {RESOURCES.map((r) => (
-              <Link to={r.to} className="card resource-card" key={r.title}>
-                <div className="feature-icon"><span className="material-symbols-outlined">{r.icon}</span></div>
-                <h3>{r.title}</h3>
-                <p>{r.desc}</p>
-                <span className="resource-cta">
-                  {r.cta} <span className="material-symbols-outlined">arrow_forward</span>
-                </span>
-              </Link>
-            ))}
-          </div>
+          <StaggerStack items={RESOURCES} />
         </div>
       </section>
 
@@ -238,7 +227,7 @@ export default function Industries() {
             <h2 className="section-title">Industry questions, answered</h2>
           </div>
           <div style={{ maxWidth: 760, margin: '0 auto' }}>
-            <FaqAccordion items={FAQS} />
+            <IndustryFaqAccordion items={FAQS} />
           </div>
         </div>
       </section>

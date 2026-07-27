@@ -35,7 +35,7 @@ function getPanel(panelId) {
 }
 
 function GreevoLogo() {
-  return <img src="/brand/greevo-logo.png" alt="Greevo" className="h-[68px] w-[150px]" />
+  return <img src="/brand/greevo-logo.png" alt="Greevo" className="block h-[68px] w-[150px]" />
 }
 
 function PanelCard({ item }) {
@@ -102,6 +102,7 @@ export default function NavbarSectionTwo() {
             transition={{ type: 'spring', stiffness: 300, damping: 28 }}
             className="relative flex w-full flex-col justify-start overflow-hidden bg-[#1480E2]"
             style={{ borderBottomLeftRadius: '16px', borderBottomRightRadius: '16px' }}
+            onMouseLeave={() => setActiveMenu(null)}
           >
             <div className="z-20 flex h-16 items-center justify-center px-6">
               <nav className="flex w-full items-center justify-center gap-5 text-sm font-medium !text-white">
@@ -110,7 +111,7 @@ export default function NavbarSectionTwo() {
                     <button
                       key={item.label}
                       type="button"
-                      onClick={() => toggleMenu(item.panelId)}
+                      onMouseEnter={() => setActiveMenu(item.panelId)}
                       className={`flex cursor-pointer items-center gap-1 appearance-none rounded-full border-0 bg-transparent px-3 py-1 text-[14px] outline-none transition-all !text-white ${
                         activeMenu === item.panelId
                           ? 'bg-gradient-to-r from-blue-500 to-violet-600 shadow-[0_0_0_1px_rgba(255,255,255,0.08)]'
@@ -162,7 +163,8 @@ export default function NavbarSectionTwo() {
           </Link>
           <Link
             to="/contact"
-            className="group flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-[14px] font-semibold !text-white shadow-sm transition-colors hover:bg-blue-700"
+            className="group flex items-center gap-1.5 rounded-lg px-4 py-2 text-[14px] font-semibold !text-white shadow-sm transition-opacity hover:opacity-90"
+            style={{ background: 'linear-gradient(to right, #60a5fa, #2563eb)' }}
           >
             Get Started
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -178,7 +180,8 @@ export default function NavbarSectionTwo() {
           <Link
             to="/contact"
             onClick={closeAll}
-            className="group flex items-center gap-1 rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold !text-white shadow-sm"
+            className="group flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-semibold !text-white shadow-sm"
+            style={{ background: 'linear-gradient(to right, #60a5fa, #2563eb)' }}
           >
             Get Started
             <ArrowRight className="h-3 w-3" />
