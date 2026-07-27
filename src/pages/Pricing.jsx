@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import PageHero from '../components/PageHero.jsx'
+import PricingHero from '../components/PricingHero.jsx'
 import FaqAccordion from '../components/FaqAccordion.jsx'
 import './Pricing.css'
 
@@ -109,13 +109,7 @@ export default function Pricing() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Pricing"
-        title="Simple pricing that scales with your team"
-        subtitle="No hardware fees, no setup costs. Cancel anytime."
-        primaryCta="Start Free Trial"
-        secondaryCta="Talk to Sales"
-      />
+      <PricingHero />
 
       <section className="section-tight">
         <div className="container">
