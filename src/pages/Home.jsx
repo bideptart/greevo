@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import AccentTitle from '../components/AccentTitle.jsx'
+import HeroMockup from '../components/HeroMockup.jsx'
+import WorkspaceMockup from '../components/WorkspaceMockup.jsx'
 import './Home.css'
 
 const CARRIERS = [
@@ -76,34 +78,39 @@ export default function Home() {
       {/* Hero */}
       <section className="hero">
         <div className="container hero-inner">
-          <span className="hero-badge">
-            <span className="material-symbols-outlined" style={{ fontSize: 16 }}>auto_awesome</span>
-            AI receptionist is now multilingual
-          </span>
-          <h1><AccentTitle title="The cloud phone and AI contact center platform you can activate in minutes." /></h1>
-          <p className="hero-subtitle">
-            Calls, chat, SMS, video, and an AI receptionist — on one login. Greevo replaces the phone system,
-            the contact center, and the AI vendor you were about to stitch together.
-          </p>
-          <div className="hero-ctas">
-            <Link to="/contact" className="btn btn-primary">Start Free Trial</Link>
-            <Link to="/contact" className="btn btn-ghost">Book a Demo</Link>
-            <Link to="/pricing" className="btn btn-outline">
-              View Pricing <span className="material-symbols-outlined" style={{ fontSize: 18 }}>arrow_forward</span>
-            </Link>
+          <div className="hero-mockup-col">
+            <HeroMockup />
           </div>
-          <div className="hero-trust">
-            <span>8,200+ teams</span>
-            <span className="dot" />
-            <span>99.99% uptime</span>
-            <span className="dot" />
-            <span><span className="material-symbols-outlined" style={{ fontSize: 16, verticalAlign: 'middle' }}>star</span> 4.7/5 average rating</span>
+          <div className="hero-text-col">
+            <span className="hero-badge">
+              <span className="material-symbols-outlined" style={{ fontSize: 16 }}>auto_awesome</span>
+              AI receptionist is now multilingual
+            </span>
+            <h1><AccentTitle title="The cloud phone and AI contact center platform you can activate in minutes." /></h1>
+            <p className="hero-subtitle">
+              Calls, chat, SMS, video, and an AI receptionist — on one login. Greevo replaces the phone system,
+              the contact center, and the AI vendor you were about to stitch together.
+            </p>
+            <div className="hero-ctas">
+              <Link to="/contact" className="btn btn-primary">Start Free Trial</Link>
+              <Link to="/contact" className="btn btn-ghost">Book a Demo</Link>
+              <Link to="/pricing" className="btn btn-outline">
+                View Pricing <span className="material-symbols-outlined" style={{ fontSize: 18 }}>arrow_forward</span>
+              </Link>
+            </div>
+            <div className="hero-trust">
+              <span>8,200+ teams</span>
+              <span className="dot" />
+              <span>99.99% uptime</span>
+              <span className="dot" />
+              <span><span className="material-symbols-outlined" style={{ fontSize: 16, verticalAlign: 'middle' }}>star</span> 4.7/5 average rating</span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Trusted by Global Carriers & Partners */}
-      <section className="section-tight">
+      <section className="section-tight trusted-by-section">
         <div className="container">
           <p className="logo-strip-label">TRUSTED BY GLOBAL CARRIERS &amp; PARTNERS</p>
           <div className="marquee">
@@ -118,55 +125,47 @@ export default function Home() {
       </section>
 
       {/* The Platform */}
-      <section className="section">
+      <section className="section platform-section">
         <div className="container">
-          <div className="stack-center">
+          <div className="stack-center platform-intro">
             <span className="eyebrow">The Platform</span>
             <h2 className="section-title">Cloud phone and AI contact center. One login.</h2>
             <p className="section-subtitle">Two products, one bill, one roadmap. Use one, or use both.</p>
           </div>
-          <div className="two-col">
-            <div>
-              <span className="eyebrow">Cloud Phone</span>
-              <h2>HD calling to 190+ countries</h2>
-              <p>Virtual numbers in 100+ countries, shared SMS inboxes, video meetings, and native apps for mobile and desktop.</p>
-              <ul className="check-list">
-                <li><span className="material-symbols-outlined">check_circle</span> HD voice with automatic failover</li>
-                <li><span className="material-symbols-outlined">check_circle</span> Free number porting, local and toll-free</li>
-                <li><span className="material-symbols-outlined">check_circle</span> Business SMS and MMS from day one</li>
-              </ul>
-              <Link to="/features" className="btn btn-dark">Explore Cloud Phone</Link>
-            </div>
-            <div className="two-col-media" aria-hidden="true">
-              <span className="material-symbols-outlined" style={{ fontSize: 72, color: 'var(--accent-violet-dark)' }}>call</span>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="two-col reverse">
-            <div className="two-col-media" aria-hidden="true">
-              <span className="material-symbols-outlined" style={{ fontSize: 72, color: 'var(--accent-violet-dark)' }}>support_agent</span>
+          <div className="platform-grid">
+            <div className="card platform-workspace-card">
+              <span className="eyebrow">One Workspace</span>
+              <h3>Your calls and conversations, side by side.</h3>
+              <p>Jump into a live call while your team keeps the thread moving — everything lives in one view.</p>
+
+              <WorkspaceMockup />
             </div>
-            <div>
-              <span className="eyebrow">AI Contact Center</span>
-              <h2>Skill-based routing, on autopilot</h2>
-              <p>Predictive dialer, live coaching, and an omnichannel inbox on one thread per customer — built for teams that live on the phone.</p>
-              <ul className="check-list">
-                <li><span className="material-symbols-outlined">check_circle</span> Real-time sentiment and call scoring</li>
-                <li><span className="material-symbols-outlined">check_circle</span> Whisper coaching for new agents</li>
-                <li><span className="material-symbols-outlined">check_circle</span> ACD and workforce scheduling built in</li>
-              </ul>
-              <Link to="/features" className="btn btn-dark">Explore AI Receptionist</Link>
+
+            <div className="platform-feature-cards">
+              <div className="card platform-feature-card feature-blue">
+                <div className="platform-feature-icon"><span className="material-symbols-outlined">call</span></div>
+                <h4>Cloud Phone</h4>
+                <p>HD calling to 190+ countries. Virtual numbers in 100+. Shared SMS inboxes, video meetings, and mobile + desktop apps.</p>
+                <div className="platform-tags">
+                  <span>HD voice</span><span>SMS</span><span>Video</span><span>190+ countries</span>
+                </div>
+              </div>
+              <div className="card platform-feature-card feature-violet">
+                <div className="platform-feature-icon"><span className="material-symbols-outlined">auto_awesome</span></div>
+                <h4>AI Contact Center</h4>
+                <p>Skill-based routing, predictive dialer, live coaching, and an omnichannel inbox on one thread per customer.</p>
+                <div className="platform-tags">
+                  <span>Routing</span><span>Dialer</span><span>Coaching</span><span>Omnichannel</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Core Five */}
-      <section className="section" style={{ background: 'var(--surface-alt)' }}>
+      <section className="section core-five-section" style={{ background: 'var(--surface-alt)' }}>
         <div className="container">
           <div className="stack-center">
             <span className="eyebrow">Core Five</span>
