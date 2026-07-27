@@ -15,7 +15,9 @@ export default function FaqAccordion({ items, defaultOpen = -1 }) {
               <span>{item.q}</span>
             </button>
             <div className="faq-answer-wrap">
-              <p className="faq-answer">{item.a}</p>
+              <div className="faq-answer-inner">
+                <p className="faq-answer">{item.a}</p>
+              </div>
             </div>
           </div>
         )

@@ -3,6 +3,7 @@ import AccentTitle from '../components/AccentTitle.jsx'
 import HeroMockup from '../components/HeroMockup.jsx'
 import WorkspaceMockup from '../components/WorkspaceMockup.jsx'
 import CoreFiveDashboard from '../components/CoreFiveDashboard.jsx'
+import FaqAccordion from '../components/FaqAccordion.jsx'
 import './Home.css'
 
 const CARRIERS = [
@@ -260,14 +261,7 @@ export default function Home() {
             <span className="eyebrow">FAQ</span>
             <h2 className="section-title">The questions teams ask on the first call.</h2>
           </div>
-          <div style={{ maxWidth: 720, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
-            {FAQS.map((f) => (
-              <div key={f.q} className="card" style={{ padding: 22 }}>
-                <h3 style={{ fontSize: 15.5, fontWeight: 600, marginBottom: 8 }}>{f.q}</h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: 14.5, lineHeight: 1.6 }}>{f.a}</p>
-              </div>
-            ))}
-          </div>
+          <FaqAccordion items={FAQS} />
           <div className="stack-center" style={{ marginTop: 32 }}>
             <Link to="/faq" className="btn btn-outline">See all FAQs</Link>
           </div>

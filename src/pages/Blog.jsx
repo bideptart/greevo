@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import BlogHero from '../components/BlogHero.jsx'
+import FeaturedPost from '../components/FeaturedPost.jsx'
 import { BLOG_POSTS, TAG_STYLES, AUTHOR } from '../data/blogPosts.js'
 import './Blog.css'
 
@@ -25,7 +26,7 @@ export default function Blog() {
 
   return (
     <>
-      <BlogHero featuredPost={featuredPost} />
+      <BlogHero />
 
       <section className="section-tight blog-categories-section">
         <div className="container">
@@ -43,8 +44,11 @@ export default function Blog() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
-              <button type="submit" className="btn btn-primary">
-                Search <span className="material-symbols-outlined" style={{ fontSize: 18 }}>arrow_forward</span>
+              <button type="submit" className="btn btn-primary blog-search-btn">
+                Search
+                <span className="blog-search-btn-icon">
+                  <span className="material-symbols-outlined">arrow_forward</span>
+                </span>
               </button>
             </form>
           </div>
@@ -61,6 +65,8 @@ export default function Blog() {
               </button>
             ))}
           </div>
+
+          <FeaturedPost post={featuredPost} />
         </div>
       </section>
 
@@ -72,7 +78,7 @@ export default function Blog() {
             <div className="feature-grid blog-grid">
               {gridPosts.map((post) => (
                 <Link key={post.slug} to={`/blog/${post.slug}`} className="card blog-card">
-                  <div className="blog-card-image" style={{ background: TAG_STYLES[post.tag]?.image }}>
+                  <div className="blog-card-image">
                     <span className={`tag-pill ${TAG_STYLES[post.tag]?.pill}`}>{post.tag}</span>
                   </div>
                   <div className="blog-card-body">
