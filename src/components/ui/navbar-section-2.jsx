@@ -35,7 +35,7 @@ function getPanel(panelId) {
 }
 
 function GreevoLogo() {
-  return <img src="/brand/greevo-logo.png" alt="Greevo" className="h-14 w-auto" />
+  return <img src="/brand/greevo-logo.png" alt="Greevo" className="h-[68px] w-[150px]" />
 }
 
 function PanelCard({ item }) {

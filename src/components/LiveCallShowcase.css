@@ -1,0 +1,357 @@
+.live-call-showcase {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 460px;
+  padding: 40px 20px;
+}
+
+.float-icon {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  color: var(--accent-cyan-solid);
+  animation: float-bob 4.5s ease-in-out infinite;
+}
+
+.float-icon .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.float-a { top: 6%; left: 6%; animation-delay: 0s; }
+.float-b { top: 10%; right: 4%; animation-delay: 0.9s; }
+.float-c { bottom: 22%; left: -2%; animation-delay: 1.6s; }
+.float-d { bottom: 6%; right: 12%; animation-delay: 2.3s; }
+
+@keyframes float-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.call-phone-card {
+  position: relative;
+  z-index: 1;
+  width: 190px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  box-shadow: var(--shadow-lift);
+  padding: 16px 14px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: -36px;
+  margin-top: 40px;
+}
+
+.call-phone-notch {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.call-phone-time {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.call-caller-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.plan-swap {
+  animation: plan-swap-fade 0.4s ease;
+}
+
+@keyframes plan-swap-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.price-display {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: 14px;
+}
+
+.price-dollar {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-cyan-solid);
+  margin-right: 2px;
+}
+
+.price-digit-reel {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text);
+}
+
+.price-digit-track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.price-digit-cell {
+  height: 1em;
+  line-height: 1;
+}
+
+.price-period {
+  font-size: 12px;
+  color: var(--text-soft);
+  margin-left: 3px;
+  align-self: flex-end;
+}
+
+.price-toggle {
+  position: relative;
+  display: flex;
+  width: 130px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-alt);
+  padding: 3px;
+  margin-bottom: 10px;
+}
+
+.price-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  height: calc(100% - 6px);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.price-toggle.yearly .price-toggle-thumb {
+  transform: translateX(100%);
+}
+
+.price-toggle-option {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  text-align: center;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 5px 0;
+  color: var(--text-soft);
+}
+
+.price-toggle.yearly .price-toggle-option:first-child,
+.price-toggle:not(.yearly) .price-toggle-option:last-child {
+  color: var(--text-soft);
+}
+
+.price-toggle:not(.yearly) .price-toggle-option:first-child,
+.price-toggle.yearly .price-toggle-option:last-child {
+  color: var(--text);
+}
+
+.price-savings {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #16a34a;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.price-savings.show {
+  opacity: 1;
+}
+
+.agent-panel-card {
+  position: relative;
+  z-index: 2;
+  width: 250px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lift);
+  padding: 14px;
+  margin-top: -20px;
+}
+
+.agent-panel-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.agent-panel-url {
+  font-size: 10.5px;
+  color: var(--text-soft);
+  font-weight: 500;
+}
+
+.agent-panel-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.agent-panel-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #16a34a;
+  animation: live-dot-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes live-dot-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.agent-panel-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.agent-panel-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.agent-panel-contact-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.agent-panel-contact-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.agent-panel-contact-phone {
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+.agent-panel-handling {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--accent-violet-dark);
+  background: color-mix(in srgb, var(--accent-cyan-solid) 12%, var(--surface));
+  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.agent-panel-transcript {
+  background: var(--surface-alt);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+
+.agent-panel-transcript-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--accent-cyan-solid);
+  margin-bottom: 6px;
+}
+
+.agent-panel-transcript-text {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.agent-panel-route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.agent-panel-route-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.agent-panel-route-synced {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #16a34a;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.agent-panel-route-synced.show {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-icon,
+  .call-wave-bar,
+  .agent-panel-live-dot {
+    animation: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .call-phone-card {
+    margin-right: -24px;
+  }
+
+  .agent-panel-card {
+    width: 220px;
+  }
+}
