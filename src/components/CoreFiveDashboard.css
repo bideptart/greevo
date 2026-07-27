@@ -1,0 +1,542 @@
+.core-five-dashboard {
+  display: grid;
+  grid-template-columns: 1.5fr 1.15fr 0.9fr;
+  grid-template-rows: auto auto;
+  gap: 14px;
+}
+
+.cfd-routing {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.cfd-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cfd-card-head h3 {
+  font-size: 17px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.cfd-card-head p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.cfd-back {
+  font-size: 16px;
+  color: var(--text-soft);
+}
+
+/* Smart Call Routing */
+.cfd-routing-visual {
+  background: var(--surface-alt);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.cfd-inbound-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.cfd-dot-pink {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ec4899;
+  animation: cfd-pulse 1.6s infinite;
+}
+
+.cfd-rule-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  width: 240px;
+  box-shadow: var(--shadow-soft);
+}
+
+.cfd-rule-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-soft);
+}
+
+.cfd-rule-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+.cfd-rule-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cfd-bolt {
+  font-size: 16px;
+  color: var(--accent-cyan-solid);
+  animation: cfd-bolt-flash 1.8s infinite;
+}
+
+@keyframes cfd-bolt-flash {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.cfd-rule-sub {
+  display: block;
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-top: 4px;
+}
+
+.cfd-builder-banner {
+  position: relative;
+  width: 100%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  overflow: hidden;
+}
+
+.cfd-builder-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: cfd-shimmer 2.6s infinite;
+}
+
+@keyframes cfd-shimmer {
+  0% { background-position: 150% 0; }
+  100% { background-position: -50% 0; }
+}
+
+.cfd-builder-title {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.cfd-builder-sub {
+  display: block;
+  font-size: 10.5px;
+  opacity: 0.9;
+}
+
+.cfd-builder-frac {
+  font-size: 12px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+}
+
+/* Unified Inbox */
+.cfd-inbox {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+}
+
+.cfd-inbox-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cfd-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fee2e2;
+  color: #dc2626;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 4px 9px;
+  border-radius: var(--radius-pill);
+}
+
+.cfd-live-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #dc2626;
+  animation: cfd-pulse 1.4s infinite;
+}
+
+@keyframes cfd-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.cfd-thread-count {
+  font-size: 11.5px;
+  color: var(--text-soft);
+  font-weight: 600;
+}
+
+.cfd-thread-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cfd-thread-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  animation: cfd-slide-in 0.5s ease forwards;
+}
+
+.cfd-thread-row:nth-child(1) { animation-delay: 0.05s; }
+.cfd-thread-row:nth-child(2) { animation-delay: 0.2s; }
+.cfd-thread-row:nth-child(3) { animation-delay: 0.35s; }
+.cfd-thread-row:nth-child(4) { animation-delay: 0.5s; }
+
+@keyframes cfd-slide-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.cfd-thread-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.cfd-thread-icon .material-symbols-outlined {
+  font-size: 15px;
+}
+
+.cfd-thread-name {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.cfd-thread-meta {
+  display: block;
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+.cfd-inbox-foot {
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+/* Call Intelligence */
+.cfd-intelligence {
+  grid-column: 1 / 3;
+  grid-row: 2;
+  align-self: start;
+}
+
+.cfd-side-stack {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cfd-transcript-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  background: var(--surface-alt);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.cfd-transcript-label {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-soft);
+  margin-bottom: 8px;
+}
+
+.cfd-transcript-line {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.cfd-transcript-line strong {
+  color: var(--text);
+  margin-right: 4px;
+}
+
+.cfd-sentiment-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-bottom: 10px;
+}
+
+.cfd-sentiment-bar {
+  flex: 1;
+  height: 5px;
+  background: var(--border);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.cfd-sentiment-bar span {
+  display: block;
+  height: 100%;
+  background: #22c55e;
+  border-radius: var(--radius-pill);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: cfd-fill-bar 1s ease 0.3s forwards;
+}
+
+@keyframes cfd-fill-bar {
+  to { transform: scaleX(1); }
+}
+
+.cfd-sentiment-pct {
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.cfd-topic-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.cfd-topic-tags span {
+  font-size: 10.5px;
+  font-weight: 600;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 3px 9px;
+  color: var(--text-soft);
+  opacity: 0;
+  animation: cfd-pop-in 0.4s ease forwards;
+}
+
+.cfd-topic-tags span:nth-child(1) { animation-delay: 0.6s; }
+.cfd-topic-tags span:nth-child(2) { animation-delay: 0.75s; }
+.cfd-topic-tags span:nth-child(3) { animation-delay: 0.9s; }
+
+@keyframes cfd-pop-in {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.cfd-recording {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cfd-play {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.cfd-play::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-violet);
+  animation: cfd-ring-pulse 1.8s infinite;
+}
+
+@keyframes cfd-ring-pulse {
+  0% { transform: scale(0.85); opacity: 0.8; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+.cfd-recording-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--border);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.cfd-recording-bar span {
+  display: block;
+  width: 35%;
+  height: 100%;
+  background: var(--accent-violet);
+}
+
+.cfd-recording-time {
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+
+.cfd-sla-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.cfd-sla-label {
+  display: block;
+  font-size: 11px;
+  color: var(--text-soft);
+  font-weight: 600;
+}
+
+.cfd-sla-value {
+  display: block;
+  font-size: 26px;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cfd-mini-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 36px;
+}
+
+.cfd-mini-bars span {
+  width: 4px;
+  border-radius: 2px;
+  background: var(--accent-violet);
+  transform-origin: bottom;
+  animation: cfd-bar-bounce 1.4s ease-in-out infinite;
+}
+
+.cfd-mini-bars span:nth-child(1) { animation-delay: 0s; }
+.cfd-mini-bars span:nth-child(2) { animation-delay: 0.1s; }
+.cfd-mini-bars span:nth-child(3) { animation-delay: 0.2s; }
+.cfd-mini-bars span:nth-child(4) { animation-delay: 0.3s; }
+.cfd-mini-bars span:nth-child(5) { animation-delay: 0.4s; }
+.cfd-mini-bars span:nth-child(6) { animation-delay: 0.5s; }
+.cfd-mini-bars span:nth-child(7) { animation-delay: 0.6s; }
+
+@keyframes cfd-bar-bounce {
+  0%, 100% { transform: scaleY(0.7); }
+  50% { transform: scaleY(1); }
+}
+
+.cfd-crm-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cfd-crm-row {
+  display: grid;
+  grid-template-columns: 64px 1fr 30px;
+  align-items: center;
+  gap: 8px;
+}
+
+.cfd-crm-name {
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.cfd-crm-bar {
+  height: 5px;
+  background: var(--border);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.cfd-crm-bar span {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: cfd-fill-bar 0.9s ease forwards;
+}
+
+.cfd-crm-row:nth-child(1) .cfd-crm-bar span { animation-delay: 0.15s; }
+.cfd-crm-row:nth-child(2) .cfd-crm-bar span { animation-delay: 0.3s; }
+.cfd-crm-row:nth-child(3) .cfd-crm-bar span { animation-delay: 0.45s; }
+.cfd-crm-row:nth-child(4) .cfd-crm-bar span { animation-delay: 0.6s; }
+
+.cfd-crm-pct {
+  font-size: 10.5px;
+  color: var(--text-soft);
+  font-weight: 600;
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .core-five-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .cfd-inbox,
+  .cfd-intelligence,
+  .cfd-side-stack {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .cfd-transcript-grid {
+    grid-template-columns: 1fr;
+  }
+}

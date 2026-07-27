@@ -2,19 +2,12 @@ import { Link } from 'react-router-dom'
 import AccentTitle from '../components/AccentTitle.jsx'
 import HeroMockup from '../components/HeroMockup.jsx'
 import WorkspaceMockup from '../components/WorkspaceMockup.jsx'
+import CoreFiveDashboard from '../components/CoreFiveDashboard.jsx'
 import './Home.css'
 
 const CARRIERS = [
   'Nordholm Telecom', 'PacRim Mobile', 'Andes Connect', 'Meridian Wireless', 'Solara Communications',
   'Baltic Voice', 'Kestrel Networks', 'Continental SIP', 'Harborlink Telecom', 'Zenith Carrier Group',
-]
-
-const CORE_FIVE = [
-  { icon: 'call', title: 'Smart Call Routing', desc: 'First-ring rules and skill-based queues built for high-velocity teams — no IT ticket required.' },
-  { icon: 'forum', title: 'Unified Inbox', desc: 'Voice, SMS, WhatsApp, email, and web chat land on one thread per customer.' },
-  { icon: 'graphic_eq', title: 'Call Intelligence', desc: 'Live transcription, sentiment scoring, and call summaries — searchable in seconds.' },
-  { icon: 'monitoring', title: 'Live Analytics', desc: 'CSAT, FCR, AHT, and SLA that update by the second, not by the day.' },
-  { icon: 'hub', title: 'CRM Integrations', desc: 'HubSpot, Salesforce, Zoho, and Pipedrive sync automatically, both ways.' },
 ]
 
 const STEPS = [
@@ -172,15 +165,7 @@ export default function Home() {
             <h2 className="section-title">Five tools your agents open every morning.</h2>
             <p className="section-subtitle">The day-to-day, built to feel effortless.</p>
           </div>
-          <div className="feature-grid">
-            {CORE_FIVE.map((f) => (
-              <div key={f.title} className="card feature-card">
-                <div className="feature-icon"><span className="material-symbols-outlined">{f.icon}</span></div>
-                <h3>{f.title}</h3>
-                <p>{f.desc}</p>
-              </div>
-            ))}
-          </div>
+          <CoreFiveDashboard />
         </div>
       </section>
 
