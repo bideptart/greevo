@@ -5,6 +5,10 @@ import './PageHero.css'
 export default function PageHero({ eyebrow, title, subtitle, primaryCta = 'Start Free Trial', primaryTo = '/contact', secondaryCta = 'Book a Demo', secondaryTo = '/contact' }) {
   return (
     <section className="page-hero">
+      <div className="page-hero-blob page-blob-a" aria-hidden="true" />
+      <div className="page-hero-blob page-blob-b" aria-hidden="true" />
+      <div className="page-hero-blob page-blob-c" aria-hidden="true" />
+
       <div className="container page-hero-inner">
         {eyebrow && (
           <span className="hero-badge">

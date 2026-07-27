@@ -142,6 +142,15 @@
 
   .mobile-panel .btn {
     margin-top: 8px;
-    width: fit-content;
+    width: 100%;
+  }
+
+  .mobile-panel .mobile-signin {
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+    border: 1.5px solid var(--accent-violet);
+    border-radius: var(--radius-pill);
+    color: var(--accent-violet-dark);
   }
 }

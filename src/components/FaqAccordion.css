@@ -31,7 +31,7 @@
   padding: 0;
   text-align: left;
   font-family: var(--font);
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   color: var(--text);
 }
@@ -60,19 +60,13 @@
 }
 
 .faq-item.open .faq-answer-wrap {
-  max-height: 120px;
+  max-height: 220px;
   opacity: 1;
 }
 
 .faq-answer {
   margin: 12px 0 0 26px;
   color: var(--text-muted);
-  font-size: 14px;
-  line-height: 1.6;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 14.5px;
+  line-height: 1.65;
 }
