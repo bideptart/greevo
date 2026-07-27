@@ -28,21 +28,10 @@
   gap: 10px;
 }
 
-.footer-brand .brand-mark {
-  width: 32px;
-  height: 32px;
-  border-radius: 9px;
-  background: var(--gradient-primary);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.footer-brand .brand-name {
-  font-weight: 800;
-  font-size: 19px;
-  color: #fff;
+.footer-brand .brand-logo {
+  height: 28px;
+  width: auto;
+  display: block;
 }
 
 .footer-brand p {

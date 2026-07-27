@@ -48,14 +48,7 @@ export default function Footer() {
       <div className="container footer-top">
         <div className="footer-brand">
           <Link to="/" className="brand">
-            <span className="brand-mark" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <rect x="2" y="14" width="4" height="8" rx="1" fill="currentColor" />
-                <rect x="10" y="9" width="4" height="13" rx="1" fill="currentColor" />
-                <rect x="18" y="3" width="4" height="19" rx="1" fill="currentColor" />
-              </svg>
-            </span>
-            <span className="brand-name">Greevo</span>
+            <img src="/logo-footer.png" alt="Greevo" className="brand-logo" />
           </Link>
           <p>Cloud phone and AI contact center on one login. Calls, chat, SMS, video, and an AI receptionist — without the enterprise vendor markup.</p>
           <Link to="/contact" className="dashboard-btn">
