@@ -127,9 +127,9 @@ export default function Home() {
       {/* The Platform */}
       <section className="section platform-section">
         <div className="container">
-          <div className="stack-center platform-intro">
+          <div className="stack-center platform-intro wide-intro">
             <span className="eyebrow">The Platform</span>
-            <h2 className="section-title">Cloud phone and AI contact center. One login.</h2>
+            <h2 className="section-title nowrap-title">Cloud phone and AI contact center. One login.</h2>
             <p className="section-subtitle">Two products, one bill, one roadmap. Use one, or use both.</p>
           </div>
 
@@ -179,9 +179,9 @@ export default function Home() {
       {/* How It Works */}
       <section className="section how-it-works-section">
         <div className="container">
-          <div className="stack-center">
+          <div className="stack-center wide-intro">
             <span className="eyebrow">How It Works</span>
-            <h2 className="section-title">From signup to first call in three steps.</h2>
+            <h2 className="section-title nowrap-title">From signup to first call in three steps.</h2>
             <p className="section-subtitle">Median setup time: under 4 minutes.</p>
           </div>
           <div className="steps-grid">
@@ -291,9 +291,9 @@ export default function Home() {
       {/* FAQ */}
       <section className="section faq-section">
         <div className="container">
-          <div className="stack-center">
+          <div className="stack-center wide-intro">
             <span className="eyebrow">FAQ</span>
-            <h2 className="section-title">The questions teams ask on the first call.</h2>
+            <h2 className="section-title nowrap-title">The questions teams ask on the first call.</h2>
           </div>
           <FaqAccordion items={FAQS} />
           <div className="stack-center" style={{ marginTop: 32 }}>

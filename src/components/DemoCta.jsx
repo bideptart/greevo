@@ -75,7 +75,7 @@ export default function DemoCta() {
   const [before, accent, after] = content.title
 
   return (
-    <section className="section-tight">
+    <section className="section-tight demo-cta-section">
       <div className="container">
         <div className="demo-cta">
           <div className="demo-cta-text">

@@ -177,13 +177,28 @@
 
 .faq-section {
   background: #ecfeff;
+  padding-top: 40px;
 }
 
 .platform-intro {
-  align-items: flex-start;
-  text-align: left;
-  margin: 0 0 48px;
-  max-width: none;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto 48px;
+  max-width: 640px;
+}
+
+.wide-intro {
+  max-width: 900px;
+}
+
+.nowrap-title {
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .nowrap-title {
+    white-space: normal;
+  }
 }
 
 .platform-grid {
