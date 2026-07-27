@@ -45,7 +45,7 @@
 }
 
 .pricing-card {
-  padding: 32px;
+  padding: 12px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -53,8 +53,10 @@
 }
 
 .pricing-card:hover {
+  border-width: 2px;
   border-color: var(--accent-violet);
   box-shadow: var(--shadow-lift);
+  margin: -1px;
 }
 
 .pricing-card.featured {

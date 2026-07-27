@@ -43,6 +43,8 @@ export default function FeaturedPost({ post }) {
         <p className="featured-post-panel-title">{post.title}</p>
         <div className="featured-post-diagram">
           <div className="diagram-core">
+            <span className="diagram-ping-ring" aria-hidden="true" />
+            <span className="diagram-ping-ring delay" aria-hidden="true" />
             <span className="material-symbols-outlined">support_agent</span>
           </div>
           {SATELLITES.map((s) => (

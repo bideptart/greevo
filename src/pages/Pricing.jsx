@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PricingHero from '../components/PricingHero.jsx'
 import FaqAccordion from '../components/FaqAccordion.jsx'
+import RoiCalculator from '../components/RoiCalculator.jsx'
+import OutcomeTestimonials from '../components/OutcomeTestimonials.jsx'
 import './Pricing.css'
 
 function AnimatedPrice({ value }) {
@@ -116,6 +118,9 @@ const PLANS = [
 export default function Pricing() {
   const [yearly, setYearly] = useState(true)
 
+  const featuredPlan = PLANS.find((p) => p.featured) || PLANS[0]
+  const yearlySavings = (featuredPlan.monthly - featuredPlan.yearly) * 12
+
   return (
     <>
       <PricingHero />
@@ -124,7 +129,7 @@ export default function Pricing() {
         <div className="container">
           <div className="billing-toggle">
             <button type="button" className={!yearly ? 'active' : ''} onClick={() => setYearly(false)}>Monthly</button>
-            <button type="button" className={yearly ? 'active' : ''} onClick={() => setYearly(true)}>Yearly <span className="save-badge">Save 20%</span></button>
+            <button type="button" className={yearly ? 'active' : ''} onClick={() => setYearly(true)}>Yearly <span className="save-badge">Save ${yearlySavings}/user/year</span></button>
           </div>
 
           <div className="pricing-grid">
@@ -143,7 +148,7 @@ export default function Pricing() {
                     <li key={f}><span className="material-symbols-outlined">check_circle</span> {f}</li>
                   ))}
                 </ul>
-                <Link to="/contact" className="btn btn-card-cta" style={{ width: '100%' }}>
+                <Link to="/contact" className={`btn ${plan.featured ? 'btn-primary' : 'btn-card-cta'}`} style={{ width: '100%' }}>
                   Get Started
                 </Link>
               </div>
@@ -198,7 +203,24 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="section" style={{ background: '#ecfeff' }}>
+      <section className="section">
+        <div className="container">
+          <RoiCalculator />
+        </div>
+      </section>
+
+      <section className="section" style={{ background: 'var(--surface-alt)' }}>
+        <div className="container">
+          <div className="stack-center">
+            <span className="eyebrow">Results</span>
+            <h2 className="section-title">Teams that made the switch</h2>
+            <p className="section-subtitle">Real outcomes from teams who replaced their old answering setup with Greevo.</p>
+          </div>
+          <OutcomeTestimonials />
+        </div>
+      </section>
+
+      <section className="section">
         <div className="container">
           <div className="stack-center">
             <span className="eyebrow">FAQ</span>
