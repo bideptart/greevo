@@ -1,3 +1,14 @@
+export const TAG_STYLES = {
+  'AI Voice': { pill: 'tag-blue', image: 'linear-gradient(135deg, #60a5fa, #2563eb)' },
+  Product: { pill: 'tag-violet', image: 'linear-gradient(135deg, #a78bfa, #7c3aed)' },
+  Guides: { pill: 'tag-cyan', image: 'linear-gradient(135deg, #67e8f9, #0891b2)' },
+  Company: { pill: 'tag-navy', image: 'linear-gradient(135deg, #64748b, #1e293b)' },
+  Compliance: { pill: 'tag-teal', image: 'linear-gradient(135deg, #5eead4, #0d9488)' },
+  Pricing: { pill: 'tag-amber', image: 'linear-gradient(135deg, #fcd34d, #d97706)' },
+}
+
+export const AUTHOR = 'Greevo Team'
+
 export const BLOG_POSTS = [
   {
     slug: 'ai-voice-natural-conversations',
