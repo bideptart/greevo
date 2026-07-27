@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import Header from './components/Header.jsx'
+import NavbarSectionTwo from './components/ui/navbar-section-2.jsx'
 import Footer from './components/Footer.jsx'
 import DemoCta from './components/DemoCta.jsx'
 import ScrollToTop from './components/ScrollToTop.jsx'
@@ -18,7 +18,9 @@ function App() {
   return (
     <div className="app-shell">
       <ScrollToTop />
-      <Header />
+      <div style={{ position: 'sticky', top: 0, zIndex: 50 }}>
+        <NavbarSectionTwo />
+      </div>
       <main>
         <Routes>
           <Route path="/" element={<Home />} />

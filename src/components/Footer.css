@@ -28,21 +28,31 @@
   gap: 10px;
 }
 
-.footer-brand .brand-mark {
-  width: 32px;
-  height: 32px;
-  border-radius: 9px;
-  background: var(--gradient-primary);
-  color: #ffffff;
-  display: flex;
+.footer-logo-chip {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
 }
 
-.footer-brand .brand-name {
+.footer-logo-icon-crop {
+  width: 34px;
+  height: 56px;
+  overflow: hidden;
+  display: block;
+}
+
+.footer-logo-icon-crop img {
+  width: 112.16px;
+  height: 56px;
+  max-width: none;
+  display: block;
+}
+
+.footer-logo-text {
   font-weight: 800;
-  font-size: 19px;
-  color: #fff;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
 }
 
 .footer-brand p {
