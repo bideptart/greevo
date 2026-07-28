@@ -212,9 +212,14 @@
 .comparison-table-wrap {
   overflow-x: auto;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
+  border: 2px solid var(--accent-cyan-solid);
   background: var(--surface);
   box-shadow: var(--shadow-soft);
+}
+
+.comparison-table tbody tr:hover td,
+.comparison-table tbody tr:hover th {
+  background: color-mix(in srgb, var(--accent-cyan-solid) 8%, transparent);
 }
 
 .comparison-table {

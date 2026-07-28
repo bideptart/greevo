@@ -197,7 +197,7 @@ export default function Pricing() {
             <table className="comparison-table">
               <thead>
                 <tr>
-                  <th></th>
+                  <th className="comparison-row-label">Plan</th>
                   {PLANS.map((plan) => (
                     <th key={plan.name} className={plan.featured ? 'featured-col' : ''}>
                       {plan.featured && <span className="popular-tag">Most popular</span>}
