@@ -24,6 +24,8 @@ export default function Features() {
   return (
     <>
       <PageHero
+        split
+        visualVariant="cards3d"
         eyebrow="Features"
         title="Everything your team needs to answer, route, and follow up"
         subtitle="Cloud phone, AI receptionist, business SMS, and video meetings — on one login, with no add-on invoices."
