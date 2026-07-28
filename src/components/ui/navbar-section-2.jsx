@@ -281,7 +281,7 @@ export default function NavbarSectionTwo() {
         </Link>
 
         <div
-          className="absolute left-1/2 top-0 hidden w-[760px] -translate-x-1/2 lg:block"
+          className="absolute left-1/2 top-0 hidden w-[680px] -translate-x-1/2 lg:block"
           style={{ filter: 'drop-shadow(0 12px 20px rgba(0, 0, 0, 0.18))' }}
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="pointer-events-none absolute -left-[18px] top-0 z-10 text-[#1480E2]">
