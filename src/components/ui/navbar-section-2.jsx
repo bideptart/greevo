@@ -28,6 +28,7 @@ const menuPanels = [
           { title: 'Finance', description: 'Secure, compliant calling for advisors and support teams.', to: '/industries' },
           { title: 'Retail & eCom', description: 'Route customers to the right store or support queue.', to: '/industries' },
           { title: 'SaaS & Tech', description: 'Onboarding, renewals, and support, unified for CS teams.', to: '/industries' },
+          { title: 'BFSI & Fintech', description: 'Qualify loan and insurance leads, chase EMI and premium dues, and run KYC and renewal reminders 24/7 — in Hindi and every regional language.', to: '/industries' },
         ],
       },
       {
@@ -39,6 +40,7 @@ const menuPanels = [
           { title: 'Logistics', description: 'Dispatch, driver check-ins, and delivery updates that keep moving.', to: '/industries' },
           { title: 'Remote Teams', description: 'One login for distributed agents across every time zone.', to: '/industries' },
           { title: 'Enterprise IT', description: 'SSO, audit logs, and uptime SLAs built for scale.', to: '/industries' },
+          { title: 'Automotive', description: 'Schedule service, follow up on test drives, and keep the BDC ringing 24 hours a day across every dealership.', to: '/industries' },
         ],
       },
       {
@@ -50,20 +52,18 @@ const menuPanels = [
           { title: 'Real Estate', description: 'Qualify buyer & seller leads 24/7, book site visits on your calendar, and follow up the moment a listing gets a hit.', to: '/industries' },
           { title: 'Home Services', description: 'Capture every after-hours service request, dispatch the right tech, and never lose a job to a slow callback again.', to: '/industries' },
           { title: 'Restaurants', description: 'Take reservations, confirm large parties, answer hours and menu questions — fluently, in any language.', to: '/industries' },
-          { title: 'Automotive', description: 'Schedule service, follow up on test drives, and keep the BDC ringing 24 hours a day across every dealership.', to: '/industries' },
           { title: 'Legal', description: 'Intake new clients, qualify cases by jurisdiction and statute of limitations, and book consults — without a paralegal stuck on the phone.', to: '/industries' },
         ],
       },
       {
         id: 'consumer',
-        label: 'Retail, Finance & Support',
-        blurb: 'Education, e-commerce, fintech, and BPO.',
+        label: 'Retail & Finance',
+        blurb: 'Education, e-commerce, fitness, and BPO.',
         icon: 'storefront',
         items: [
           { title: 'Education', description: 'Admissions intake, fee-payment follow-ups, and student-success calls without burning out your counsellors.', to: '/industries' },
           { title: 'E-commerce', description: 'Order status, returns, fitting and sizing — handled 24/7 in any language, with a tone that matches your brand.', to: '/industries' },
           { title: 'Fitness & Wellness', description: 'Class bookings, membership upsells, and no-show recovery for studios and gyms — without a front-desk human.', to: '/industries' },
-          { title: 'BFSI & Fintech', description: 'Qualify loan and insurance leads, chase EMI and premium dues, and run KYC and renewal reminders 24/7 — in Hindi and every regional language.', to: '/industries' },
           { title: 'BPO & Call Centres', description: 'Automate Tier-1 inbound and outbound queues, answer every caller in under three seconds, and cut cost-per-call across all Indian languages — round the clock.', to: '/industries' },
         ],
       },
@@ -170,23 +170,33 @@ function IndustriesDropdownPanel({ panel }) {
   return (
     <div className="flex bg-[#1480E2]">
       <div className="flex w-[380px] shrink-0 gap-3 border-r border-white/15 p-3">
-        <div className="w-[100px] shrink-0">
+        <div className="flex h-full w-[140px] shrink-0 flex-col">
           <span className="mb-2 flex items-center gap-1.5 px-1 text-[10px] font-semibold uppercase tracking-wide text-blue-100/70">
             <span className="size-1.5 rounded-full bg-blue-100/70" />
             Platform
           </span>
           <Link
             to="/industries"
-            className="group flex flex-col items-start gap-2 rounded-xl bg-white/10 p-2 transition-colors hover:bg-white/20"
+            className="group flex min-h-[180px] flex-col gap-2.5 rounded-xl bg-white/10 p-3 transition-colors hover:bg-white/20"
           >
-            <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white">
-              <span className="material-symbols-outlined text-[17px] !text-current">grid_view</span>
+            <span className="flex items-center gap-2">
+              <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white">
+                <span className="material-symbols-outlined text-[15px] !text-current">grid_view</span>
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="text-[12px] font-semibold !text-white">Industries</span>
+                <ArrowRight className="h-3.5 w-3.5 shrink-0 text-white transition-transform group-hover:translate-x-0.5" />
+              </span>
             </span>
-            <span className="flex items-center gap-1">
-              <span className="text-[12px] font-semibold !text-white">Industries</span>
-              <ArrowRight className="h-3.5 w-3.5 shrink-0 text-white transition-transform group-hover:translate-x-0.5" />
-            </span>
+            <p className="text-[9.5px] leading-snug text-blue-100/80">
+              Built for how your industry actually works. Greevo adapts to the workflows your team already runs — across finance, retail, logistics, real estate, healthcare, and every vertical in between, with compliance, routing, and 24/7 AI coverage built in from day one.
+            </p>
           </Link>
+
+          <div className="mt-auto rounded-xl bg-white/10 p-2.5">
+            <span className="block text-[20px] font-bold leading-none !text-white">16</span>
+            <span className="mt-1 block text-[10px] leading-tight text-blue-100/70">Industries covered</span>
+          </div>
         </div>
 
         <div className="min-w-0 flex-1 border-l border-white/15 pl-3">
@@ -228,7 +238,7 @@ function IndustriesDropdownPanel({ panel }) {
       </div>
       <div className="flex-1 p-4">
         <span className="mb-3 block text-[10px] font-semibold uppercase tracking-wide text-blue-100">{group.label}</span>
-        <div className="grid grid-cols-3 items-start gap-2">
+        <div className="flex flex-col items-stretch gap-2">
           {group.items.map((item) => (
             <PanelCard key={item.title} item={item} compact />
           ))}
@@ -242,9 +252,9 @@ function DropdownPanel({ panel }) {
   if (panel.groups) return <IndustriesDropdownPanel panel={panel} />
 
   return (
-    <div className="grid grid-cols-3 gap-4 bg-[#1480E2] p-4">
+    <div className="grid grid-cols-3 gap-3 bg-[#1480E2] p-4">
       {panel.items.map((item) => (
-        <PanelCard key={item.title} item={item} />
+        <PanelCard key={item.title} item={item} compact />
       ))}
     </div>
   )
@@ -271,7 +281,7 @@ export default function NavbarSectionTwo() {
         </Link>
 
         <div
-          className="absolute left-1/2 top-0 hidden w-[900px] -translate-x-1/2 lg:block"
+          className="absolute left-1/2 top-0 hidden w-[680px] -translate-x-1/2 lg:block"
           style={{ filter: 'drop-shadow(0 12px 20px rgba(0, 0, 0, 0.18))' }}
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="pointer-events-none absolute -left-[18px] top-0 z-10 text-[#1480E2]">

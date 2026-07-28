@@ -113,8 +113,8 @@
   width: 100%;
   min-width: 0;
   overflow: hidden;
-  mask-image: linear-gradient(to right, #000 82%, transparent);
-  -webkit-mask-image: linear-gradient(to right, #000 82%, transparent);
+  mask-image: linear-gradient(to right, #000 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, #000 96%, transparent);
 }
 
 .industries-cards-track {
@@ -128,17 +128,18 @@
   width: 300px;
   min-height: 380px;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 24px;
   box-shadow: 0 12px 40px -16px rgba(15, 23, 42, 0.12);
   padding: 24px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .industries-card:hover {
   transform: translateY(-4px);
+  border-color: rgba(0, 0, 0, 0.18);
   box-shadow: 0 18px 48px -16px rgba(15, 23, 42, 0.18);
 }
 
