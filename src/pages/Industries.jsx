@@ -226,7 +226,7 @@ export default function Industries() {
             <span className="eyebrow">FAQ</span>
             <h2 className="section-title">Industry questions, answered</h2>
           </div>
-          <IndustryFaqAccordion items={FAQS} />
+          <IndustryFaqAccordion items={FAQS} defaultOpen={-1} />
         </div>
       </section>
     </>

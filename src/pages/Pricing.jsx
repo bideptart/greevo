@@ -139,7 +139,7 @@ export default function Pricing() {
     <>
       <PricingHero />
 
-      <section className="section-tight" style={{ background: '#f5f8ff' }}>
+      <section className="section-tight" style={{ background: '#eff6ff' }}>
         <div className="container">
           <div className="billing-toggle">
             <button type="button" className={!yearly ? 'active' : ''} onClick={() => setYearly(false)}>Monthly</button>
@@ -185,7 +185,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="section" style={{ background: '#eff6ff' }}>
+      <section className="section" style={{ background: '#f5f8ff' }}>
         <div className="container">
           <div className="stack-center">
             <span className="eyebrow">Comparison</span>
@@ -231,7 +231,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="section" style={{ background: 'var(--surface-alt)' }}>
+      <section className="section" style={{ background: '#fdf4ff' }}>
         <div className="container">
           <div className="stack-center">
             <span className="eyebrow">Results</span>
@@ -242,7 +242,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" style={{ background: '#ecfeff' }}>
         <div className="container">
           <div className="stack-center">
             <span className="eyebrow">FAQ</span>
