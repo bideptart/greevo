@@ -226,9 +226,7 @@ export default function Industries() {
             <span className="eyebrow">FAQ</span>
             <h2 className="section-title">Industry questions, answered</h2>
           </div>
-          <div style={{ maxWidth: 760, margin: '0 auto' }}>
-            <IndustryFaqAccordion items={FAQS} />
-          </div>
+          <IndustryFaqAccordion items={FAQS} />
         </div>
       </section>
     </>
