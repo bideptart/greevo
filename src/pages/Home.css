@@ -575,7 +575,7 @@
 
 .step-flip {
   position: relative;
-  height: 340px;
+  aspect-ratio: 1 / 1;
   perspective: 1400px;
 }
 
@@ -623,7 +623,7 @@
   justify-content: flex-end;
   padding: 20px;
   background-size: cover;
-  background-position: center;
+  background-position: top center;
 }
 
 .step-face-back {
@@ -737,6 +737,7 @@
   font-size: 13.5px;
   color: var(--text);
 }
+
 
 /* Integrations */
 .gradient-text {

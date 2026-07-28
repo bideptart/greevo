@@ -1,47 +1,77 @@
-.outcome-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.outcome-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+}
+
+.outcome-track {
+  display: flex;
   gap: 20px;
+  width: max-content;
+  animation: outcome-scroll 36s linear infinite;
+}
+
+.outcome-marquee:hover .outcome-track {
+  animation-play-state: paused;
+}
+
+@keyframes outcome-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-16.6667%); }
 }
 
 .outcome-card {
-  padding: 28px;
+  box-sizing: border-box;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 7px;
+  width: 320px;
+  height: 234px;
+  flex-shrink: 0;
+  overflow: hidden;
 }
 
 .outcome-stat {
-  font-size: 22px;
+  font-size: 17px;
   font-weight: 700;
-  background: var(--gradient-primary);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+}
+
+.outcome-quote-mark {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+  font-family: Georgia, serif;
+  color: var(--text-soft);
 }
 
 .outcome-quote {
   color: var(--text-muted);
-  font-size: 14.5px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.55;
   flex: 1;
+}
+
+.outcome-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 2px 0;
 }
 
 .outcome-author {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .outcome-avatar {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: var(--surface-alt);
-  border: 1px solid var(--border);
-  color: var(--accent-violet-dark);
+  color: #fff;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,18 +79,19 @@
 }
 
 .outcome-name {
-  font-size: 13.5px;
+  font-size: 12.5px;
   font-weight: 600;
   color: var(--text);
 }
 
 .outcome-role {
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--text-soft);
 }
 
-@media (max-width: 900px) {
-  .outcome-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 600px) {
+  .outcome-card {
+    width: 280px;
+    height: auto;
   }
 }
