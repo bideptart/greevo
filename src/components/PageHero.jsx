@@ -1,6 +1,68 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import AccentTitle from './AccentTitle.jsx'
 import './PageHero.css'
+
+function parseStat(value) {
+  const match = String(value).match(/^([^\d]*)([\d,.]+)(.*)$/)
+  if (!match) return { prefix: '', number: null, suffix: '', decimals: 0, hasComma: false }
+  const [, prefix, numStr, suffix] = match
+  return {
+    prefix,
+    suffix,
+    number: parseFloat(numStr.replace(/,/g, '')),
+    decimals: (numStr.split('.')[1] || '').length,
+    hasComma: numStr.includes(','),
+  }
+}
+
+function formatStatNumber(num, parsed) {
+  const rounded = parsed.decimals ? num.toFixed(parsed.decimals) : String(Math.round(num))
+  if (!parsed.hasComma) return rounded
+  const [intPart, decPart] = rounded.split('.')
+  const withCommas = Number(intPart).toLocaleString('en-US')
+  return decPart ? `${withCommas}.${decPart}` : withCommas
+}
+
+function StatCounter({ value }) {
+  const parsed = parseStat(value)
+  const [display, setDisplay] = useState(parsed.number === null ? value : formatStatNumber(0, parsed))
+
+  useEffect(() => {
+    if (parsed.number === null) return undefined
+    const duration = 1300
+    const delay = 550
+    const start = performance.now()
+    let raf
+
+    const tick = (now) => {
+      const elapsed = now - start - delay
+      if (elapsed < 0) {
+        raf = requestAnimationFrame(tick)
+        return
+      }
+      const t = Math.min(1, elapsed / duration)
+      const eased = 1 - Math.pow(1 - t, 3)
+      setDisplay(formatStatNumber(parsed.number * eased, parsed))
+      if (t < 1) raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value])
+
+  return <strong>{parsed.prefix}{display}{parsed.suffix}</strong>
+}
+
+const HV_BUBBLES = [
+  { icon: 'call', label: 'Voice' },
+  { icon: 'forum', label: 'Chat' },
+  { icon: 'sms', label: 'SMS' },
+  { icon: 'videocam', label: 'Video' },
+  { icon: 'mail', label: 'Email' },
+  { icon: 'support_agent', label: 'Support' },
+]
 
 export default function PageHero({
   eyebrow,
@@ -16,6 +78,18 @@ export default function PageHero({
   stats = [],
   split = false,
 }) {
+  const rotatingWords = badges.map((b) => b.label)
+  const [wordIndex, setWordIndex] = useState(0)
+
+  useEffect(() => {
+    if (!split || rotatingWords.length < 2) return
+    const id = setInterval(() => {
+      setWordIndex((i) => (i + 1) % rotatingWords.length)
+    }, 2200)
+    return () => clearInterval(id)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [split, rotatingWords.length])
+
   if (!split) {
     return (
       <section className="page-hero">
@@ -51,7 +125,25 @@ export default function PageHero({
               {eyebrow}
             </span>
           )}
-          <h1><AccentTitle title={title} /></h1>
+
+          {rotatingWords.length > 1 && (
+            <div className="hv-rotator">
+              <span>Trusted by teams in</span>
+              <span className="hv-rotator-stage">
+                {rotatingWords.map((word, i) => {
+                  const len = rotatingWords.length
+                  const state = i === wordIndex ? 'active' : i === (wordIndex - 1 + len) % len ? 'prev' : 'next'
+                  return (
+                    <span className={`hv-rotator-word ${state}`} key={word}>{word}</span>
+                  )
+                })}
+              </span>
+            </div>
+          )}
+
+          <div className="hv-title-mask">
+            <h1><AccentTitle title={title} /></h1>
+          </div>
           {subtitle && <p className="page-hero-subtitle">{subtitle}</p>}
           <div className="page-hero-ctas">
             <Link to={primaryTo} className="btn btn-primary">{primaryCta}</Link>
@@ -59,9 +151,9 @@ export default function PageHero({
           </div>
           {stats.length > 0 && (
             <div className="page-hero-stats">
-              {stats.map((s) => (
-                <div className="page-hero-stat" key={s.label}>
-                  <strong>{s.value}</strong>
+              {stats.map((s, i) => (
+                <div className="page-hero-stat" key={s.label} style={{ '--stat-i': i }}>
+                  <StatCounter value={s.value} />
                   <span>{s.label}</span>
                 </div>
               ))}
@@ -80,36 +172,25 @@ export default function PageHero({
             ))}
           </div>
 
-          <div className="hv-orbit">
-            <div className="hv-orbit-ring" />
-            <div className="hv-orbit-dot" />
-          </div>
-
-          <div className="hv-stage">
-            <div className="hv-card">
-              <div className="hv-card-top">
-                <span className="hv-traffic red" />
-                <span className="hv-traffic yellow" />
-                <span className="hv-traffic green" />
-                <span className="hv-live"><span className="hv-live-dot" />Live</span>
-              </div>
-              <div className="hv-card-body">
-                <div className="hv-avatar">
-                  <span className="material-symbols-outlined">{visualIcon}</span>
-                  <span className="hv-avatar-pulse" />
-                </div>
-                <div className="hv-card-text">
-                  <strong>Call in progress</strong>
-                  <span>Routed in 1.2s · 02:14</span>
-                </div>
-              </div>
-              <div className="hv-waveform">
-                {Array.from({ length: 18 }).map((_, i) => (
-                  <span className="hv-bar" key={i} style={{ animationDelay: `${i * 0.07}s` }} />
-                ))}
-              </div>
+          <div className="hv3d-scene">
+            <div className="hv3d-core">
+              <span className="hv3d-core-ring" />
+              <span className="hv3d-core-ring ring-2" />
+              <span className="hv3d-core-ring ring-3" />
+              <span className="material-symbols-outlined hv3d-core-icon">auto_awesome</span>
             </div>
-            <div className="hv-card-shadow" />
+
+            {HV_BUBBLES.map((b, i) => (
+              <div className={`hv3d-bubble bubble-${i}`} key={b.label}>
+                <span className="hv3d-bubble-pop" />
+                <span className="hv3d-bubble-face">
+                  <span className="material-symbols-outlined">{b.icon}</span>
+                  <span className="hv3d-bubble-label">{b.label}</span>
+                </span>
+              </div>
+            ))}
+
+            <div className="hv3d-floor" />
           </div>
 
           {badges.map((b, i) => (
