@@ -1,3 +1,41 @@
+.yearly-savings-note {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent-cyan-solid);
+  margin: 20px 0 0;
+}
+
+.yearly-savings-note-animate {
+  animation: yearly-savings-fade 0.45s ease;
+}
+
+@keyframes yearly-savings-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yearly-savings-note-animate {
+    animation: none;
+  }
+}
+
+.per-second-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: fit-content;
+  margin: 12px auto 32px;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--accent-cyan-solid) 10%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--accent-cyan-solid) 25%, var(--border));
+  color: var(--accent-violet-dark);
+  font-size: 13.5px;
+}
+
 .billing-toggle {
   display: flex;
   justify-content: center;
@@ -7,7 +45,7 @@
   border-radius: var(--radius-pill);
   padding: 4px;
   width: fit-content;
-  margin: 24px auto 48px;
+  margin: 24px auto 0;
 }
 
 .billing-toggle button {
@@ -105,7 +143,7 @@
   display: flex;
   align-items: baseline;
   gap: 6px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .price-amount {
@@ -116,6 +154,12 @@
 .price-period {
   color: var(--text-soft);
   font-size: 14px;
+}
+
+.pricing-vs-monthly {
+  font-size: 12.5px;
+  color: var(--text-soft);
+  margin: -16px 0 20px;
 }
 
 .pricing-summary {

@@ -70,9 +70,9 @@ export default function PageHero({
         </div>
 
         <div className="page-hero-visual" aria-hidden="true">
-          <div className="hv-blob blob-a" />
-          <div className="hv-blob blob-b" />
-          <div className="hv-blob blob-c" />
+          <div className="hv-blob hv-blob-a" />
+          <div className="hv-blob hv-blob-b" />
+          <div className="hv-blob hv-blob-c" />
 
           <div className="hv-particles">
             {Array.from({ length: 8 }).map((_, i) => (

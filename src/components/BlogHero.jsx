@@ -6,8 +6,9 @@ import './BlogHero.css'
 export default function BlogHero() {
   return (
     <section className="blog-hero">
-      <div className="blog-hero-blob blob-a" aria-hidden="true" />
-      <div className="blog-hero-blob blob-b" aria-hidden="true" />
+      <div className="blog-hero-blob blog-blob-a" aria-hidden="true" />
+      <div className="blog-hero-blob blog-blob-b" aria-hidden="true" />
+      <div className="blog-hero-blob blog-blob-c" aria-hidden="true" />
 
       <div className="container blog-hero-inner">
         <div className="blog-hero-text">

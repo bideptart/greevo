@@ -21,8 +21,23 @@
 
 .popular-post-card {
   width: 100%;
-  min-height: 260px;
+  height: 320px;
   border: 2px solid var(--accent-violet);
+  overflow: hidden;
+}
+
+.popular-post-card .blog-card-body h3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.popular-post-card .blog-card-excerpt {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .post-swap {

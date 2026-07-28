@@ -1,7 +1,9 @@
 .blog-hero {
   position: relative;
   overflow: hidden;
-  background: var(--gradient-soft);
+  background:
+    linear-gradient(to bottom, rgba(96, 165, 250, 0) 60%, rgba(96, 165, 250, 0.16) 100%),
+    var(--gradient-soft);
   border-bottom: 1px solid var(--border);
 }
 
@@ -14,7 +16,7 @@
   animation: blob-morph 14s ease-in-out infinite alternate, blob-drift 18s ease-in-out infinite alternate;
 }
 
-.blob-a {
+.blog-blob-a {
   width: 420px;
   height: 420px;
   top: -140px;
@@ -22,13 +24,23 @@
   background: linear-gradient(135deg, #93c5fd, #2563eb);
 }
 
-.blob-b {
+.blog-blob-b {
   width: 360px;
   height: 360px;
   bottom: -160px;
   right: -100px;
   background: linear-gradient(135deg, #60a5fa, #7c3aed);
   animation-delay: -6s, -3s;
+}
+
+.blog-blob-c {
+  width: 320px;
+  height: 320px;
+  bottom: -140px;
+  left: -80px;
+  background: linear-gradient(135deg, #93c5fd, #60a5fa);
+  opacity: 0.4;
+  animation-delay: -9s, -4s;
 }
 
 @keyframes blob-morph {
@@ -49,7 +61,7 @@
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
   gap: 48px;
-  padding: 100px 24px 90px;
+  padding: 130px 24px 110px;
 }
 
 .blog-hero-inner h1 {

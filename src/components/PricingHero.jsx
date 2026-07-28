@@ -8,9 +8,9 @@ const TRUST_CHIPS = ['No credit card required', 'Setup in minutes', 'Cancel anyt
 export default function PricingHero() {
   return (
     <section className="pricing-hero">
-      <div className="pricing-hero-blob blob-a" aria-hidden="true" />
-      <div className="pricing-hero-blob blob-b" aria-hidden="true" />
-      <div className="pricing-hero-blob blob-c" aria-hidden="true" />
+      <div className="pricing-hero-blob pricing-blob-a" aria-hidden="true" />
+      <div className="pricing-hero-blob pricing-blob-b" aria-hidden="true" />
+      <div className="pricing-hero-blob pricing-blob-c" aria-hidden="true" />
 
       <div className="container pricing-hero-inner">
         <div className="pricing-hero-text">
