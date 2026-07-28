@@ -35,7 +35,15 @@ function AnimatedPrice({ value }) {
     return () => clearInterval(intervalRef.current)
   }, [value])
 
-  return <span className="price-amount">${display}</span>
+  return <span className="price-amount">${display.toLocaleString('en-US')}</span>
+}
+
+function getAnnualPrice(monthly) {
+  return Math.round(monthly * 12 * 0.8)
+}
+
+function getAnnualSavings(monthly) {
+  return monthly * 12 - getAnnualPrice(monthly)
 }
 
 const PRICING_FAQ = [
@@ -60,7 +68,6 @@ const PLANS = [
   {
     name: 'Starter',
     monthly: 31,
-    yearly: 25,
     desc: 'Pilot a single agent.',
     summary: '250 min · $0.13/min · 2 agents',
     features: [
@@ -78,7 +85,6 @@ const PLANS = [
   {
     name: 'Growth',
     monthly: 93,
-    yearly: 74,
     desc: 'Most teams start here.',
     summary: '800 min · $0.12/min · 10 agents',
     features: [
@@ -97,7 +103,6 @@ const PLANS = [
   {
     name: 'Scale',
     monthly: 316,
-    yearly: 253,
     desc: 'High-volume call centers.',
     summary: '3,000 min · $0.11/min · Unlimited',
     features: [
@@ -116,9 +121,19 @@ const PLANS = [
 
 export default function Pricing() {
   const [yearly, setYearly] = useState(true)
+  const [savingsStep, setSavingsStep] = useState(0)
 
   const featuredPlan = PLANS.find((p) => p.featured) || PLANS[0]
-  const yearlySavings = (featuredPlan.monthly - featuredPlan.yearly) * 12
+  const yearlySavings = getAnnualSavings(featuredPlan.monthly)
+
+  useEffect(() => {
+    if (!yearly) return undefined
+    const id = setInterval(() => setSavingsStep((s) => (s + 1) % PLANS.length), 2200)
+    return () => clearInterval(id)
+  }, [yearly])
+
+  const savingsPlan = PLANS[savingsStep]
+  const savingsPlanAmount = getAnnualSavings(savingsPlan.monthly)
 
   return (
     <>
@@ -128,7 +143,18 @@ export default function Pricing() {
         <div className="container">
           <div className="billing-toggle">
             <button type="button" className={!yearly ? 'active' : ''} onClick={() => setYearly(false)}>Monthly</button>
-            <button type="button" className={yearly ? 'active' : ''} onClick={() => setYearly(true)}>Yearly <span className="save-badge">Save ${yearlySavings}/user/year</span></button>
+            <button type="button" className={yearly ? 'active' : ''} onClick={() => setYearly(true)}>Yearly <span className="save-badge">Save ${yearlySavings}/year</span></button>
+          </div>
+
+          {yearly && (
+            <p key={savingsPlan.name} className="yearly-savings-note yearly-savings-note-animate">
+              Switching to yearly saves you ${savingsPlanAmount} on {savingsPlan.name}.
+            </p>
+          )}
+
+          <div className="per-second-badge">
+            <span className="material-symbols-outlined" style={{ fontSize: 15 }}>schedule</span>
+            <strong>Per-second billing</strong>&nbsp;— pay only for the seconds you use.
           </div>
 
           <div className="pricing-grid">
@@ -138,9 +164,12 @@ export default function Pricing() {
                 <h3>{plan.name}</h3>
                 <p className="pricing-desc">{plan.desc}</p>
                 <div className="price">
-                  <AnimatedPrice value={yearly ? plan.yearly : plan.monthly} />
-                  <span className="price-period">/ mo</span>
+                  <AnimatedPrice value={yearly ? getAnnualPrice(plan.monthly) : plan.monthly} />
+                  <span className="price-period">{yearly ? '/ yr' : '/ mo'}</span>
                 </div>
+                {yearly && (
+                  <p className="pricing-vs-monthly">Save ${getAnnualSavings(plan.monthly)} vs monthly</p>
+                )}
                 <p className="pricing-summary">{plan.summary}</p>
                 <ul className="check-list pricing-features">
                   {plan.features.map((f) => (

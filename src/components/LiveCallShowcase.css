@@ -1,77 +1,145 @@
 .live-call-showcase {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  gap: 24px;
   width: 100%;
   max-width: 460px;
   padding: 40px 20px;
 }
 
-.float-icon {
-  position: absolute;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-soft);
-  color: var(--accent-cyan-solid);
-  animation: float-bob 4.5s ease-in-out infinite;
-}
-
-.float-icon .material-symbols-outlined {
-  font-size: 18px;
-}
-
-.float-a { top: 6%; left: 6%; animation-delay: 0s; }
-.float-b { top: 10%; right: 4%; animation-delay: 0.9s; }
-.float-c { bottom: 22%; left: -2%; animation-delay: 1.6s; }
-.float-d { bottom: 6%; right: 12%; animation-delay: 2.3s; }
-
-@keyframes float-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-.call-phone-card {
+.iphone-frame {
   position: relative;
   z-index: 1;
-  width: 190px;
+  width: 228px;
+  height: 418px;
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 28px;
+  border: 2px solid var(--accent-cyan-solid);
+  border-radius: 32px;
+  padding: 8px;
   box-shadow: var(--shadow-lift);
-  padding: 16px 14px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: -36px;
-  margin-top: 40px;
+  margin-top: 20px;
+  flex-shrink: 0;
 }
 
-.call-phone-notch {
+.iphone-dynamic-island {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 16px;
+  border-radius: var(--radius-pill);
+  background: #000;
+  z-index: 3;
+}
+
+.iphone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--surface);
+  border-radius: 26px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px 10px;
+}
+
+.iphone-statusbar {
   display: flex;
   justify-content: center;
-  width: 100%;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .call-phone-time {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   color: var(--text-muted);
 }
 
-.call-caller-name {
-  font-weight: 700;
-  font-size: 14px;
+.phone-plan-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.phone-plan-name {
+  font-weight: 800;
+  font-size: 17px;
   color: var(--text);
-  margin-bottom: 10px;
+}
+
+.phone-plan-desc {
+  font-size: 11px;
+  color: var(--text-soft);
+  margin: 3px 0 6px;
+}
+
+.phone-plan-rate {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--accent-violet-dark);
+  background: var(--surface-alt);
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin: 6px 0 10px;
+}
+
+.phone-plan-features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.phone-plan-features li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  padding: 3px 0;
+}
+
+.phone-plan-features .material-symbols-outlined {
+  font-size: 13px;
+  color: var(--accent-cyan-solid);
+}
+
+.phone-plan-cta {
+  display: block;
+  text-align: center;
+  background: var(--gradient-primary);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 9px 0;
+  border-radius: var(--radius-pill);
+  margin-top: 10px;
+}
+
+.phone-plan-dots {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding-top: 4px;
+}
+
+.phone-plan-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.phone-plan-dot.active {
+  background: var(--accent-cyan-solid);
+  transform: scale(1.3);
 }
 
 .plan-swap {
@@ -86,23 +154,29 @@
 .price-display {
   display: flex;
   align-items: baseline;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 2px;
-  margin-bottom: 14px;
+  margin-bottom: 4px;
 }
 
 .price-dollar {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--accent-cyan-solid);
-  margin-right: 2px;
+  margin-right: 1px;
+}
+
+.price-digits-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
 }
 
 .price-digit-reel {
   display: inline-block;
   height: 1em;
   overflow: hidden;
-  font-size: 30px;
+  font-size: 21px;
   font-weight: 800;
   line-height: 1;
   color: var(--text);
@@ -120,84 +194,25 @@
 }
 
 .price-period {
-  font-size: 12px;
+  font-size: 9px;
   color: var(--text-soft);
-  margin-left: 3px;
+  margin-left: 2px;
   align-self: flex-end;
-}
-
-.price-toggle {
-  position: relative;
-  display: flex;
-  width: 130px;
-  border-radius: var(--radius-pill);
-  background: var(--surface-alt);
-  padding: 3px;
-  margin-bottom: 10px;
-}
-
-.price-toggle-thumb {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: calc(50% - 3px);
-  height: calc(100% - 6px);
-  border-radius: var(--radius-pill);
-  background: var(--surface);
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-.price-toggle.yearly .price-toggle-thumb {
-  transform: translateX(100%);
-}
-
-.price-toggle-option {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  text-align: center;
-  font-size: 10.5px;
-  font-weight: 700;
-  padding: 5px 0;
-  color: var(--text-soft);
-}
-
-.price-toggle.yearly .price-toggle-option:first-child,
-.price-toggle:not(.yearly) .price-toggle-option:last-child {
-  color: var(--text-soft);
-}
-
-.price-toggle:not(.yearly) .price-toggle-option:first-child,
-.price-toggle.yearly .price-toggle-option:last-child {
-  color: var(--text);
-}
-
-.price-savings {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #16a34a;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.price-savings.show {
-  opacity: 1;
 }
 
 .agent-panel-card {
   position: relative;
   z-index: 2;
   width: 250px;
+  height: 226px;
+  flex-shrink: 0;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 2px solid var(--accent-cyan-solid);
   border-radius: 20px;
   box-shadow: var(--shadow-lift);
   padding: 14px;
-  margin-top: -20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .agent-panel-titlebar {
@@ -242,6 +257,11 @@
   margin-bottom: 12px;
 }
 
+.agent-panel-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
 .agent-panel-avatar {
   width: 34px;
   height: 34px;
@@ -253,7 +273,25 @@
   color: #fff;
   font-weight: 700;
   font-size: 12px;
-  flex-shrink: 0;
+}
+
+.agent-panel-phone-badge {
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #16a34a;
+  border: 2px solid var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agent-panel-phone-badge .material-symbols-outlined {
+  font-size: 9px;
+  color: #fff;
 }
 
 .agent-panel-contact-text {
@@ -292,6 +330,8 @@
   border-radius: 12px;
   padding: 10px 12px;
   margin-bottom: 12px;
+  flex: 1;
+  overflow: hidden;
 }
 
 .agent-panel-transcript-label {
@@ -305,10 +345,25 @@
   margin-bottom: 6px;
 }
 
-.agent-panel-transcript-text {
-  font-size: 12px;
-  line-height: 1.45;
-  color: var(--text-muted);
+.agent-panel-spotlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.agent-panel-spotlight-icon {
+  font-size: 20px;
+  color: var(--accent-cyan-solid);
+}
+
+.agent-panel-spotlight-text {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
 }
 
 .agent-panel-route {
@@ -339,19 +394,24 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .float-icon,
-  .call-wave-bar,
-  .agent-panel-live-dot {
+  .agent-panel-live-dot,
+  .phone-plan-dot {
     animation: none;
   }
 }
 
 @media (max-width: 520px) {
-  .call-phone-card {
-    margin-right: -24px;
+  .live-call-showcase {
+    flex-direction: column;
+    align-items: center;
   }
 
   .agent-panel-card {
-    width: 220px;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .iphone-frame {
+    margin-top: 0;
   }
 }

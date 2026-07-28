@@ -408,11 +408,7 @@
   animation: heroDrift 10s ease-in-out infinite;
 }
 
-/* Compound selectors (.hv-blob.blob-a, not just .blob-a) — PricingHero.css
-   and BlogHero.css happen to reuse the same short class names for their
-   own blobs, so a single-class selector here would lose the cascade to
-   whichever of those loads later in the bundle. */
-.hv-blob.blob-a {
+.hv-blob-a {
   width: 280px;
   height: 280px;
   top: 0%;
@@ -421,7 +417,7 @@
   animation-duration: 9s;
 }
 
-.hv-blob.blob-b {
+.hv-blob-b {
   width: 230px;
   height: 230px;
   bottom: 2%;
@@ -431,7 +427,7 @@
   animation-direction: reverse;
 }
 
-.hv-blob.blob-c {
+.hv-blob-c {
   width: 200px;
   height: 200px;
   top: 42%;

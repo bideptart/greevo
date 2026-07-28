@@ -14,7 +14,7 @@
   animation: hero-blob-morph 14s ease-in-out infinite alternate, hero-blob-drift 20s ease-in-out infinite alternate;
 }
 
-.blob-a {
+.pricing-blob-a {
   width: 320px;
   height: 320px;
   top: 10%;
@@ -22,7 +22,7 @@
   background: linear-gradient(135deg, #93c5fd, #2563eb);
 }
 
-.blob-b {
+.pricing-blob-b {
   width: 260px;
   height: 260px;
   bottom: 5%;
@@ -31,7 +31,7 @@
   animation-delay: -5s, -8s;
 }
 
-.blob-c {
+.pricing-blob-c {
   width: 200px;
   height: 200px;
   top: -60px;
