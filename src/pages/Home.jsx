@@ -3,6 +3,7 @@ import AccentTitle from '../components/AccentTitle.jsx'
 import HeroMockup from '../components/HeroMockup.jsx'
 import WorkspaceMockup from '../components/WorkspaceMockup.jsx'
 import CoreFiveDashboard from '../components/CoreFiveDashboard.jsx'
+import IndustriesPinSection from '../components/IndustriesPinSection.jsx'
 import FaqAccordion from '../components/FaqAccordion.jsx'
 import './Home.css'
 
@@ -226,6 +227,15 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Industries */}
+      <IndustriesPinSection
+        eyebrow="Industries"
+        title="Built for the way your industry actually runs."
+        description="Finance teams need every call recorded and every disclosure traceable. Retail teams need one thread that survives a switch from DM to phone call. SaaS teams need onboarding, renewals, and support to tell the same story about an account. Logistics teams need dispatch that doesn't stop when the sun goes down. Greevo ships with the routing, compliance, and integrations each of these workflows already expects — so you're not left bending a generic phone system into the shape of your business."
+        ctaTo="/industries"
+        ctaLabel="Explore industries"
+      />
 
       {/* Integrations */}
       <section className="section integrations-section">
