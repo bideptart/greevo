@@ -185,7 +185,7 @@
     linear-gradient(color-mix(in srgb, var(--accent-cyan-solid) 7%, transparent) 1px, transparent 1px),
     linear-gradient(90deg, color-mix(in srgb, var(--accent-cyan-solid) 7%, transparent) 1px, transparent 1px);
   background-size: 42px 42px;
-  mask-image: radial-gradient(ellipse 75% 75% at 50% 40%, #000 15%, transparent 78%);
+  mask-image: radial-gradient(ellipse 95% 95% at 50% 50%, #000 40%, transparent 96%);
   animation: heroGridPan 24s linear infinite;
 }
 
@@ -223,10 +223,10 @@
 .page-hero-inner-split {
   position: relative;
   z-index: 1;
-  padding: 96px 24px 88px;
+  padding: 40px 24px 88px;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  align-items: center;
+  align-items: start;
   gap: 48px;
 }
 
@@ -756,12 +756,12 @@
    near the top, then burst (handled by the .hv3d-bubble-pop sibling
    keyframe below) before fading out and looping back to the start. */
 @keyframes hv3dRise {
-  0% { opacity: 0; transform: translate3d(var(--bx), 70px, -60px) scale(0.5) rotateY(-8deg); }
-  12% { opacity: 1; transform: translate3d(var(--bx), 10px, 20px) scale(1) rotateY(4deg); }
-  55% { opacity: 1; transform: translate3d(var(--bx), -60px, 40px) scale(1.05) rotateY(-4deg); }
-  78% { opacity: 1; transform: translate3d(var(--bx), -108px, 10px) scale(1.15) rotateY(2deg); }
-  90% { opacity: 0; transform: translate3d(var(--bx), -122px, 0) scale(1.4) rotateY(0deg); }
-  100% { opacity: 0; transform: translate3d(var(--bx), 70px, -60px) scale(0.5) rotateY(-8deg); }
+  0% { opacity: 0; transform: translate3d(var(--bx), 110px, -60px) scale(0.5) rotateY(-8deg); }
+  10% { opacity: 1; transform: translate3d(var(--bx), 40px, 20px) scale(1) rotateY(4deg); }
+  45% { opacity: 1; transform: translate3d(var(--bx), -90px, 40px) scale(1.05) rotateY(-4deg); }
+  75% { opacity: 1; transform: translate3d(var(--bx), -200px, 10px) scale(1.15) rotateY(2deg); }
+  90% { opacity: 0; transform: translate3d(var(--bx), -230px, 0) scale(1.4) rotateY(0deg); }
+  100% { opacity: 0; transform: translate3d(var(--bx), 110px, -60px) scale(0.5) rotateY(-8deg); }
 }
 
 @keyframes hv3dPop {
