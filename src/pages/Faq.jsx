@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import PageHero from '../components/PageHero.jsx'
-import FaqAccordion from '../components/FaqAccordion.jsx'
+import IndustryFaqAccordion from '../components/IndustryFaqAccordion.jsx'
 import './Faq.css'
 
 const FAQ_GROUPS = [
@@ -83,7 +83,7 @@ export default function Faq() {
             filteredGroups.map((group) => (
               <div key={group.title}>
                 <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 20 }}>{group.title}</h2>
-                <FaqAccordion items={group.items} />
+                <IndustryFaqAccordion items={group.items} defaultOpen={-1} />
               </div>
             ))
           )}

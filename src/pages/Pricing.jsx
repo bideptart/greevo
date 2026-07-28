@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PricingHero from '../components/PricingHero.jsx'
-import FaqAccordion from '../components/FaqAccordion.jsx'
+import IndustryFaqAccordion from '../components/IndustryFaqAccordion.jsx'
 import OutcomeTestimonials from '../components/OutcomeTestimonials.jsx'
 import './Pricing.css'
 
@@ -248,7 +248,7 @@ export default function Pricing() {
             <span className="eyebrow">FAQ</span>
             <h2 className="section-title">Pricing questions</h2>
           </div>
-          <FaqAccordion items={PRICING_FAQ} />
+          <IndustryFaqAccordion items={PRICING_FAQ} defaultOpen={-1} />
         </div>
       </section>
     </>

@@ -4,8 +4,7 @@ import './IndustryFaqAccordion.css'
 /**
  * A more formal, numbered accordion with a scroll-reveal entrance and an
  * accurate height-based expand animation (rather than a fixed max-height
- * that clips long answers). Industries-page-only — the shared
- * FaqAccordion component (used on the FAQ page) is untouched.
+ * that clips long answers). Shared by the Industries and FAQ pages.
  */
 export default function IndustryFaqAccordion({ items, defaultOpen = 0 }) {
   const [openIndex, setOpenIndex] = useState(defaultOpen)

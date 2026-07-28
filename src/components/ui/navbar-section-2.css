@@ -1,0 +1,85 @@
+/* Logo animation — entrance fade-in, a periodic diagonal light-shine
+   sweep (both CSS), plus a tap/click "wiggle" reaction driven by
+   framer-motion in navbar-section-2.jsx. Transform on .greevo-logo-img
+   itself is left entirely to framer-motion so the two systems never
+   fight over the same property. */
+.greevo-logo-outer {
+  position: relative;
+  display: inline-flex;
+}
+
+.greevo-logo-wrap {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  border-radius: 10px;
+  animation: greevoLogoIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Spark burst — sits on the outer (overflow-visible) wrapper, centered
+   on the logo, so sparks can radiate outward past the clipped logo box
+   on tap/click. Brand sky-blue dots + a soft ring ping, no emoji. */
+.greevo-logo-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.greevo-burst-spark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+
+.greevo-burst-ring {
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-cyan-solid, #2563eb);
+  will-change: transform, opacity;
+}
+
+.greevo-logo-img {
+  display: block;
+  transform-origin: center;
+  cursor: pointer;
+}
+
+.greevo-logo-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  transform: skewX(-18deg);
+  animation: greevoLogoShine 5s ease-in-out 1.2s infinite;
+  pointer-events: none;
+}
+
+@keyframes greevoLogoIn {
+  from { opacity: 0; transform: translateY(-6px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes greevoLogoShine {
+  0% { left: -60%; }
+  28% { left: 130%; }
+  100% { left: 130%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .greevo-logo-wrap,
+  .greevo-logo-wrap::after {
+    animation: none;
+  }
+}
