@@ -117,6 +117,22 @@ export default function PageHero({
 
   return (
     <section className="page-hero page-hero-split">
+      {/* Ambient background stack — sits behind the whole hero (both
+          columns), independent of the product visual on the right. */}
+      <div className="hero-bg" aria-hidden="true">
+        <div className="hero-bg-aurora aurora-1" />
+        <div className="hero-bg-aurora aurora-2" />
+        <div className="hero-bg-aurora aurora-3" />
+        <div className="hero-bg-beam beam-1" />
+        <div className="hero-bg-beam beam-2" />
+        <div className="hero-bg-grid" />
+        <div className="hero-bg-sparks">
+          {Array.from({ length: 14 }).map((_, i) => (
+            <span className={`hero-bg-spark spark-${i}`} key={i} />
+          ))}
+        </div>
+      </div>
+
       <div className={`container page-hero-inner-split${reverse ? ' reverse' : ''}`}>
         <div className="page-hero-content">
           {eyebrow && (
