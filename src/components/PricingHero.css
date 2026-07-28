@@ -5,53 +5,6 @@
   border-bottom: 1px solid var(--border);
 }
 
-.pricing-hero-blob {
-  position: absolute;
-  border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
-  filter: blur(60px);
-  opacity: 0.4;
-  pointer-events: none;
-  animation: hero-blob-morph 14s ease-in-out infinite alternate, hero-blob-drift 20s ease-in-out infinite alternate;
-}
-
-.pricing-blob-a {
-  width: 320px;
-  height: 320px;
-  top: 10%;
-  right: 8%;
-  background: linear-gradient(135deg, #93c5fd, #2563eb);
-}
-
-.pricing-blob-b {
-  width: 260px;
-  height: 260px;
-  bottom: 5%;
-  right: 18%;
-  background: linear-gradient(135deg, #a78bfa, #6366f1);
-  animation-delay: -5s, -8s;
-}
-
-.pricing-blob-c {
-  width: 200px;
-  height: 200px;
-  top: -60px;
-  left: -60px;
-  background: linear-gradient(135deg, #60a5fa, #7c3aed);
-  animation-delay: -9s, -3s;
-  opacity: 0.25;
-}
-
-@keyframes hero-blob-morph {
-  0% { border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%; }
-  50% { border-radius: 58% 42% 38% 62% / 55% 65% 35% 45%; }
-  100% { border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%; }
-}
-
-@keyframes hero-blob-drift {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(20px, -14px) scale(1.06); }
-}
-
 .pricing-hero-inner {
   position: relative;
   z-index: 1;
@@ -161,7 +114,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pricing-hero-blob,
   .trust-chip,
   .pricing-hero-text h1,
   .pricing-hero-subtitle,

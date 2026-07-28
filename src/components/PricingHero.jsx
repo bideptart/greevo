@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import AccentTitle from './AccentTitle.jsx'
 import LiveCallShowcase from './LiveCallShowcase.jsx'
+import './PageHero.css'
 import './PricingHero.css'
 
 const TRUST_CHIPS = ['No credit card required', 'Setup in minutes', 'Cancel anytime']
@@ -8,9 +9,19 @@ const TRUST_CHIPS = ['No credit card required', 'Setup in minutes', 'Cancel anyt
 export default function PricingHero() {
   return (
     <section className="pricing-hero">
-      <div className="pricing-hero-blob pricing-blob-a" aria-hidden="true" />
-      <div className="pricing-hero-blob pricing-blob-b" aria-hidden="true" />
-      <div className="pricing-hero-blob pricing-blob-c" aria-hidden="true" />
+      <div className="hero-bg" aria-hidden="true">
+        <div className="hero-bg-aurora aurora-1" />
+        <div className="hero-bg-aurora aurora-2" />
+        <div className="hero-bg-aurora aurora-3" />
+        <div className="hero-bg-beam beam-1" />
+        <div className="hero-bg-beam beam-2" />
+        <div className="hero-bg-grid" />
+        <div className="hero-bg-sparks">
+          {Array.from({ length: 14 }).map((_, i) => (
+            <span className={`hero-bg-spark spark-${i}`} key={i} />
+          ))}
+        </div>
+      </div>
 
       <div className="container pricing-hero-inner">
         <div className="pricing-hero-text">

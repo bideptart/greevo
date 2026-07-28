@@ -5,6 +5,7 @@ import WorkspaceMockup from '../components/WorkspaceMockup.jsx'
 import CoreFiveDashboard from '../components/CoreFiveDashboard.jsx'
 import IndustriesPinSection from '../components/IndustriesPinSection.jsx'
 import FaqAccordion from '../components/FaqAccordion.jsx'
+import '../components/PageHero.css'
 import './Home.css'
 
 const CARRIERS = [
@@ -81,6 +82,20 @@ export default function Home() {
     <div className="home-page">
       {/* Hero */}
       <section className="hero">
+        <div className="hero-bg" aria-hidden="true">
+          <div className="hero-bg-aurora aurora-1" />
+          <div className="hero-bg-aurora aurora-2" />
+          <div className="hero-bg-aurora aurora-3" />
+          <div className="hero-bg-beam beam-1" />
+          <div className="hero-bg-beam beam-2" />
+          <div className="hero-bg-grid" />
+          <div className="hero-bg-sparks">
+            {Array.from({ length: 14 }).map((_, i) => (
+              <span className={`hero-bg-spark spark-${i}`} key={i} />
+            ))}
+          </div>
+        </div>
+
         <div className="container hero-inner">
           <div className="hero-mockup-col">
             <HeroMockup />

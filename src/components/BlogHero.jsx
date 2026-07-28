@@ -1,14 +1,25 @@
 import { Link } from 'react-router-dom'
 import AccentTitle from './AccentTitle.jsx'
 import PopularPosts from './PopularPosts.jsx'
+import './PageHero.css'
 import './BlogHero.css'
 
 export default function BlogHero() {
   return (
     <section className="blog-hero">
-      <div className="blog-hero-blob blog-blob-a" aria-hidden="true" />
-      <div className="blog-hero-blob blog-blob-b" aria-hidden="true" />
-      <div className="blog-hero-blob blog-blob-c" aria-hidden="true" />
+      <div className="hero-bg" aria-hidden="true">
+        <div className="hero-bg-aurora aurora-1" />
+        <div className="hero-bg-aurora aurora-2" />
+        <div className="hero-bg-aurora aurora-3" />
+        <div className="hero-bg-beam beam-1" />
+        <div className="hero-bg-beam beam-2" />
+        <div className="hero-bg-grid" />
+        <div className="hero-bg-sparks">
+          {Array.from({ length: 14 }).map((_, i) => (
+            <span className={`hero-bg-spark spark-${i}`} key={i} />
+          ))}
+        </div>
+      </div>
 
       <div className="container blog-hero-inner">
         <div className="blog-hero-text">
