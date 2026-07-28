@@ -5,6 +5,7 @@ import DemoCta from './components/DemoCta.jsx'
 import ScrollToTop from './components/ScrollToTop.jsx'
 import ChatWidget from './components/ChatWidget.jsx'
 import Home from './pages/Home.jsx'
+import About from './pages/About.jsx'
 import Features from './pages/Features.jsx'
 import Industries from './pages/Industries.jsx'
 import Pricing from './pages/Pricing.jsx'
@@ -24,6 +25,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/features" element={<Features />} />
           <Route path="/industries" element={<Industries />} />
           <Route path="/pricing" element={<Pricing />} />

@@ -9,11 +9,15 @@
 }
 
 .hero {
+  position: relative;
+  overflow: hidden;
   background: var(--gradient-soft);
   border-bottom: 1px solid var(--border);
 }
 
 .hero-inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
