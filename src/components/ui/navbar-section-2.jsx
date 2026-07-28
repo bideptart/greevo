@@ -252,9 +252,9 @@ function DropdownPanel({ panel }) {
   if (panel.groups) return <IndustriesDropdownPanel panel={panel} />
 
   return (
-    <div className="grid grid-cols-3 gap-4 bg-[#1480E2] p-4">
+    <div className="grid grid-cols-3 gap-3 bg-[#1480E2] p-4">
       {panel.items.map((item) => (
-        <PanelCard key={item.title} item={item} />
+        <PanelCard key={item.title} item={item} compact />
       ))}
     </div>
   )
