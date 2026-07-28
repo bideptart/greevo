@@ -100,20 +100,129 @@
    plain hero above (used by every other page) is
    completely unaffected.
    ============================================ */
-.page-hero-split::before {
-  content: '';
+/* ---- Ambient animated background -------------------------------
+   Layered behind both columns: slow aurora sweeps, two diagonal light
+   beams that travel across, a grid that pans continuously, and drifting
+   sparks. Everything stays inside the white / sky-blue brand palette. */
+.hero-bg {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(color-mix(in srgb, var(--text) 4%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--text) 4%, transparent) 1px, transparent 1px);
-  background-size: 42px 42px;
-  mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 20%, transparent 75%);
+  overflow: hidden;
   pointer-events: none;
+  z-index: 0;
 }
+
+.hero-bg-aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
+}
+
+.aurora-1 {
+  width: 720px;
+  height: 520px;
+  top: -22%;
+  left: -12%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.34), transparent 68%);
+  animation: heroAurora1 22s ease-in-out infinite;
+}
+
+.aurora-2 {
+  width: 640px;
+  height: 640px;
+  bottom: -34%;
+  right: -8%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.26), transparent 68%);
+  animation: heroAurora2 26s ease-in-out infinite;
+}
+
+.aurora-3 {
+  width: 520px;
+  height: 420px;
+  top: 24%;
+  left: 38%;
+  background: radial-gradient(circle, rgba(147, 197, 253, 0.3), transparent 70%);
+  animation: heroAurora3 19s ease-in-out infinite;
+}
+
+/* Diagonal light beams sweeping left to right */
+.hero-bg-beam {
+  position: absolute;
+  top: -60%;
+  width: 220px;
+  height: 220%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(125, 211, 252, 0.16),
+    rgba(96, 165, 250, 0.1),
+    transparent
+  );
+  transform: rotate(18deg);
+  filter: blur(22px);
+  animation: heroBeam 15s linear infinite;
+}
+
+.beam-1 {
+  left: -20%;
+  animation-duration: 15s;
+}
+
+.beam-2 {
+  left: -40%;
+  width: 140px;
+  animation-duration: 21s;
+  animation-delay: -7s;
+  opacity: 0.7;
+}
+
+/* Panning grid */
+.hero-bg-grid {
+  position: absolute;
+  inset: -42px;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--accent-cyan-solid) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent-cyan-solid) 7%, transparent) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 75% 75% at 50% 40%, #000 15%, transparent 78%);
+  animation: heroGridPan 24s linear infinite;
+}
+
+/* Drifting sparks across the whole hero */
+.hero-bg-sparks {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-bg-spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-cyan-solid);
+  opacity: 0;
+  animation: heroSparkFloat 11s ease-in-out infinite;
+}
+
+.spark-0  { left: 4%;  top: 72%; animation-delay: 0s;    background: #38bdf8; }
+.spark-1  { left: 11%; top: 24%; animation-delay: 1.4s;  width: 3px; height: 3px; }
+.spark-2  { left: 19%; top: 88%; animation-delay: 3.1s;  background: #60a5fa; }
+.spark-3  { left: 27%; top: 38%; animation-delay: 5.2s;  width: 5px; height: 5px; background: #7dd3fc; }
+.spark-4  { left: 34%; top: 64%; animation-delay: 2.2s;  background: #38bdf8; }
+.spark-5  { left: 42%; top: 16%; animation-delay: 6.8s;  width: 3px; height: 3px; }
+.spark-6  { left: 49%; top: 82%; animation-delay: 4.1s;  background: #93c5fd; }
+.spark-7  { left: 57%; top: 30%; animation-delay: 7.9s;  width: 5px; height: 5px; background: #60a5fa; }
+.spark-8  { left: 64%; top: 58%; animation-delay: 1.9s;  background: #38bdf8; }
+.spark-9  { left: 72%; top: 12%; animation-delay: 5.9s;  width: 3px; height: 3px; background: #7dd3fc; }
+.spark-10 { left: 79%; top: 76%; animation-delay: 3.6s;  background: #60a5fa; }
+.spark-11 { left: 86%; top: 34%; animation-delay: 8.4s;  width: 5px; height: 5px; }
+.spark-12 { left: 92%; top: 62%; animation-delay: 2.7s;  background: #93c5fd; }
+.spark-13 { left: 97%; top: 20%; animation-delay: 6.2s;  width: 3px; height: 3px; background: #38bdf8; }
 
 .page-hero-inner-split {
   position: relative;
+  z-index: 1;
   padding: 96px 24px 88px;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -147,6 +256,68 @@
   line-height: 1.12;
 }
 
+/* Rotating keyword — reuses the same industry labels shown as chips on
+   the visual side, so the words cycling in and out never introduce
+   new copy, just motion. */
+.hv-rotator {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-soft);
+  opacity: 0;
+  animation: heroFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.hv-rotator-stage {
+  position: relative;
+  display: inline-block;
+  height: 1.3em;
+  min-width: 84px;
+}
+
+.hv-rotator-word {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hv-rotator-word.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hv-rotator-word.prev {
+  opacity: 0;
+  transform: translateY(-16px);
+}
+
+.hv-rotator-word.next {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+/* Title reveal — classic "mask slides away" entrance used across
+   professional marketing sites, layered on top of the existing
+   fade-up so the headline arrives with real intent. */
+.hv-title-mask {
+  overflow: hidden;
+}
+
+.hv-title-mask h1 {
+  animation: heroTitleReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
+}
+
 .page-hero-split .page-hero-subtitle {
   font-size: 17.5px;
   line-height: 1.65;
@@ -159,24 +330,54 @@
 }
 
 .page-hero-stats {
+  position: relative;
   display: flex;
   gap: 28px;
   margin-top: 20px;
   padding-top: 20px;
-  border-top: 1px solid var(--border);
   width: 100%;
 }
 
+.page-hero-stats::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border);
+  transform-origin: left;
+  animation: heroLineDraw 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.85s both;
+}
+
 .page-hero-stat {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2px;
+  opacity: 0;
+  animation: heroFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--stat-i) * 0.12s + 1.05s);
+}
+
+.page-hero-stat + .page-hero-stat::before {
+  content: '';
+  position: absolute;
+  left: -14px;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: var(--border);
+  transform: scaleY(0);
+  animation: heroLineDrawV 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--stat-i) * 0.12s + 1.15s);
 }
 
 .page-hero-stat strong {
   font-size: 22px;
   font-weight: 700;
   color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
 
 .page-hero-stat span {
@@ -195,42 +396,48 @@
   animation-delay: 0.1s;
 }
 
-/* Drifting color blobs */
+/* Drifting color blobs — kept strictly within the site's white / sky-blue
+   theme (no purple or pink), so the wash behind the visual always reads
+   as a soft blue gradient rather than an off-brand tint. */
 .hv-blob {
   position: absolute;
   border-radius: 50%;
   filter: blur(46px);
-  opacity: 0.6;
+  opacity: 0.55;
   z-index: 0;
-  animation: heroDrift 10s ease-in-out infinite, heroHue 16s ease-in-out infinite;
+  animation: heroDrift 10s ease-in-out infinite;
 }
 
-.blob-a {
+/* Compound selectors (.hv-blob.blob-a, not just .blob-a) — PricingHero.css
+   and BlogHero.css happen to reuse the same short class names for their
+   own blobs, so a single-class selector here would lose the cascade to
+   whichever of those loads later in the bundle. */
+.hv-blob.blob-a {
   width: 280px;
   height: 280px;
   top: 0%;
   right: 4%;
-  background: radial-gradient(circle, rgba(96, 165, 250, 0.6), transparent 70%);
-  animation-duration: 9s, 14s;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.55), transparent 70%);
+  animation-duration: 9s;
 }
 
-.blob-b {
+.hv-blob.blob-b {
   width: 230px;
   height: 230px;
   bottom: 2%;
   left: 2%;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.45), transparent 70%);
-  animation-duration: 12s, 18s;
-  animation-direction: reverse, normal;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.4), transparent 70%);
+  animation-duration: 12s;
+  animation-direction: reverse;
 }
 
-.blob-c {
-  width: 170px;
-  height: 170px;
+.hv-blob.blob-c {
+  width: 200px;
+  height: 200px;
   top: 42%;
   left: 46%;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.32), transparent 70%);
-  animation-duration: 8s, 20s;
+  background: radial-gradient(circle, rgba(191, 219, 254, 0.45), transparent 70%);
+  animation-duration: 8s;
 }
 
 /* Floating particles */
@@ -252,173 +459,138 @@
 }
 
 .particle-0 { left: 8%;  bottom: 10%; animation-delay: 0s;   background: var(--accent-cyan-solid); }
-.particle-1 { left: 22%; bottom: 4%;  animation-delay: 1.1s; background: #7c3aed; width: 4px; height: 4px; }
-.particle-2 { left: 68%; bottom: 8%;  animation-delay: 2.2s; background: #ec4899; }
+.particle-1 { left: 22%; bottom: 4%;  animation-delay: 1.1s; background: #38bdf8; width: 4px; height: 4px; }
+.particle-2 { left: 68%; bottom: 8%;  animation-delay: 2.2s; background: #60a5fa; }
 .particle-3 { left: 84%; bottom: 14%; animation-delay: 0.6s; background: var(--accent-violet-dark); width: 5px; height: 5px; }
-.particle-4 { left: 46%; bottom: 2%;  animation-delay: 3s;   background: #10b981; width: 4px; height: 4px; }
-.particle-5 { left: 12%; top: 12%;   animation-delay: 1.8s; background: #7c3aed; }
+.particle-4 { left: 46%; bottom: 2%;  animation-delay: 3s;   background: #7dd3fc; width: 4px; height: 4px; }
+.particle-5 { left: 12%; top: 12%;   animation-delay: 1.8s; background: #38bdf8; }
 .particle-6 { left: 78%; top: 8%;    animation-delay: 3.6s; background: var(--accent-cyan-solid); width: 5px; height: 5px; }
-.particle-7 { left: 55%; top: 4%;    animation-delay: 2.6s; background: #ec4899; width: 4px; height: 4px; }
+.particle-7 { left: 55%; top: 4%;    animation-delay: 2.6s; background: #60a5fa; width: 4px; height: 4px; }
 
-/* Orbit ring */
-.hv-orbit {
-  position: absolute;
-  width: 340px;
-  height: 340px;
-  z-index: 0;
-}
-
-.hv-orbit-ring {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1px dashed color-mix(in srgb, var(--accent-violet-dark) 24%, transparent);
-  animation: heroSpin 26s linear infinite;
-}
-
-.hv-orbit-dot {
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--gradient-primary);
-  box-shadow: 0 0 12px rgba(37, 99, 235, 0.6);
-  transform: translateX(-50%);
-  animation: heroSpin 26s linear infinite;
-  transform-origin: 5px 175px;
-}
-
-/* Central floating app card */
-.hv-stage {
+/* 3D bubble scene — floating channel bubbles that rise through real
+   depth (perspective + translateZ) and pop like soap bubbles, looping
+   endlessly around a glowing core. No mockup, no photography. */
+.hv3d-scene {
   position: relative;
   z-index: 2;
-  animation: heroCardIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both, heroFloat 6s ease-in-out 0.9s infinite;
+  width: 100%;
+  height: 380px;
+  perspective: 1100px;
+  transform-style: preserve-3d;
 }
 
-.hv-card {
-  position: relative;
-  width: 268px;
-  padding: 18px 20px 20px;
-  border-radius: 22px;
-  background: color-mix(in srgb, var(--surface) 88%, transparent);
-  backdrop-filter: blur(14px);
-  border: 1px solid color-mix(in srgb, #fff 60%, var(--border));
-  box-shadow: var(--shadow-lift);
-  transform: rotate(-3.5deg);
-}
-
-.hv-card-top {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 16px;
-}
-
-.hv-traffic {
-  width: 8px;
-  height: 8px;
+.hv3d-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 92px;
+  height: 92px;
+  margin: -46px 0 0 -46px;
   border-radius: 50%;
-}
-
-.hv-traffic.red { background: #f87171; }
-.hv-traffic.yellow { background: #fbbf24; }
-.hv-traffic.green { background: #34d399; }
-
-.hv-live {
-  margin-left: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #dc2626;
-  letter-spacing: 0.02em;
-}
-
-.hv-live-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #dc2626;
-  animation: heroPulseDot 1.4s ease-in-out infinite;
-}
-
-.hv-card-body {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.hv-avatar {
-  position: relative;
-  width: 46px;
-  height: 46px;
-  min-width: 46px;
-  border-radius: 14px;
-  background: var(--gradient-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+  background: radial-gradient(circle at 34% 28%, #7dd3fc, #2563eb 62%, #1d4ed8);
+  box-shadow:
+    0 24px 54px rgba(37, 99, 235, 0.45),
+    0 0 0 10px rgba(56, 189, 248, 0.1),
+    0 0 0 22px rgba(56, 189, 248, 0.05),
+    inset 0 2px 10px rgba(255, 255, 255, 0.4);
+  animation: heroCoreIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both, heroCoreFloat 6s ease-in-out 0.8s infinite;
 }
 
-.hv-avatar .material-symbols-outlined {
-  font-size: 24px;
+.hv3d-core-icon {
   color: #fff;
+  font-size: 34px;
+  z-index: 1;
 }
 
-.hv-avatar-pulse {
+.hv3d-core-ring {
   position: absolute;
-  inset: -6px;
-  border-radius: 18px;
-  border: 2px solid rgba(37, 99, 235, 0.35);
-  animation: heroPulseRing 2.4s ease-out infinite;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-cyan-solid);
+  animation: heroCoreRing 3.2s ease-out infinite;
 }
 
-.hv-card-text {
+.ring-2 { animation-delay: 1.05s; }
+.ring-3 { animation-delay: 2.1s; }
+
+/* Each bubble rises from below the core, drifts through 3D space,
+   then bursts (pop pseudo-element flashes a ring) before restarting —
+   staggered per-bubble via distinct position + timing. */
+.hv3d-bubble {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: hv3dRise 6.4s cubic-bezier(0.33, 0, 0.2, 1) infinite;
+  transform-style: preserve-3d;
+}
+
+.hv3d-bubble-face {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.72) 46%),
+    linear-gradient(160deg, rgba(224, 242, 254, 0.9), rgba(255, 255, 255, 0.85));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(125, 211, 252, 0.55);
+  box-shadow:
+    0 16px 32px rgba(37, 99, 235, 0.16),
+    0 0 0 6px rgba(125, 211, 252, 0.08),
+    inset 0 2px 6px rgba(255, 255, 255, 0.9);
 }
 
-.hv-card-text strong {
-  font-size: 14.5px;
-  color: var(--text);
+.hv3d-bubble-face .material-symbols-outlined {
+  font-size: 22px;
+  color: var(--accent-cyan-solid);
 }
 
-.hv-card-text span {
-  font-size: 12px;
+.hv3d-bubble-label {
+  font-size: 9.5px;
+  font-weight: 700;
   color: var(--text-soft);
 }
 
-.hv-waveform {
-  display: flex;
-  align-items: flex-end;
-  gap: 3px;
-  height: 34px;
-}
-
-.hv-bar {
-  flex: 1;
-  min-width: 3px;
-  border-radius: 3px;
-  background: var(--gradient-primary);
-  opacity: 0.85;
-  animation: heroWave 1.2s ease-in-out infinite;
-}
-
-.hv-card-shadow {
+.hv3d-bubble-pop {
   position: absolute;
-  left: 10%;
-  right: 10%;
-  bottom: -22px;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid rgba(56, 189, 248, 0.85);
+  opacity: 0;
+  animation: hv3dPop 6.4s ease-out infinite;
+}
+
+.bubble-0 { left: 2%;  bottom: 6%;  --bx: 18px;  animation-delay: 0s; }
+.bubble-1 { left: 68%; bottom: 2%;  --bx: -22px; animation-delay: 1.05s; }
+.bubble-2 { left: 24%; bottom: 12%; --bx: 10px;  animation-delay: 2.1s; }
+.bubble-3 { left: 84%; bottom: 16%; --bx: -14px; animation-delay: 3.15s; }
+.bubble-4 { left: 46%; bottom: -4%; --bx: 6px;   animation-delay: 4.2s; }
+.bubble-5 { left: 12%; bottom: 34%; --bx: 26px;  animation-delay: 5.25s; }
+
+.bubble-1 .hv3d-bubble-face, .bubble-4 .hv3d-bubble-face { width: 62px; height: 62px; }
+.bubble-1 .hv3d-bubble-face .material-symbols-outlined, .bubble-4 .hv3d-bubble-face .material-symbols-outlined { font-size: 18px; }
+.bubble-2 .hv3d-bubble-face, .bubble-5 .hv3d-bubble-face { width: 84px; height: 84px; }
+
+.hv3d-floor {
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  bottom: 4%;
   height: 30px;
-  background: radial-gradient(ellipse, rgba(15, 23, 42, 0.22), transparent 70%);
-  filter: blur(6px);
-  z-index: 1;
+  background: radial-gradient(ellipse, rgba(15, 23, 42, 0.16), transparent 72%);
+  filter: blur(8px);
+  z-index: 0;
 }
 
 /* Floating badge chips */
@@ -456,9 +628,9 @@
 }
 
 .icon-0 { background: linear-gradient(135deg, #60a5fa, #2563eb); }
-.icon-1 { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
-.icon-2 { background: linear-gradient(135deg, #34d399, #059669); }
-.icon-3 { background: linear-gradient(135deg, #f472b6, #db2777); }
+.icon-1 { background: linear-gradient(135deg, #38bdf8, #0284c7); }
+.icon-2 { background: linear-gradient(135deg, #7dd3fc, #0ea5e9); }
+.icon-3 { background: linear-gradient(135deg, #93c5fd, #1d4ed8); }
 
 .chip-0 { top: 2%;  left: -8%;  animation-delay: 0.15s, 0s; }
 .chip-1 { top: 14%; right: -12%; animation-delay: 0.3s, 0.6s; }
@@ -470,9 +642,33 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes heroTitleReveal {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroLineDraw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes heroLineDrawV {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
 @keyframes heroCardIn {
-  from { opacity: 0; transform: rotate(-3.5deg) translateY(24px) scale(0.92); }
-  to { opacity: 1; transform: rotate(-3.5deg) translateY(0) scale(1); }
+  from { opacity: 0; transform: translateY(24px) scale(0.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes heroRowIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes heroSparkIn {
+  from { transform: scaleY(0.2); }
+  to { transform: scaleY(1); }
 }
 
 @keyframes heroChipIn {
@@ -490,9 +686,42 @@
   50% { transform: translate(-16px, 14px) scale(1.08); }
 }
 
-@keyframes heroHue {
-  0%, 100% { filter: blur(46px) hue-rotate(0deg); }
-  50% { filter: blur(46px) hue-rotate(35deg); }
+/* --- ambient background motion --- */
+@keyframes heroAurora1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(90px, 50px) scale(1.14); }
+  66% { transform: translate(40px, -40px) scale(0.94); }
+}
+
+@keyframes heroAurora2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-110px, -60px) scale(1.12); }
+  70% { transform: translate(-40px, 40px) scale(0.96); }
+}
+
+@keyframes heroAurora3 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.75; }
+  50% { transform: translate(-70px, 46px) scale(1.2); opacity: 1; }
+}
+
+@keyframes heroBeam {
+  0% { transform: translateX(0) rotate(18deg); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateX(160vw) rotate(18deg); opacity: 0; }
+}
+
+@keyframes heroGridPan {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 42px 42px, 42px 42px; }
+}
+
+@keyframes heroSparkFloat {
+  0% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  15% { opacity: 0.9; }
+  50% { transform: translate(14px, -46px) scale(1); opacity: 0.7; }
+  85% { opacity: 0.5; }
+  100% { transform: translate(-8px, -92px) scale(0.5); opacity: 0; }
 }
 
 @keyframes heroParticle {
@@ -500,11 +729,6 @@
   20% { opacity: 0.9; }
   80% { opacity: 0.4; }
   100% { transform: translateY(-90px) scale(1); opacity: 0; }
-}
-
-@keyframes heroSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 @keyframes heroPulseDot {
@@ -517,29 +741,39 @@
   100% { opacity: 0; transform: scale(1.35); }
 }
 
-@keyframes heroWave {
-  0%, 100% { height: 22%; }
-  50% { height: 100%; }
+@keyframes heroCoreIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-.hv-bar:nth-child(1) { animation-duration: 1.1s; }
-.hv-bar:nth-child(2) { animation-duration: 0.9s; }
-.hv-bar:nth-child(3) { animation-duration: 1.3s; }
-.hv-bar:nth-child(4) { animation-duration: 1s; }
-.hv-bar:nth-child(5) { animation-duration: 1.4s; }
-.hv-bar:nth-child(6) { animation-duration: 0.85s; }
-.hv-bar:nth-child(7) { animation-duration: 1.2s; }
-.hv-bar:nth-child(8) { animation-duration: 1.05s; }
-.hv-bar:nth-child(9) { animation-duration: 1.35s; }
-.hv-bar:nth-child(10) { animation-duration: 0.95s; }
-.hv-bar:nth-child(11) { animation-duration: 1.15s; }
-.hv-bar:nth-child(12) { animation-duration: 1.25s; }
-.hv-bar:nth-child(13) { animation-duration: 0.9s; }
-.hv-bar:nth-child(14) { animation-duration: 1.1s; }
-.hv-bar:nth-child(15) { animation-duration: 1.3s; }
-.hv-bar:nth-child(16) { animation-duration: 1s; }
-.hv-bar:nth-child(17) { animation-duration: 1.2s; }
-.hv-bar:nth-child(18) { animation-duration: 0.95s; }
+@keyframes heroCoreFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.03); }
+}
+
+@keyframes heroCoreRing {
+  0% { opacity: 0.55; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.9); }
+}
+
+/* Bubble lifecycle: rise from below the core through 3D depth, hold
+   near the top, then burst (handled by the .hv3d-bubble-pop sibling
+   keyframe below) before fading out and looping back to the start. */
+@keyframes hv3dRise {
+  0% { opacity: 0; transform: translate3d(var(--bx), 70px, -60px) scale(0.5) rotateY(-8deg); }
+  12% { opacity: 1; transform: translate3d(var(--bx), 10px, 20px) scale(1) rotateY(4deg); }
+  55% { opacity: 1; transform: translate3d(var(--bx), -60px, 40px) scale(1.05) rotateY(-4deg); }
+  78% { opacity: 1; transform: translate3d(var(--bx), -108px, 10px) scale(1.15) rotateY(2deg); }
+  90% { opacity: 0; transform: translate3d(var(--bx), -122px, 0) scale(1.4) rotateY(0deg); }
+  100% { opacity: 0; transform: translate3d(var(--bx), 70px, -60px) scale(0.5) rotateY(-8deg); }
+}
+
+@keyframes hv3dPop {
+  0%, 74% { opacity: 0; transform: scale(1); }
+  80% { opacity: 0.9; transform: scale(1); }
+  92% { opacity: 0; transform: scale(1.9); }
+  100% { opacity: 0; transform: scale(1.9); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .page-hero-blob,
@@ -547,15 +781,67 @@
   .page-hero-visual,
   .hv-blob,
   .hv-particle,
-  .hv-orbit-ring,
-  .hv-orbit-dot,
-  .hv-stage,
-  .hv-bar,
-  .hv-avatar-pulse,
-  .hv-live-dot,
-  .hv-chip {
+  .hv3d-core,
+  .hv3d-core-ring,
+  .hv3d-bubble,
+  .hv3d-bubble-pop,
+  .hv-chip,
+  .hv-rotator,
+  .hv-title-mask h1,
+  .page-hero-stat,
+  .page-hero-stats::before,
+  .page-hero-stat + .page-hero-stat::before,
+  .hero-bg-aurora,
+  .hero-bg-beam,
+  .hero-bg-grid,
+  .hero-bg-spark {
     animation: none;
   }
+
+  .hero-bg-beam {
+    opacity: 0;
+  }
+
+  .hero-bg-spark {
+    opacity: 0.4;
+  }
+
+  .page-hero-stat {
+    opacity: 1;
+  }
+
+  .page-hero-stats::before {
+    transform: scaleX(1);
+  }
+
+  .page-hero-stat + .page-hero-stat::before {
+    transform: scaleY(1);
+  }
+
+  .hv3d-bubble {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hv-rotator {
+    opacity: 1;
+  }
+
+  .hv-title-mask h1 {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hv-rotator-word {
+    transition: none;
+  }
+
+  .bubble-0 { left: 6%; bottom: 60%; }
+  .bubble-1 { left: 62%; bottom: 70%; }
+  .bubble-2 { left: 22%; bottom: 10%; }
+  .bubble-3 { left: 78%; bottom: 20%; }
+  .bubble-4 { left: 42%; bottom: 78%; }
+  .bubble-5 { left: 4%; bottom: 40%; }
 }
 
 @media (max-width: 960px) {
@@ -598,24 +884,35 @@
     min-height: 320px;
   }
 
-  .hv-orbit {
-    width: 260px;
-    height: 260px;
+  .hv3d-scene {
+    height: 320px;
   }
 
-  .hv-card {
-    width: 220px;
-    padding: 14px 16px 16px;
+  .hv3d-core {
+    width: 74px;
+    height: 74px;
+    margin: -37px 0 0 -37px;
   }
 
-  .hv-avatar {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+  .hv3d-core-icon {
+    font-size: 28px;
   }
 
-  .hv-avatar .material-symbols-outlined {
-    font-size: 20px;
+  .hv3d-bubble-face,
+  .bubble-1 .hv3d-bubble-face,
+  .bubble-2 .hv3d-bubble-face,
+  .bubble-4 .hv3d-bubble-face,
+  .bubble-5 .hv3d-bubble-face {
+    width: 58px;
+    height: 58px;
+  }
+
+  .hv3d-bubble-face .material-symbols-outlined {
+    font-size: 17px;
+  }
+
+  .hv3d-bubble-label {
+    font-size: 8px;
   }
 
   .hv-chip {

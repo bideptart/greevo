@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PricingHero from '../components/PricingHero.jsx'
 import FaqAccordion from '../components/FaqAccordion.jsx'
-import RoiCalculator from '../components/RoiCalculator.jsx'
 import OutcomeTestimonials from '../components/OutcomeTestimonials.jsx'
 import './Pricing.css'
 
@@ -60,17 +59,17 @@ const COMPARISON_ROWS = [
 const PLANS = [
   {
     name: 'Starter',
-    monthly: 15,
-    yearly: 12,
-    desc: 'Pilot a single number and a small team.',
-    summary: 'Up to 5 users · 1 number · Email support',
+    monthly: 31,
+    yearly: 25,
+    desc: 'Pilot a single agent.',
+    summary: '250 min · $0.13/min · 2 agents',
     features: [
-      'Up to 5 users',
-      '1 local number included',
-      'Inbound & outbound calling',
-      'Per-second call billing',
-      'Business SMS & MMS',
-      'Standard voicemail + transcription',
+      '2 AI voice agents',
+      '250 included minutes',
+      '$0.13/min effective rate',
+      'Inbound calling',
+      'Per-second billing',
+      'Standard voice stack',
       'Call recording',
       'Real-time transcription',
       'Email support',
@@ -78,17 +77,17 @@ const PLANS = [
   },
   {
     name: 'Growth',
-    monthly: 35,
-    yearly: 28,
+    monthly: 93,
+    yearly: 74,
     desc: 'Most teams start here.',
-    summary: 'Up to 25 users · AI receptionist · Priority support',
+    summary: '800 min · $0.12/min · 10 agents',
     features: [
-      'Up to 25 users',
-      'Everything in Starter',
-      'AI receptionist, 500 min/mo',
-      'Standard + premium AI voices',
-      'CRM integrations',
-      'Live analytics & call scoring',
+      '10 AI voice agents',
+      '800 included minutes',
+      '$0.12/min effective rate',
+      'Inbound calling',
+      'Per-second billing',
+      'Standard + premium voices',
       'Call recording',
       'Real-time transcription',
       'Priority support',
@@ -97,19 +96,19 @@ const PLANS = [
   },
   {
     name: 'Scale',
-    monthly: 59,
-    yearly: 47,
-    desc: 'High-volume contact centers.',
-    summary: 'Unlimited users · Unlimited AI minutes · Dedicated support',
+    monthly: 316,
+    yearly: 253,
+    desc: 'High-volume call centers.',
+    summary: '3,000 min · $0.11/min · Unlimited',
     features: [
-      'Unlimited users',
-      'Everything in Growth',
-      'Unlimited AI receptionist minutes',
-      'Realtime + premium AI voices',
-      'Predictive dialer + WFM',
+      'Unlimited AI voice agents',
+      '3,000 included minutes',
+      '$0.11/min effective rate',
+      'Inbound calling',
+      'Per-second billing',
+      'Realtime + premium voices',
       'Call recording',
       'Real-time transcription',
-      'Custom retention & compliance',
       'Dedicated success manager + SLA',
     ],
   },
@@ -140,7 +139,7 @@ export default function Pricing() {
                 <p className="pricing-desc">{plan.desc}</p>
                 <div className="price">
                   <AnimatedPrice value={yearly ? plan.yearly : plan.monthly} />
-                  <span className="price-period">/ user / mo</span>
+                  <span className="price-period">/ mo</span>
                 </div>
                 <p className="pricing-summary">{plan.summary}</p>
                 <ul className="check-list pricing-features">
@@ -200,12 +199,6 @@ export default function Pricing() {
               </tbody>
             </table>
           </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <RoiCalculator />
         </div>
       </section>
 

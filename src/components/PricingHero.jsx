@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import AccentTitle from './AccentTitle.jsx'
-import PriceOdometer from './PriceOdometer.jsx'
-import CostCompareBars from './CostCompareBars.jsx'
+import LiveCallShowcase from './LiveCallShowcase.jsx'
 import './PricingHero.css'
 
 const TRUST_CHIPS = ['No credit card required', 'Setup in minutes', 'Cancel anytime']
@@ -40,8 +39,7 @@ export default function PricingHero() {
         <div className="pricing-hero-visual">
           <div className="phone-glow" aria-hidden="true" />
           <div className="pricing-hero-visual-stack">
-            <PriceOdometer />
-            <CostCompareBars />
+            <LiveCallShowcase />
           </div>
         </div>
       </div>

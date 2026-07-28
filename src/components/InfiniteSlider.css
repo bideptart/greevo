@@ -1,0 +1,28 @@
+.infinite-slider {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.infinite-slider-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+}
+
+.infinite-slider-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 0 32px;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .infinite-slider-track {
+    transform: none !important;
+  }
+}
