@@ -23,7 +23,7 @@ const menuPanels = [
   {
     id: 'company',
     items: [
-      { title: 'About', description: 'Learn what Greevo is building and why.', to: '/' },
+      { title: 'About', description: 'Learn what Greevo is building and why.', to: '/about' },
       { title: 'Blog', description: 'Product updates, guides, and company news.', to: '/blog' },
       { title: 'Contact', description: 'Talk to sales or start a free trial.', to: '/contact' },
     ],

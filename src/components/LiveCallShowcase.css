@@ -143,12 +143,12 @@
 }
 
 .plan-swap {
-  animation: plan-swap-fade 0.4s ease;
+  animation: plan-swap-fade 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @keyframes plan-swap-fade {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(6px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .price-display {
@@ -395,7 +395,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .agent-panel-live-dot,
-  .phone-plan-dot {
+  .phone-plan-dot,
+  .plan-swap {
     animation: none;
   }
 }

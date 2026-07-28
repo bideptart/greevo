@@ -85,6 +85,13 @@
   margin-top: 20px;
 }
 
+.blog-hero-chips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
 .blog-hero-visual {
   display: flex;
   align-items: center;
