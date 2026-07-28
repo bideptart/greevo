@@ -59,7 +59,7 @@
   width: 100%;
   background: none;
   border: 0;
-  padding: 20px 24px;
+  padding: 26px 28px;
   text-align: left;
   font-family: var(--font);
   cursor: pointer;
@@ -84,8 +84,9 @@
 
 .ifaq-question-text {
   flex: 1;
-  font-size: 15.5px;
+  font-size: 17.5px;
   font-weight: 600;
+  letter-spacing: 0.015em;
   color: var(--text);
   line-height: 1.4;
 }

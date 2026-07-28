@@ -497,9 +497,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-  width: 76px;
-  height: 76px;
+  gap: 1px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   background:
     radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.72) 46%),
@@ -513,12 +513,12 @@
 }
 
 .hv3d-bubble-face .material-symbols-outlined {
-  font-size: 22px;
+  font-size: 17px;
   color: var(--accent-cyan-solid);
 }
 
 .hv3d-bubble-label {
-  font-size: 9.5px;
+  font-size: 7.5px;
   font-weight: 700;
   color: var(--text-soft);
 }
@@ -539,9 +539,9 @@
 .bubble-4 { left: 46%; bottom: -4%; --bx: 6px;   animation-delay: 4.2s; }
 .bubble-5 { left: 12%; bottom: 34%; --bx: 26px;  animation-delay: 5.25s; }
 
-.bubble-1 .hv3d-bubble-face, .bubble-4 .hv3d-bubble-face { width: 62px; height: 62px; }
-.bubble-1 .hv3d-bubble-face .material-symbols-outlined, .bubble-4 .hv3d-bubble-face .material-symbols-outlined { font-size: 18px; }
-.bubble-2 .hv3d-bubble-face, .bubble-5 .hv3d-bubble-face { width: 84px; height: 84px; }
+.bubble-1 .hv3d-bubble-face, .bubble-4 .hv3d-bubble-face { width: 46px; height: 46px; }
+.bubble-1 .hv3d-bubble-face .material-symbols-outlined, .bubble-4 .hv3d-bubble-face .material-symbols-outlined { font-size: 14px; }
+.bubble-2 .hv3d-bubble-face, .bubble-5 .hv3d-bubble-face { width: 64px; height: 64px; }
 
 .hv3d-floor {
   position: absolute;

@@ -30,7 +30,12 @@ export default function PricingHero() {
             Pricing
           </span>
           <h1><AccentTitle title="Simple pricing that scales with your team" /></h1>
-          <p className="pricing-hero-subtitle">No hardware fees, no setup costs. Cancel anytime.</p>
+          <p className="pricing-hero-subtitle">
+            No hardware fees, no setup costs. Cancel anytime.
+            No sales call required to see the real price — it's all right here.
+            Upgrade or downgrade in a click as your team grows or shrinks.
+            Every plan includes the same core features, just more room to scale.
+          </p>
 
           <div className="pricing-hero-ctas">
             <Link to="/contact" className="btn btn-primary">Start Free Trial</Link>
