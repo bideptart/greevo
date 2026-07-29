@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom'
 import AccentTitle from './AccentTitle.jsx'
-import PopularPosts from './PopularPosts.jsx'
+import { BLOG_POSTS, TAG_STYLES } from '../data/blogPosts.js'
 import './PageHero.css'
 import './BlogHero.css'
+
+const FLOAT_SNIPPET_SLUGS = ['ai-voice-natural-conversations', 'ai-receptionist-changes', 'port-number-without-downtime', 'series-a-announcement']
+const FLOAT_SNIPPETS = FLOAT_SNIPPET_SLUGS
+  .map((slug) => BLOG_POSTS.find((post) => post.slug === slug))
+  .filter(Boolean)
+  .map((post) => ({ title: post.title, tag: post.tag }))
 
 export default function BlogHero() {
   return (
@@ -37,8 +43,13 @@ export default function BlogHero() {
           </div>
         </div>
 
-        <div className="blog-hero-visual">
-          <PopularPosts />
+        <div className="blog-hero-float-visual" aria-hidden="true">
+          {FLOAT_SNIPPETS.map((snippet, i) => (
+            <div key={snippet.title} className={`blog-float-card float-card-${i}`}>
+              <span className={`tag-pill ${TAG_STYLES[snippet.tag]?.pill}`}>{snippet.tag}</span>
+              <p className="blog-float-card-title">{snippet.title}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

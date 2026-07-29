@@ -4,7 +4,6 @@
   background:
     linear-gradient(to bottom, rgba(96, 165, 250, 0) 60%, rgba(96, 165, 250, 0.16) 100%),
     var(--gradient-soft);
-  border-bottom: 1px solid var(--border);
 }
 
 .blog-hero-inner {
@@ -38,10 +37,88 @@
   margin-top: 20px;
 }
 
-.blog-hero-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Floating article-snippet cards — ambient, non-interactive decoration
+   filling the right side of the hero. Each card drifts on its own
+   translate/rotate loop so the four never fall into sync. */
+.blog-hero-float-visual {
+  position: relative;
+  height: 340px;
+  pointer-events: none;
+}
+
+.blog-float-card {
+  position: absolute;
+  width: 190px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lift);
+}
+
+.blog-float-card-title {
+  margin: 8px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.float-card-0 {
+  top: 4%;
+  left: 6%;
+  transform: rotate(-6deg);
+  animation: floatDrift1 9s ease-in-out infinite;
+}
+
+.float-card-1 {
+  top: 30%;
+  right: 2%;
+  transform: rotate(5deg);
+  animation: floatDrift2 11s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.float-card-2 {
+  bottom: 18%;
+  left: 0%;
+  transform: rotate(4deg);
+  animation: floatDrift3 10s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+.float-card-3 {
+  bottom: -2%;
+  right: 14%;
+  transform: rotate(-4deg);
+  animation: floatDrift1 12s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+@keyframes floatDrift1 {
+  0%, 100% { transform: translate(0, 0) rotate(-6deg); }
+  50% { transform: translate(6px, -14px) rotate(-3deg); }
+}
+
+@keyframes floatDrift2 {
+  0%, 100% { transform: translate(0, 0) rotate(5deg); }
+  50% { transform: translate(-8px, 12px) rotate(8deg); }
+}
+
+@keyframes floatDrift3 {
+  0%, 100% { transform: translate(0, 0) rotate(4deg); }
+  50% { transform: translate(10px, 10px) rotate(1deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-float-card {
+    animation: none;
+  }
 }
 
 @media (max-width: 900px) {
@@ -55,8 +132,8 @@
     justify-content: center;
   }
 
-  .blog-hero-visual {
-    margin-top: 24px;
+  .blog-hero-float-visual {
+    display: none;
   }
 }
 

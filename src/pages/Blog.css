@@ -1,6 +1,8 @@
 .blog-categories-section {
   padding-bottom: 24px;
-  background: #f5f8ff;
+  background:
+    linear-gradient(to bottom, rgba(96, 165, 250, 0.16), rgba(96, 165, 250, 0) 140px),
+    #f5f8ff;
 }
 
 .blog-posts-section {

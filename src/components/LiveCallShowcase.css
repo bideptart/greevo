@@ -90,7 +90,7 @@
   position: relative;
   z-index: 1;
   width: 228px;
-  height: 418px;
+  height: 432px;
   background: var(--surface);
   border: 2px solid var(--accent-cyan-solid);
   border-radius: 32px;
@@ -121,7 +121,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 14px 16px 10px;
+  padding: 14px 20px 10px;
 }
 
 .iphone-statusbar {
@@ -179,7 +179,7 @@
   gap: 7px;
   font-size: 10.5px;
   color: var(--text-muted);
-  padding: 3px 0;
+  padding: 1.5px 0;
 }
 
 .phone-plan-features .material-symbols-outlined {
@@ -196,7 +196,7 @@
   font-weight: 700;
   padding: 9px 0;
   border-radius: var(--radius-pill);
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .phone-plan-dots {
