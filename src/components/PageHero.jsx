@@ -64,6 +64,62 @@ const HV_BUBBLES = [
   { icon: 'support_agent', label: 'Support' },
 ]
 
+// Three concentric rings of capability icons orbiting a central core —
+// a distinct motion language from the rise-and-pop bubbles (used on
+// Industries), built for the Features hero.
+const ORBIT_RINGS = [
+  { radius: 62, duration: 16, reverse: false, icons: ['call', 'forum', 'videocam'] },
+  { radius: 104, duration: 24, reverse: true, icons: ['sms', 'mail', 'monitoring'] },
+  { radius: 146, duration: 32, reverse: false, icons: ['hub', 'devices'] },
+]
+
+// A fanned deck of glass cards in real 3D space (perspective + rotateY
+// + translateZ), each carrying one capability — the whole deck sways
+// gently and each card floats on its own stagger. Classical "product
+// showcase" motion, distinct from both the bubble and orbit variants.
+const CARD_DECK = [
+  {
+    icon: 'call',
+    badge: 'GLOBAL CALLING',
+    title: 'Cloud Phone',
+    desc: 'HD voice to 190+ countries with automatic carrier failover.',
+    stat: '190+',
+    statLabel: 'countries covered',
+  },
+  {
+    icon: 'auto_awesome',
+    badge: 'AI RECEPTIONIST',
+    title: 'Never Miss a Call',
+    desc: 'Answers every line in parallel, qualifies, and books the meeting.',
+    stat: '24/7',
+    statLabel: 'always answering',
+  },
+  {
+    icon: 'chat',
+    badge: 'UNIFIED INBOX',
+    title: 'One Thread, Every Channel',
+    desc: 'Voice, SMS, WhatsApp, and chat in a single customer view.',
+    stat: '6+',
+    statLabel: 'channels, one queue',
+  },
+  {
+    icon: 'monitoring',
+    badge: 'LIVE ANALYTICS',
+    title: 'Know Before They Complain',
+    desc: 'CSAT, FCR, and SLA update the moment a call ends.',
+    stat: '+24%',
+    statLabel: 'first contact resolution',
+  },
+  {
+    icon: 'hub',
+    badge: 'INTEGRATIONS',
+    title: 'Fits Your Stack',
+    desc: 'Two-way sync to HubSpot, Salesforce, Zoho, and Pipedrive.',
+    stat: '4',
+    statLabel: 'native CRM integrations',
+  },
+]
+
 export default function PageHero({
   eyebrow,
   title,
@@ -77,9 +133,19 @@ export default function PageHero({
   reverse = false,
   stats = [],
   split = false,
+  visualVariant = 'bubbles',
 }) {
   const rotatingWords = badges.map((b) => b.label)
   const [wordIndex, setWordIndex] = useState(0)
+  const [activeCard, setActiveCard] = useState(0)
+
+  useEffect(() => {
+    if (visualVariant !== 'cards3d') return
+    const id = setInterval(() => {
+      setActiveCard((i) => (i + 1) % CARD_DECK.length)
+    }, 2000)
+    return () => clearInterval(id)
+  }, [visualVariant])
 
   useEffect(() => {
     if (!split || rotatingWords.length < 2) return
@@ -198,26 +264,117 @@ export default function PageHero({
             ))}
           </div>
 
-          <div className="hv3d-scene">
-            <div className="hv3d-core">
-              <span className="hv3d-core-ring" />
-              <span className="hv3d-core-ring ring-2" />
-              <span className="hv3d-core-ring ring-3" />
-              <span className="material-symbols-outlined hv3d-core-icon">auto_awesome</span>
-            </div>
+          {visualVariant === 'cards3d' ? (
+            <div className="card3d-scene">
+              <span className="card3d-shape shape-circle-a" />
+              <span className="card3d-shape shape-square-b" />
+              <span className="card3d-shape shape-circle-c" />
 
-            {HV_BUBBLES.map((b, i) => (
-              <div className={`hv3d-bubble bubble-${i}`} key={b.label}>
-                <span className="hv3d-bubble-pop" />
-                <span className="hv3d-bubble-face">
-                  <span className="material-symbols-outlined">{b.icon}</span>
-                  <span className="hv3d-bubble-label">{b.label}</span>
-                </span>
+              <div className="card3d-deck">
+                {CARD_DECK.map((card, i) => {
+                  const n = CARD_DECK.length
+                  const stackPos = (i - activeCard + n) % n
+                  const isFeatured = stackPos === 0
+                  const x = stackPos * 46
+                  const y = -stackPos * 34
+                  const z = -stackPos * 30
+                  const rotate = -12
+                  const depthScale = 1 - stackPos * 0.05
+                  const depthOpacity = 1 - stackPos * 0.06
+                  return (
+                    <div
+                      className={`card3d-item ${isFeatured ? 'is-featured' : ''}`}
+                      key={card.title}
+                      style={{
+                        '--card-i': i,
+                        zIndex: n - stackPos,
+                        transform: `translate3d(${x}px, ${y}px, ${z}px) rotate(${rotate}deg) scale(${depthScale})`,
+                        opacity: depthOpacity,
+                      }}
+                    >
+                      <div className="card3d-item-inner">
+                        <div className="card3d-top">
+                          <span className="card3d-badge">{card.badge}</span>
+                          <span className="card3d-status" />
+                        </div>
+                        <span className="card3d-icon">
+                          <span className="material-symbols-outlined">{card.icon}</span>
+                        </span>
+                        <h4 className="card3d-title">{card.title}</h4>
+                        <p className="card3d-desc">{card.desc}</p>
+                        <div className="card3d-chart">
+                          {Array.from({ length: 8 }).map((_, j) => (
+                            <span key={j} className="card3d-chart-bar" style={{ '--bar-i': j }} />
+                          ))}
+                        </div>
+                        <div className="card3d-stat">
+                          <strong>{card.stat}</strong>
+                          <span>{card.statLabel}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
-            ))}
+              <div className="card3d-floor" />
+            </div>
+          ) : visualVariant === 'orbit' ? (
+            <div className="orbit-scene">
+              <div className="orbit-core">
+                <span className="orbit-core-ring" />
+                <span className="orbit-core-ring ring-2" />
+                <span className="material-symbols-outlined orbit-core-icon">auto_awesome</span>
+              </div>
 
-            <div className="hv3d-floor" />
-          </div>
+              {ORBIT_RINGS.map((ring, ringIndex) => (
+                <div
+                  key={ringIndex}
+                  className={`orbit-ring ${ring.reverse ? 'reverse' : ''}`}
+                  style={{ width: ring.radius * 2, height: ring.radius * 2, '--ring-duration': `${ring.duration}s` }}
+                >
+                  {ring.icons.map((icon, i) => {
+                    const angle = (360 / ring.icons.length) * i
+                    return (
+                      <div
+                        key={icon}
+                        className="orbit-icon-anchor"
+                        style={{ transform: `rotate(${angle}deg) translate(${ring.radius}px) rotate(-${angle}deg)` }}
+                      >
+                        <span className={`orbit-icon-counter ${ring.reverse ? 'counter-reverse' : ''}`} style={{ '--ring-duration': `${ring.duration}s` }}>
+                          <span className="orbit-icon-face">
+                            <span className="material-symbols-outlined">{icon}</span>
+                          </span>
+                        </span>
+                      </div>
+                    )
+                  })}
+                </div>
+              ))}
+
+              <div className="orbit-floor" />
+            </div>
+          ) : (
+            <div className="hv3d-scene">
+              <div className="hv3d-core">
+                <span className="hv3d-core-ring" />
+                <span className="hv3d-core-ring ring-2" />
+                <span className="hv3d-core-ring ring-3" />
+                <span className="material-symbols-outlined hv3d-core-icon">auto_awesome</span>
+              </div>
+
+              {HV_BUBBLES.map((b, i) => (
+                <div className={`hv3d-bubble bubble-${i}`} key={b.label}>
+                  <span className="hv3d-bubble-pop" />
+                  <span className="hv3d-bubble-face">
+                    <span className="material-symbols-outlined">{b.icon}</span>
+                    <span className="hv3d-bubble-label">{b.label}</span>
+                  </span>
+                </div>
+              ))}
+
+              <div className="hv3d-floor" />
+            </div>
+          )}
 
           {badges.map((b, i) => (
             <div className={`hv-chip chip-${i}`} key={b.label}>

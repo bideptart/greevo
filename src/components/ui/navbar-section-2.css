@@ -1,3 +1,26 @@
+/* Top nav pill links — plain CSS (not Tailwind hover: utilities) so the
+   hover/active color+background reliably beats the global `a { color:
+   inherit }` base rule regardless of Tailwind's cascade-layer ordering. */
+.navbar-pill-link {
+  background: transparent;
+  transition: background 0.2s ease;
+}
+
+.navbar-pill-link:hover,
+.navbar-pill-link.is-active {
+  background: linear-gradient(to right, #60a5fa, #2563eb);
+}
+
+.navbar-pill-link-label {
+  color: #3f3f46;
+  transition: color 0.2s ease;
+}
+
+.navbar-pill-link:hover .navbar-pill-link-label,
+.navbar-pill-link.is-active .navbar-pill-link-label {
+  color: #fff;
+}
+
 /* Logo animation — entrance fade-in, a periodic diagonal light-shine
    sweep (both CSS), plus a tap/click "wiggle" reaction driven by
    framer-motion in navbar-section-2.jsx. Transform on .greevo-logo-img

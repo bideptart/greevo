@@ -554,6 +554,394 @@
   z-index: 0;
 }
 
+/* ---- Orbit visual (Features hero) --------------------------------
+   Concentric rings of capability icons continuously orbit a glowing
+   core. Each ring rotates via CSS animation; each icon is placed on
+   the ring with a static rotate/translate/rotate transform, then
+   counter-spun at the same duration so it stays upright while it
+   travels around the circle. */
+.orbit-scene {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 84px;
+  height: 84px;
+  margin: -42px 0 0 -42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 34% 28%, #7dd3fc, #2563eb 62%, #1d4ed8);
+  box-shadow:
+    0 22px 48px rgba(37, 99, 235, 0.42),
+    0 0 0 8px rgba(56, 189, 248, 0.1),
+    inset 0 2px 8px rgba(255, 255, 255, 0.4);
+  animation: heroCoreIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both, heroCoreFloat 6s ease-in-out 0.8s infinite;
+}
+
+.orbit-core-icon {
+  color: #fff;
+  font-size: 30px;
+  z-index: 1;
+}
+
+.orbit-core-ring {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-cyan-solid);
+  animation: heroCoreRing 3.4s ease-out infinite;
+}
+
+.orbit-core-ring.ring-2 {
+  animation-delay: 1.4s;
+}
+
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px dashed rgba(37, 99, 235, 0.16);
+  animation: orbitSpin var(--ring-duration) linear infinite;
+}
+
+.orbit-ring.reverse {
+  animation-direction: reverse;
+}
+
+.orbit-icon-anchor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+}
+
+.orbit-icon-counter {
+  position: absolute;
+  top: -22px;
+  left: -22px;
+  display: block;
+  animation: orbitCounterSpin var(--ring-duration) linear infinite;
+}
+
+.orbit-icon-counter.counter-reverse {
+  animation-direction: reverse;
+}
+
+.orbit-icon-face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.72) 46%),
+    linear-gradient(160deg, rgba(224, 242, 254, 0.9), rgba(255, 255, 255, 0.85));
+  border: 1px solid rgba(125, 211, 252, 0.55);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.16), inset 0 2px 6px rgba(255, 255, 255, 0.9);
+}
+
+.orbit-icon-face .material-symbols-outlined {
+  font-size: 18px;
+  color: var(--accent-cyan-solid);
+}
+
+.orbit-floor {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: 6%;
+  height: 26px;
+  background: radial-gradient(ellipse, rgba(15, 23, 42, 0.14), transparent 72%);
+  filter: blur(8px);
+  z-index: 0;
+}
+
+@keyframes orbitSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes orbitCounterSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* ---- 3D card deck (Features hero) ---------------------------------
+   A left-to-right row of capability cards curved gently in real 3D
+   space (perspective + rotateY + translateZ). The center card is
+   sharp, full-size, and highlighted; side cards recede — smaller,
+   softer, blurred — for genuine depth of field. White / sky-blue
+   theme throughout, no dark mode. */
+.card3d-scene {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 420px;
+  perspective: 1500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card3d-deck {
+  position: relative;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  animation: card3dSway 9s ease-in-out infinite alternate;
+}
+
+.card3d-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin: -100px 0 0 -100px;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.65s ease, width 0.4s ease, height 0.4s ease, margin 0.4s ease;
+}
+
+.card3d-item-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border-radius: 20px;
+  background: linear-gradient(165deg, #ffffff, #eff6ff);
+  border: 1px solid rgba(191, 219, 254, 0.9);
+  box-shadow: 0 22px 40px rgba(15, 23, 42, 0.14), 0 3px 8px rgba(37, 99, 235, 0.1);
+  animation: card3dFloat 4.6s ease-in-out infinite;
+  animation-delay: calc(var(--card-i) * 0.22s);
+}
+
+.card3d-item.is-featured {
+  width: 232px;
+  height: 232px;
+  margin: -116px 0 0 -116px;
+}
+
+.card3d-item.is-featured .card3d-item-inner {
+  padding: 20px;
+  background: linear-gradient(165deg, #ffffff, #dbeafe);
+  border: 1.5px solid rgba(37, 99, 235, 0.55);
+  box-shadow: 0 30px 60px rgba(37, 99, 235, 0.28), 0 0 0 3px rgba(37, 99, 235, 0.14), 0 3px 8px rgba(37, 99, 235, 0.2);
+}
+
+.card3d-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card3d-badge {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--accent-cyan-solid);
+  background: rgba(37, 99, 235, 0.08);
+  border-radius: var(--radius-pill);
+  padding: 4px 8px;
+}
+
+.card3d-status {
+  width: 6px;
+  height: 6px;
+  min-width: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+  animation: card3dStatusPulse 1.8s ease-in-out infinite;
+}
+
+.card3d-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--gradient-primary);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.32);
+  margin-top: 4px;
+}
+
+.card3d-item.is-featured .card3d-icon {
+  width: 44px;
+  height: 44px;
+}
+
+.card3d-icon .material-symbols-outlined {
+  font-size: 19px;
+  color: #fff;
+}
+
+.card3d-item.is-featured .card3d-icon .material-symbols-outlined {
+  font-size: 22px;
+}
+
+.card3d-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+  margin-top: 2px;
+}
+
+.card3d-item.is-featured .card3d-title {
+  font-size: 16px;
+}
+
+.card3d-desc {
+  font-size: 10px;
+  line-height: 1.35;
+  color: var(--text-soft);
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card3d-item.is-featured .card3d-desc {
+  font-size: 11.5px;
+  -webkit-line-clamp: 3;
+}
+
+.card3d-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+}
+
+.card3d-chart-bar {
+  flex: 1;
+  min-width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(to top, var(--accent-violet-dark), var(--accent-cyan-solid));
+  opacity: 0.8;
+  transform: scaleY(0.3);
+  animation: card3dBarIn 2s ease-in-out infinite alternate;
+  animation-delay: calc(var(--bar-i) * 0.08s);
+}
+
+.card3d-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+
+.card3d-stat strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent-cyan-solid);
+}
+
+.card3d-item.is-featured .card3d-stat strong {
+  font-size: 19px;
+}
+
+.card3d-stat span {
+  font-size: 8.5px;
+  color: var(--text-soft);
+  line-height: 1.2;
+}
+
+.card3d-floor {
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  bottom: 4%;
+  height: 30px;
+  background: radial-gradient(ellipse, rgba(15, 23, 42, 0.16), transparent 72%);
+  filter: blur(8px);
+  z-index: 0;
+}
+
+/* Small decorative floating shapes around the card stack — same idea
+   as a photo-collage hero, kept strictly in the site's sky-blue palette. */
+.card3d-shape {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  animation: card3dShapeFloat 3.4s ease-in-out infinite;
+}
+
+.shape-circle-a {
+  top: 8%;
+  left: 14%;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(96, 165, 250, 0.35);
+}
+
+.shape-square-b {
+  bottom: 12%;
+  right: 16%;
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+  background: rgba(37, 99, 235, 0.22);
+  animation-delay: 0.6s;
+}
+
+.shape-circle-c {
+  bottom: 24%;
+  left: 6%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(125, 211, 252, 0.45);
+  animation-delay: 1.2s;
+}
+
+@keyframes card3dShapeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes card3dStatusPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+@keyframes card3dBarIn {
+  from { transform: scaleY(0.3); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes card3dSway {
+  from { transform: rotateY(-7deg); }
+  to { transform: rotateY(7deg); }
+}
+
+@keyframes card3dFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
 /* Floating badge chips */
 .hv-chip {
   position: absolute;
@@ -745,6 +1133,15 @@
   .hv3d-core-ring,
   .hv3d-bubble,
   .hv3d-bubble-pop,
+  .orbit-core,
+  .orbit-core-ring,
+  .orbit-ring,
+  .orbit-icon-counter,
+  .card3d-deck,
+  .card3d-item-inner,
+  .card3d-status,
+  .card3d-chart-bar,
+  .card3d-shape,
   .hv-chip,
   .hv-rotator,
   .hv-title-mask h1,
@@ -781,6 +1178,10 @@
   .hv3d-bubble {
     opacity: 1;
     transform: none;
+  }
+
+  .card3d-chart-bar {
+    transform: scaleY(0.7);
   }
 
   .hv-rotator {
